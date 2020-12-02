@@ -19,4 +19,8 @@ expenditure
  
 
 ### Information on StuBank PLC
-As StuBank PLC are a new organisation, they have no branding guidelines. They want something that stands out and is unique. 
+As StuBank PLC are a new organisation, they have no branding guidelines. They want something that stands out and is unique.
+
+## Implementation
+
+We will be using a Tomcat Server and a MySQL database to implement the application.
