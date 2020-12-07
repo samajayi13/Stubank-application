@@ -35,11 +35,11 @@ DEBUG=stubank-plc:* npm start
 ```
 On Windows Command Prompt, use this command
 ```
-set DEBUG=myapp:* & npm start
+set DEBUG=stubank-plc:* & npm start
 ```
 On Windows PowerShell, use this command
 ```
-$env:DEBUG='myapp:*'; npm start
+$env:DEBUG='stubank-plc:*'; npm start
 ```
 You can then open http://localhost:3000/ to access the app.
 
