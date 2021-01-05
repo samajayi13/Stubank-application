@@ -1,0 +1,140 @@
+doctype html
+head
+    // Required meta tags
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    // Bootstrap CSS
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
+    link(rel='stylesheet' href='/stylesheets/transaction.css')
+    script(src='https://kit.fontawesome.com/2354c028ce.js' crossorigin='anonymous')
+.nav-row
+    .row
+        .col.d-flex.justify-content-center(style='background:#2D7DE9;')
+            i.fas.fa-home
+        .col.d-flex.justify-content-center.border-right.border-bottom
+            b Account
+        .col.d-flex.justify-content-center.border-right.border-bottom
+            b Transfers
+        .col.d-flex.justify-content-center.border-right.border-bottom
+            b e-Documents
+        .col.d-flex.justify-content-center.border-right.border-bottom
+            b My Details &amp; Settings
+        .col.d-flex.justify-content-center.border-right.border-bottom
+            b Contact us
+        .col.d-flex.justify-content-center.border-right.border-bottom
+            b Log out
+section.float-left.side-left.d-none.d-sm-none.d-md-block.d-lg-block
+    .account-box.mt-4.ml-4.rounded-lg
+        .account-box_top.row.ml-2.mb-2
+            i.fas.fa-user-circle.float-left.mt-2.mr-2
+            .float-left
+                h4.col Account Name
+                p.text-muted.ml-3 ID 157344
+        p.text-muted.float-left.ml-3.balance Balance:
+        p.float-right.mr-3.figure(style='color:white;font-weight: 800') $450,000
+    .titles.ml-4
+        .titles-group.active.rounded-lg
+            i.fas.fa-donate.ml-2.mr-2
+            span.titles-group_text Transactions
+        .titles-group.rounded-lg
+            i.fas.fa-exchange-alt.ml-2.mr-2
+            span.titles-group_text Transfer
+        .titles-group.rounded-lg
+            i.fas.fa-money-check.ml-2.mr-2
+            span.titles-group_text Payment
+        .titles-group.rounded-lg
+            i.fas.fa-user-circle.ml-2.mr-2
+            span.titles-group_text Account
+    .account-box_last.mt-4.ml-4.rounded-lg
+        .account-box_top.row.ml-2.mb-2
+            i.fas.fa-user.float-left.mt-3.mr-2
+            .float-left
+                h6.col.mt-2 John Smith
+                p.text-muted.ml-3 ID: 123456
+main.float-left.side-right
+    h3 Transactions
+    table.table.table-hover
+        thead
+            tr
+                th(scope='col') Type
+                th(scope='col') From/To
+                th(scope='col') Amount
+                th(scope='col') Date
+        tbody
+            tr
+                th(scope='row')
+                    span.transaction-out.border.border-danger.rounded-circle Out
+                td Dave
+                td &pound;3000
+                td 04/01/2021
+            tr
+                th(scope='row')
+                    span.transaction-in.border.border-primary.rounded-circle In
+                td Jacob
+                td &pound;400
+                td 04/01/2021
+            tr
+                th(scope='row')
+                    span.transaction-out.border.border-danger.rounded-circle Out
+                td James
+                td &pound;3
+                td 02/01/2021
+            tr
+                th(scope='row')
+                    span.transaction-in.border.border-primary.rounded-circle In
+                td Nafay
+                td &pound;25
+                td 02/01/2021
+            tr
+                th(scope='row')
+                    span.transaction-out.border.border-danger.rounded-circle Out
+                td Issy
+                td &pound;35
+                td 01/01/2021
+            tr
+                th(scope='row')
+                    span.transaction-in.border.border-primary.rounded-circle In
+                td Sam
+                td &pound;3
+                td 04/01/2021
+            tr
+                th(scope='row')
+                    span.transaction-in.border.border-primary.rounded-circle In
+                td IV
+                td &pound;3
+                td 29/12/2020
+            tr
+                th(scope='row')
+                    span.transaction-out.border.border-danger.rounded-circle Out
+                td Tesco
+                td &pound;1.50
+                td 27/12/2020
+            tr
+                th(scope='row')
+                    span.transaction-out.border.border-danger.rounded-circle Out
+                td LIDLI
+                td &pound;0.50
+                td 27/12/2020
+            tr
+                th(scope='row')
+                    span.transaction-in.border.border-primary.rounded-circle In
+                td FARMHOUSE LTD
+                td &pound;2500
+                td 25/12/2020
+//
+  <footer class="footer-menu">
+  <div class="row">
+  <div class="col footer-bank-name"><b>© Bank Name</b></div>
+  <div class="col footer-icons">
+  <i class="fab fa-facebook-square"></i>
+  <i class="fas fa-envelope"></i>
+  <i class="fab fa-twitter"></i>
+  <i class="fab fa-instagram"></i>
+  </div>
+  </div>
+  </footer>
+// Optional JavaScript
+// jQuery first, then Popper.js, then Bootstrap JS
+script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js' integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' crossorigin='anonymous')
