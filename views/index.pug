@@ -1,5 +1,128 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype html
+head
+  // Required meta tags
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  // Bootstrap CSS
+  link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
+  link(rel='stylesheet' href='/stylesheets/home.css'))
+  script(src='https://kit.fontawesome.com/2354c028ce.js' crossorigin='anonymous')
+.nav-row
+  .row
+    .col-3.d-flex.justify-content-center(style='background:#2D7DE9;')
+      i.fas.fa-home
+    .col-3.d-flex.justify-content-center.border-right.border-bottom
+      i.far.fa-question-circle
+    .col-3.d-flex.justify-content-center.border-right.border-bottom
+      b Register
+    .col-3.d-flex.justify-content-center.border-right.border-bottom
+      b Login
+main.main.header-with-image
+  section.main-welcome
+    .main-img.pl-4.pt-5
+      img.img-fluid(src='/images/logo.png' alt='logo')
+    .main-heading
+      h1.main-heading_title
+        | We Are The Best Student Bank
+      p.main-heading_text
+        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quam corporis, blanditiis labore quidem soluta corrupti dolore odio beatae alias, placeat impedit! Atque aliquam odio at accusamus accusantium dolore unde.
+      button.btn.main-heading_button.btn-lg.rounded-lg.mt-4
+        | Get started
+      a.ca3-scroll-down-link.ca3-scroll-down-arrow(data-ca3_iconfont='ETmodules' data-ca3_icon='')
+section.bank-services
+  .container
+    .row
+      .service.col-lg-4.col-md-6.col-xs-12
+        .card
+          .card-img-wrapper
+            img.card-img-top(src='/images/main-welcome_img9.jpg' alt='Card image cap')
+          .card-body
+            h5.card-title Create acounts with 0% charged on overdraft.
+            p.card-text
+              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores labore vel aliquid, quam quasi, itaque similique quas autem, ipsum nulla quia officia dolorem nemo aut temporibus sit veniam inventore sed.
+            a.btn.btn-primary(href='#') Get started
+      .service.col-lg-4.col-md-6.col-xs-12
+        .card
+          .card-img-wrapper
+            img.card-img-top(src='/images/main-welcome_img10.jpg' alt='Card image cap')
+          .card-body
+            h5.card-title Supported banking
+            p.card-text
+              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis reprehenderit ab suscipit quas obcaecati repellendus nobis asperiores commodi cum libero aliquam, similique aut eius, consequuntur sapiente recusandae dolore, dolorum molestias!
+            a.btn.btn-primary(href='#') Get started
+      .service.col-lg-4.col-md-6.col-xs-12
+        .card
+          .card-img-wrapper
+            img.card-img-top(src='/images/main-welcome_img11.jpg' alt='Card image cap')
+          .card-body
+            h5.card-title The bank that makes saving easy
+            p.card-text
+              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam perspiciatis eaque quidem provident distinctio unde architecto itaque deleniti officiis perferendis modi, doloribus ab commodi, ipsum neque tempore inventore dolorum, veniam!
+            a.btn.btn-primary(href='#') Get started
+section.bottom-menu
+  .row.pl-5.ml-5.mt-5
+    .col
+      img.img-fulid.bottom-menu_logo(src='/images/logo.png' alt='')
+      .div
+        h4.mt-3 Bold Title
+        p.text-muted(style='width:15vw')
+          | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto sint ea alias, ad praesentium nam.
+    .col.bottom-menu_link
+      h5 Category
+      a
+        p.text-muted First
+      a
+        p.text-muted Link
+      a
+        p.text-muted Link
+      a
+        p.text-muted Third Link
+      h5.mt-3 Category
+      a
+        p.text-muted First
+      a
+        p.text-muted Link
+      a
+        p.text-muted Link
+      a
+        p.text-muted Third Link
+    .col.bottom-menu_link
+      h5 Category
+      a
+        p.text-muted First Long Footwer
+      a
+        p.text-muted Second Long Footwer
+      a
+        p.text-muted Third Long Footwer
+      a
+        p.text-muted Fourth Long Footwer
+      a
+        p.text-muted Fith Long Footwer
+      a
+        p.text-muted Sixth Long Footwer
+    .col.bottom-menu_link
+      h5 Category
+      a
+        p.text-muted First
+      a
+        p.text-muted Link
+      a
+        p.text-muted Link
+      a
+        p.text-muted Third Link
+    .col
+footer.footer-menu
+  .row
+    .col.footer-bank-name
+      b &copy; Bank Name
+    .col.footer-icons
+      i.fab.fa-facebook-square
+      i.fas.fa-envelope
+      i.fab.fa-twitter
+      i.fab.fa-instagram
+// Optional JavaScript
+// jQuery first, then Popper.js, then Bootstrap JS
+script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js' integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' crossorigin='anonymous')
+script.
