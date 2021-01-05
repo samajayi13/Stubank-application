@@ -10,13 +10,15 @@ head
 .nav-row
   .row
     .col-3.d-flex.justify-content-center(style='background:#2D7DE9;')
-      i.fas.fa-home
+      a(href="")
+        i.fas.fa-home
     .col-3.d-flex.justify-content-center.border-right.border-bottom
-      i.far.fa-question-circle
+      a(href="faq")
+        i.far.fa-question-circle
     .col-3.d-flex.justify-content-center.border-right.border-bottom
-      b Register
+      b: a(href="register") Register
     .col-3.d-flex.justify-content-center.border-right.border-bottom
-      b Login
+      b: a(href="login") Login
 main.main.header-with-image
   section.main-welcome
     .main-img.pl-4.pt-5
