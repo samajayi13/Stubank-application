@@ -1,0 +1,283 @@
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+.row .col{
+    padding-top:1vh;
+    padding-bottom:1vh;
+    align-content: center;
+}
+.row .col  .fa-home{
+    color:white;
+    font-size: 20px;
+}
+.nav-row .row .col{
+    background-color:lightgray
+}
+
+.header-with-image{
+    width:103vw;
+}
+.main-img{
+    width:10vw;
+}
+.main{
+    background:url(tranfers_12.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    clip-path: polygon(0 0, 100% 0%, 100% 71%, 0 92%);
+}
+
+.main-heading{
+    margin-left:5vw;
+    margin-top:7vh;
+}
+
+.main-heading_title{
+    color:#0076ff;
+    font-weight: 800;
+    font-size:50px;
+    width:40vw;
+}
+.main-heading_text{
+    color:white;
+    font-size:30px;
+    font-weight: 800;
+    width:35vw;
+}
+
+.main-heading_button{
+    background:#0076ff;
+    width:200px;
+    height: 70px;
+}
+
+.main-transfer-form{
+    float:right;
+}
+
+.transfer-form{
+    background-color:white;
+    padding-left:2vw;
+    margin-left:5vw;
+    width:35vw;
+    padding-bottom: 5vh;
+    margin-top:15vh;
+}
+
+.transfer-form h3{
+    padding-top:3.7vh;
+}
+
+.rounded{
+    border-radius: 10px !important;
+}
+
+.input-group-append textarea{
+    height: 38px;
+    resize: none;
+    background-color: #0076ff;
+    color:white;
+}
+
+.input-group, .form-control{
+    width:30vw;
+}
+
+.main .btn{
+    background-color: #0076ff;
+    color:white;
+    width:30vw;
+
+}
+.main .btn-submit{
+    display:none;
+
+}
+
+#form_2,#form_3{
+    display:none;
+}
+
+.success-message{
+    display:none;
+}
+
+.our-features .row .col-5 h5{
+    color:#0076ff;
+}
+
+.our-features .row .col-5 .our-features_text{
+    width:450px;
+    margin-left: 15vw;
+    margin-top: 15vh;
+}
+.feature-card{
+    padding-left:50px;
+
+}
+.feature-card i{
+    font-size:150px;
+    margin-left:40px;
+    color:#0076ff;
+}
+.feature-card h4{
+    margin-left:40px;
+}
+.feature-card p{
+    width:300px;
+}
+.row  .col .feature-card{
+    width:20vw;
+}
+
+
+.footer-menu{
+    background-color:lightgrey;
+}
+.footer-menu .row .footer-bank-name{
+    margin-left:7vw;
+}
+
+.footer-menu .row .col i{
+    margin-left:5vw;
+}
+.footer-menu .row .footer-icons{
+    margin-left:20vw;
+}
+
+
+/*media queires */
+
+@media only screen and (min-width: 800px) and (max-width: 900px) {
+    .main-heading .main-heading_title{
+        display:none;
+    }
+
+    .main-heading .main-heading_text{
+        display:none;
+    }
+
+    .transfer-form{
+        position: relative;
+        left:-150px;
+        top:-80px;
+        width:400px;
+    }
+    .main-img {
+        width:150px
+    }
+    .input-group, .form-control, .main .btn{
+        width:40vw;
+    }
+
+
+    .our-features .row .col-5 .our-features_text{
+        width:450px;
+        margin-left: 0vw;
+        margin-top: 0vh;
+    }
+    .feature-card{
+        padding-left:0px;
+        margin-left:3vw;
+
+    }
+    .feature-card i{
+        font-size:100px;
+        margin-left:40px;
+        color:#0076ff;
+    }
+
+    .our-features_text h1, .our-features_text p{
+        width:400px;
+    }
+    .our-features .col-7{
+        margin-top:50px;
+    }
+}
+
+@media only screen and (min-width: 1000px){
+    .main-heading .main-heading_title{
+        display:block;
+        font-size: 40px;
+    }
+
+    .main-heading .main-heading_text{
+        display:block;
+        font-size: 20px;
+        width:40vw;
+    }
+
+    .transfer-form{
+        position: relative;
+        left:-80px;
+        top:-5px;
+        width:42vw;
+    }
+
+    .input-group, .form-control, .main .btn{
+        width:37vw;
+    }
+
+
+
+    .our-features .row .col-5 .our-features_text{
+        width:450px;
+        margin-left: 0vw;
+        margin-top: 0vh;
+    }
+    .feature-card{
+        padding-left:2vw;
+        padding-right:20vw;
+        width:20vw;
+        margin-left:0vw;
+
+    }
+    .feature-card i{
+        font-size:100px;
+        margin-left:4vw;
+        color:#0076ff;
+    }
+
+    .feature-card h4 {
+        margin-left:2.5vw;
+        width:20vw;
+    }
+    .feature-card p{
+        width:20vw;
+    }
+
+    .our-features_text h1, .our-features_text p{
+        width:40vw;
+    }
+    .our-features .col-7{
+        margin-top:0px;
+    }
+}
+
+@media only screen and (min-width: 801px) {
+    .main-heading_text{
+        width:80vw;
+    }
+
+    .main-img {
+        width:150px
+    }
+}
+@media only screen and (min-width: 1000px) {
+    .main-heading_text{
+        width:75vw;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .main-heading_text{
+        width:60vw;
+    }
+
+}
+@media only screen and (min-width: 1400px) {
+    .main-heading_text{
+        width:40vw;
+    }
+}
