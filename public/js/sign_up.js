@@ -10,9 +10,9 @@ formBtn.addEventListener("click",function(e){
     if(formIndex === 1){
         formValidated = form1Validation();
     }else if(formIndex === 2){
-        // formValidated = form2Validation();
+        formValidated = form2Validation();
     }else if (formIndex ===3 ){
-        // formValidated = form3Validation();
+        formValidated = form3Validation();
     }
 
     if(formValidated){
@@ -23,7 +23,6 @@ formBtn.addEventListener("click",function(e){
 })
 
 btnPrevious.addEventListener("click",function(e){
-    //do validation based on number
     moveForm("backwards");
     e.preventDefault();
 })
@@ -65,6 +64,27 @@ function form1Validation(){
     if((!checkIfPhoneNumberValid(document.querySelector("#phone-number").value)) ||
         (!checkEmailValid(document.querySelector("#email").value))||
         (!validateTextField(["#first-name","#last-name"]))){return false;}
+    return true;
+}
+
+function form2Validation(){
+    clearErrorMessages(document.querySelector(".main-form_2"));
+    var password = document.querySelector("#password").value;
+    var confirmPassword = document.querySelector("#confirm-password").value;
+
+    if(!checkIfInputsEmpty(".main-form_2"))
+        return false;
+    if(password !== confirmPassword){
+        updateErrorMessage(document.querySelector(".error-message-confirm-password"),"Password do not match")
+        return false
+    }
+    return true;
+}
+
+function form3Validation(){
+    clearErrorMessages(document.querySelector(".main-form_3"));
+    if((!checkIfInputsEmpty(".main-form_3")) || (!validateTextField(["#univeristy"])))
+        return false;
     return true;
 }
 
