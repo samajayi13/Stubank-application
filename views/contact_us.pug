@@ -1,0 +1,92 @@
+doctype html
+head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    title Account webpage
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
+    script(src='https://kit.fontawesome.com/2354c028ce.js' crossorigin='anonymous')
+    link(rel='stylesheet' href='accounts.css')
+.nav-row
+    .row
+        .col.d-flex.justify-content-center(style='background:#2D7DE9;')
+            i.fas.fa-home
+        .col.d-flex.justify-content-center.border-right.border-bottom
+            b Account
+        .col.d-flex.justify-content-center.border-right.border-bottom
+            b Transfers
+        .col.d-flex.justify-content-center.border-right.border-bottom
+            b e-Documents
+        .col.d-flex.justify-content-center.border-right.border-bottom
+            b My Details &amp; Settings
+        .col.d-flex.justify-content-center.border-right.border-bottom
+            b Contact us
+        .col.d-flex.justify-content-center.border-right.border-bottom
+            b Log out
+main.row
+    section.float-left.side-left.d-none.d-sm-none.d-md-block.d-lg-block
+        .account-box.mt-4.ml-4.rounded-lg
+            .account-box_top.row.ml-2.mb-2
+                i.fas.fa-user-circle.float-left.mt-2.mr-2
+                .float-left
+                    h4.col Account Name
+                    p.text-muted.ml-3 ID 157344
+            p.text-muted.float-left.ml-3.balance Balance:
+            p.float-right.mr-3.figure(style='color:white;font-weight: 800') $450,000
+        .titles.ml-4
+            .titles-group.active.rounded-lg
+                i.fas.fa-donate.ml-2.mr-2
+                span.titles-group_text Transactions
+            .titles-group.rounded-lg
+                i.fas.fa-exchange-alt.ml-2.mr-2
+                span.titles-group_text Transfer
+            .titles-group.rounded-lg
+                i.fas.fa-money-check.ml-2.mr-2
+                span.titles-group_text Payment
+            .titles-group.rounded-lg
+                i.fas.fa-user-circle.ml-2.mr-2
+                span.titles-group_text Account
+        .account-box_last.mt-4.ml-5.rounded-lg
+            .account-box_top.row.ml-2.mb-2
+                i.fas.fa-user.float-left.mt-3.mr-2
+                .float-left
+                    h6.col.mt-2 John Smith
+                    p.text-muted.ml-3 ID: 123456
+    section.float-left.col
+        h1.text-primary.mb-5.mt-4 My Accounts
+        .p-3.mb-2.bg-dark.text-white Banking &amp; Savings
+        table.table.table-striped
+            thead
+                tr
+                    th(scope='col') Accounts
+                    th(scope='col') Current Balance
+                    th(scope='col') Available Balance
+                    th(scope='col') Actions
+            tbody
+                tr
+                    th(scope='row')
+                        | eSaver
+                        br
+                        | 09-01-26 12345678
+                    td &pound; 10,123.00
+                    td &pound; 10,123.00
+                    td
+                        button.btn.btn-primary(type='button') See Transfers
+                tr
+                    th(scope='row')
+                        | ISA
+                        br
+                        | 09-01-27 23456789
+                    td &pound; 1,500.00
+                    td &pound; 1,500.00
+                    td
+                        button.btn.btn-primary(type='button') See Transfers
+                tr
+                    th(scope='row')
+                        | Bank Account
+                        br
+                        | 09-01-26 01234567
+                    td &pound; 2,456.00
+                    td &pound; 2,456.00
+                    td
+                        button.btn.btn-primary(type='button') See Transfers
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js' integrity='sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW' crossorigin='anonymous')

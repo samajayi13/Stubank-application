@@ -6,23 +6,9 @@ head
     // Bootstrap CSS
     link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
     link(rel='stylesheet' href='/stylesheets/transfers.css')
+    link(rel='stylesheet' href='/stylesheets/logged_in_navbar.css')
     script(src='https://kit.fontawesome.com/2354c028ce.js' crossorigin='anonymous')
-.nav-row
-    .row
-        .col.d-flex.justify-content-center(style='background:#2D7DE9;')
-            i.fas.fa-home
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b Account
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b Transfers
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b e-Documents
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b My Details &amp; Settings
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b Contact us
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b Log out
+include logged_in_navbar
 section.float-left.side-left.d-none.d-sm-none.d-md-block.d-lg-block
     .account-box.mt-4.ml-4.rounded-lg
         .account-box_top.row.ml-2.mb-2

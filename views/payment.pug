@@ -6,24 +6,9 @@ head
     // Bootstrap CSS
     link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
     link(rel='stylesheet' href='/stylesheets/payment.css')
+    link(rel='stylesheet' href='/stylesheets/logged_in_navbar.css')
     script(src='https://kit.fontawesome.com/2354c028ce.js' crossorigin='anonymous')
-.nav-row
-    .row
-        .col.d-flex.justify-content-center(style='background:#2D7DE9;')
-            a(href="")
-                i.fas.fa-home
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b: a(href="account") Account
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b: a(href="transfers") Transfers
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b: a(href="e-documents") e-Documents
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b: a(href="details-and-settings") My Details &amp; Settings
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b: a(href="contact-us") Contact us
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b: a(href="logout") Logout
+include logged_in_navbar
 main.main.header-with-image.row
     section.main-welcome.col
         .main-img.pl-4.pt-5
@@ -37,24 +22,24 @@ main.main.header-with-image.row
         .transfer-form.rounded.shadow-lg
             h3 Send Money
             form#form_1.mt-4.form_1(action='')
-                label(for='exampleFormControlSelect1') Send Amount
+                label(for='sendAmount') Send Amount
                 .input-group.mb-3
                     .input-group-prepend
                         span.input-group-text &pound;
-                    input.form-control(type='text' placeholder='£1,000')
+                    input.form-control(id='sendAmount', type='text' placeholder='£1,000')
                     .input-group-append
                         textarea.input-group-text .00
                 .form-group
-                    label(for='exampleFormControlSelect1') Receiver Country
-                    select#exampleFormControlSelect1.form-control
+                    label(for='receivingCountry') Receiving Country
+                    select#receivingCountry.form-control
                         option United Kingdom
                         option 2
                         option 3
                         option 4
                         option 5
                 .form-group
-                    label(for='exampleFormControlSelect1') Transfer purpose
-                    select#exampleFormControlSelect1.form-control
+                    label(for='transferPurpose') Transfer purpose
+                    select#transferPurpose.form-control
                         option Paying family
                         option 2
                         option 3
@@ -62,23 +47,23 @@ main.main.header-with-image.row
                         option 5
             form#form_2.mt-4(action='')
                 .form-group
-                    label(for='exampleFormControlSelect1') Account to send from
-                    select#exampleFormControlSelect1.form-control
+                    label(for='sendingAccount') Account to send from
+                    select#sendingAccount.form-control
                         option Sava personal 123
                         option 2
                         option 3
                         option 4
                         option 5
                 .form-group
-                    label(for='exampleFormControlSelect1') Receiver account number
-                    input.form-control(type='text' placeholder='23242234454')
+                    label(for='receivingAccount') Receiving Account Number
+                    input.form-control(id='receivingAccount', type='text' placeholder='23242234454')
                 .form-group
-                    label(for='exampleFormControlSelect1') Receiver name
-                    input.form-control(type='text' placeholder='John Smith')
+                    label(for='receiverName') Receiver name
+                    input.form-control(id='receiverName', type='text' placeholder='John Smith')
             form#form_3.mt-4(action='')
                 .form-group.mb-3
-                    label(for='exampleFormControlSelect1') One time passcode (Please check your email)
-                    input.form-control(type='text' placeholder='')
+                    label(for='passCode') One time passcode (Please check your email)
+                    input.form-control(id='passCode', type='text' placeholder='')
             .success-message
                 h1.text-center.text-success.pt-5 Transfer completed
             button.btn.btn-lg.mt-4.btn-continue Continue Transfer
