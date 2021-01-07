@@ -1,8 +1,3 @@
-// // reuqirments
-// - check if all fields are not empty
-// - if phone number is real
-// - check if email is real
-
 var formBtn = document.querySelector("form .row .btn-next");
 var btnPrevious = document.querySelector("form .row .btn-previous");
 var progressBar = document.querySelector(".progress-bar");
@@ -14,8 +9,7 @@ formBtn.addEventListener("click",function(e){
 
     if(formIndex === 1){
         formValidated = form1Validation();
-    }
-    else if(formIndex === 2){
+    }else if(formIndex === 2){
         // formValidated = form2Validation();
     }else if (formIndex ===3 ){
         // formValidated = form3Validation();
@@ -65,10 +59,13 @@ function moveForm(direction){
 
 
 function form1Validation(){
-    checkIfInputsEmpty(".main-form_1");
-    // checkNumberValid();
-    // checkEmailVaid();
-    // validateTextField();
+    clearErrorMessages(document.querySelector(".main-form_1"));
+    if(!checkIfInputsEmpty(".main-form_1"))
+        return false;
+    if((!checkIfPhoneNumberValid(document.querySelector("#phone-number").value)) ||
+        (!checkEmailValid(document.querySelector("#email").value))||
+        (!validateTextField(["#first-name","#last-name"]))){return false;}
+    return true;
 }
 
 function checkIfInputsEmpty(formName) {
@@ -89,18 +86,48 @@ function checkIfInputsEmpty(formName) {
     return valid;
 }
 
-function checkNumberValid(){
-
+function checkIfPhoneNumberValid(number) {
+    let regex = /((07)|((\+|00)447)){1}[0-9]{9}\b/,
+        result = regex.test(number);
+    if(result === false)
+        updateErrorMessage(document.querySelector(".error-message-phone-number"),"Phone number is invalid");
+    return result;
 }
 
-function checkEmailVaid(){
-
+function checkEmailValid(email){
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let valid = re.test(String(email).toLowerCase());
+    if(valid === false)
+        updateErrorMessage(document.querySelector(".error-message-email"),"Email is invalid");
+    return valid;
 }
 
-function validateTextField(){
+function validateTextField(elements){
+    let valid = true;
+
+    for(var elm of elements){
+        validate(document.querySelector(`${elm}`).value,elm);
+    }
+
+    function validate(value,elementName){
+        let containsNumbers =  /\d/.test(value);
+        if(containsNumbers === true){
+            valid = false;
+            updateErrorMessage(document.querySelector(".error-message-"+elementName.slice(1)),"* Field cannot contain numbers");
+        }
+    }
+    return valid;
 
 }
 
 function updateErrorMessage(formElement,message){
     formElement.innerText = message;
+}
+
+function clearErrorMessages(formElm){
+    let childNodes = formElm.children;
+
+    for (let childNode of childNodes) {
+         childNode.childNodes[2].innerText = "";
+    }
 }
