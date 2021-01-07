@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+.row .col{
+    padding-top:1vh;
+    padding-bottom:1vh;
+    align-content: center;
+}
+.row .col  .fa-home{
+    color:white;
+    font-size: 20px;
+}
+.nav-row .row .col{
+    background-color:lightgray
+}

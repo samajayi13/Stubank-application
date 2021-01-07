@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+.row .col-3{
+    padding-top:1vh;
+    padding-bottom:1vh;
+    align-content: center;
+}
+.row .col-3  .fa-home{
+    color:white;
+    font-size: 20px;
+}
+.col-3{
+    background-color:lightgray
+}
+
+a{
+    color:inherit !important;
+}

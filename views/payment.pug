@@ -6,24 +6,9 @@ head
     // Bootstrap CSS
     link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
     link(rel='stylesheet' href='/stylesheets/payment.css')
+    link(rel='stylesheet' href='/stylesheets/logged_in_navbar.css')
     script(src='https://kit.fontawesome.com/2354c028ce.js' crossorigin='anonymous')
-.nav-row
-    .row
-        .col.d-flex.justify-content-center(style='background:#2D7DE9;')
-            a(href="")
-                i.fas.fa-home
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b: a(href="account") Account
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b: a(href="transfers") Transfers
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b: a(href="e-documents") e-Documents
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b: a(href="details-and-settings") My Details &amp; Settings
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b: a(href="contact-us") Contact us
-        .col.d-flex.justify-content-center.border-right.border-bottom
-            b: a(href="logout") Logout
+include logged_in_navbar
 main.main.header-with-image.row
     section.main-welcome.col
         .main-img.pl-4.pt-5

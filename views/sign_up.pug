@@ -6,18 +6,10 @@ head
     // Bootstrap CSS
     link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
     link(rel='stylesheet' href='/stylesheets/sign_up.css')
+    link(rel='stylesheet' href='/stylesheets/navbar.css')
     script(src='https://kit.fontawesome.com/2354c028ce.js' crossorigin='anonymous')
     title Hello, world!
-.nav-row
-    .row
-        .col-3.d-flex.justify-content-center(style='background:#2D7DE9;')
-            i.fas.fa-home
-        .col-3.d-flex.justify-content-center.border-right.border-bottom
-            i.far.fa-question-circle
-        .col-3.d-flex.justify-content-center.border-right.border-bottom
-            b Register
-        .col-3.d-flex.justify-content-center.border-right.border-bottom
-            b Login
+include navbar
 main.main.header-with-image.row
     section.main-welcome.col-6
         .main-img.pl-4.pt-5

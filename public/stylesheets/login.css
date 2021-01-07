@@ -1,19 +1,5 @@
-
 body{
     background-color:#D0D0CE;
-    overflow-x: hidden;
-}
-.row .col-3{
-    padding-top:1vh;
-    padding-bottom:1vh;
-    align-content: center;
-}
-.row .col-3  .fa-home{
-    color:white;
-    font-size: 20px;
-}
-.col-3{
-    background-color:lightgray;
 }
 
 .main-section{
