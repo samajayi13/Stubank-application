@@ -1,0 +1,149 @@
+doctype html
+head
+    // Required meta tags
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    // Bootstrap CSS
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
+    link(rel='stylesheet' href='/stylesheets/sign_up.css')
+    script(src='https://kit.fontawesome.com/2354c028ce.js' crossorigin='anonymous')
+    title Hello, world!
+.nav-row
+    .row
+        .col-3.d-flex.justify-content-center(style='background:#2D7DE9;')
+            i.fas.fa-home
+        .col-3.d-flex.justify-content-center.border-right.border-bottom
+            i.far.fa-question-circle
+        .col-3.d-flex.justify-content-center.border-right.border-bottom
+            b Register
+        .col-3.d-flex.justify-content-center.border-right.border-bottom
+            b Login
+main.main.header-with-image.row
+    section.main-welcome.col-6
+        .main-img.pl-4.pt-5
+            img.img-fluid(src='/images/logo.png' alt='logo')
+        .main-heading.d-none.d-sm-none.d-md-none.d-lg-block
+            h1.main-heading_title
+                | We Put Student&apos;s Interests First
+            p.main-heading_text
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quam corporis, blanditiis labore quidem soluta corrupti dolore odio beatae alias, placeat impedit! Atque aliquam odio at accusamus accusantium dolore unde.
+            a.ca3-scroll-down-link.ca3-scroll-down-arrow(data-ca3_iconfont='ETmodules' data-ca3_icon='')
+    section.col-6
+        .main-form
+            .progress
+                .progress-bar(role='progressbar' style='' aria-valuenow='25' aria-valuemin='0' aria-valuemax='100') 25%
+            form
+                h1.text-center.mt-4.mb-5 Sign Up
+                .main-form_1
+                    .main-form_field
+                        i.fas.fa-user
+                        input.form-control(type='text' placeholder='First name')
+                    .main-form_field
+                        i.fas.fa-user
+                        input.form-control(type='text' placeholder='Last name')
+                    .main-form_field
+                        i.fas.fa-phone
+                        input.form-control(type='text' placeholder='Phone number')
+                    .main-form_field
+                        i.fas.fa-envelope
+                        input.form-control(type='text' placeholder='Email')
+                .main-form_2
+                    .main-form_field
+                        i.fas.fa-user
+                        input.form-control(type='text' placeholder='Username')
+                    .main-form_field
+                        i.fas.fa-lock
+                        input.form-control(type='text' placeholder='Password')
+                    .main-form_field
+                        i.fas.fa-lock
+                        input.form-control(type='text' placeholder='Confirm Password')
+                .main-form_3
+                    .main-form_field
+                        i.fas.fa-university
+                        input.form-control(type='text' placeholder='Univeristy name')
+                    .main-form_field
+                        i.fas.fa-id-card
+                        input.form-control(type='text' placeholder='Student ID')
+                .row.justify-content-center
+                    button.btn.btn-previous.btn-primary.btn-lg.mr-2 Previous
+                    button.btn.btn-next.btn-primary.btn-lg(type='submit') Next
+section.main-bottom.mb-5
+    .container
+        h1.text-center.main-heading_title Why Choose Us
+    .main-bottom_elm.row
+        .individual-item.individual-item-first.col-4
+            i.fas.fa-user.float-left.rounded-circle
+            .individual-item_text.float-left
+                h2 We are friendly
+                p.text-muted
+                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus optio modi cum, amet ab nihil ex asperiores aspernatur veniam perspiciatis dignissimos nesciunt consequuntur nemo pariatur doloremque tempora sapiente molestias nam.
+        .individual-item.col-4
+            i.fas.fa-headset.float-left.rounded-circle
+            .individual-item_text.float-left
+                h2 24/7 Contact
+                p.text-muted
+                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus optio modi cum, amet ab nihil ex asperiores aspernatur veniam perspiciatis dignissimos nesciunt consequuntur nemo pariatur doloremque tempora sapiente molestias nam.
+        .individual-item.individual-item-last.col-4
+            i.fas.fa-money-check.float-left.rounded-circle
+            .individual-item_text.float-left
+                h2 Low interest loans
+                p.text-muted
+                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus optio modi cum, amet ab nihil ex asperiores aspernatur veniam perspiciatis dignissimos nesciunt consequuntur nemo pariatur doloremque tempora sapiente molestias nam.
+footer.footer-menu
+    .row
+        .col.footer-bank-name
+            b &copy; Bank Name
+        .col.footer-icons
+            i.fab.fa-facebook-square
+            i.fas.fa-envelope
+            i.fab.fa-twitter
+            i.fab.fa-instagram
+// Optional JavaScript
+// jQuery first, then Popper.js, then Bootstrap JS
+script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js' integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' crossorigin='anonymous')
+script.
+    var formBtn = document.querySelector("form .row .btn-next");
+    var btnPrevious = document.querySelector("form .row .btn-previous");
+    var progressBar = document.querySelector(".progress-bar");
+    var progressNumber = 25;
+    var formIndex = 1;
+    formBtn.addEventListener("click",function(e){
+        //do validation based on number
+        moveForm("forward");
+        e.preventDefault();
+    })
+    btnPrevious.addEventListener("click",function(e){
+        //do validation based on number
+        moveForm("backwards");
+        e.preventDefault();
+    })
+    function moveForm(direction){
+        function loop(formIndex){
+            for(var i = 1; i<= 3;i++){
+                var elm = document.querySelector(".main-form_"+i.toString());
+                elm.style.display = i === formIndex ? "block" : "none";
+            }
+        }
+        if(direction === "forward" && formIndex <=3 ){
+            progressNumber += 25;
+            formIndex++;
+            loop(formIndex);
+        }else if(direction === "backwards" && formIndex > 1 ){
+            progressNumber -= 25;
+            formIndex--;
+            loop(formIndex);
+        }
+        if(formIndex <= 3 && formIndex >1){
+            btnPrevious.style.display = "block";
+        }else if(formIndex === 4){
+            btnPrevious.style.display = "none";
+            formBtn.style.display = "none";
+            document.querySelector("form h1").innerText = "Sign up complete!"
+        }else{
+            btnPrevious.style.display = "none";
+        }
+        $(".progress-bar").text(`${progressNumber}%`);
+        $(".progress-bar").width(`${progressNumber}%`);
+    }

@@ -1,0 +1,175 @@
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+.row .col-3{
+    padding-top:1vh;
+    padding-bottom:1vh;
+    align-content: center;
+}
+.row .col-3  .fa-home{
+    color:white;
+    font-size: 20px;
+}
+.col-3{
+    background-color:lightgray
+}
+
+main{
+    background:url(/images/main-sign-up1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+.header-with-image{
+    width:103vw;
+}
+.main-img{
+    width:10vw;
+}
+.main-welcome{
+}
+
+.main-heading{
+    margin-left:5vw;
+    margin-top:10vh;
+}
+
+.main-heading_title{
+    color:#0076ff;
+    font-weight: 800;
+    font-size:50px;
+}
+.main-heading_text{
+    color:white;
+    font-size:30px;
+    font-weight: 800;
+    width:40vw
+}
+
+.main-heading_button{
+    background:#0076ff;
+    width:200px;
+    height: 70px;
+}
+
+.main-form{
+    width:45vw;
+    margin-top:15vh !important;
+    padding-top:1vh !important;
+    padding-bottom:3vh !important;
+    background-color: #22242B !important;
+}
+.progress{
+    width:40vw;
+    margin-left:2.5vw;
+    height: 3vh;
+}
+
+.main-form form h1{
+    color:white;
+
+}
+
+.main-form form .main-form_field input{
+    border-top:0px;
+    border-left:0px;
+    border-right:0px;
+    background: inherit;
+    width:30vw;
+    margin-left:10vw;
+    margin-bottom:5vh;
+    color:white;
+}
+
+.main-form form .main-form_field input::placeholder{
+    color:white;
+}
+
+.main-form form .row .btn{
+    width:200px;
+}
+
+.main-form form .main-form_field .fas{
+    color:white;
+    font-size: 25px;
+    margin-left:6vw;
+    position: relative;
+    top:3vh
+}
+
+.main-form_2{
+    display:none;
+}
+.main-form_3{
+    display:none;
+}
+
+.progress-bar{
+    width: 25%;
+}
+
+.btn-previous{
+    display:none;
+}
+
+.main-bottom .container h1{
+    margin-bottom:10vh !important;
+    margin-top:5vh !important;
+    text-decoration: underline;
+}
+
+.main-bottom_elm{
+}
+
+
+.main-bottom_elm .individual-item .individual-item_text p {
+    width:20vw;
+}
+
+
+.main-bottom_elm .individual-item i {
+    font-size:60px;
+    color: #F43F01;
+    display: inline-block;
+    border-radius: 60px;
+    box-shadow: 0px 0px 2px #F43F01;
+    padding: 0.5em 0.5em;
+    padding: 0.5em 0.5em;
+    margin-right: 2vw;
+    margin-left: 2vw;
+}
+
+.main-bottom_elm .individual-item i:hover{
+    font-size:60px;
+    color: blue;
+    display: inline-block;
+    border-radius: 60px;
+    box-shadow: 0px 0px 2px #F43F01;
+    padding: 0.5em 0.5em;
+    padding: 0.5em 0.5em;
+    margin-right: 2vw;
+    margin-left: 2vw;
+}
+
+.main-bottom_elm .btn{
+    margin: 0 auto;
+    width:20vw;
+    padding:10px; 10px; 20px; 10px;
+    background-color:0076ff;
+}
+
+footer{}
+.footer-menu{
+    background-color:lightgrey;
+}
+.footer-menu .row .footer-bank-name{
+    margin-left:7vw;
+}
+
+.footer-menu .row .col i{
+    margin-left:5vw;
+}
+.footer-menu .row .footer-icons{
+    margin-left:20vw;
+}
