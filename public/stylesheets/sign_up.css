@@ -43,6 +43,7 @@ main{
     padding-bottom:3vh !important;
     background-color: #22242B !important;
 }
+
 .progress{
     width:40vw;
     margin-left:2.5vw;
@@ -54,6 +55,8 @@ main{
 
 }
 
+.main-form_field{
+}
 .main-form form .main-form_field input{
     border-top:0px;
     border-left:0px;
@@ -61,8 +64,10 @@ main{
     background: inherit;
     width:30vw;
     margin-left:10vw;
-    margin-bottom:5vh;
     color:white;
+}
+.main-form form .main-form_field p{
+    margin-left:10vw;
 }
 
 .main-form form .main-form_field input::placeholder{
@@ -78,7 +83,7 @@ main{
     font-size: 25px;
     margin-left:6vw;
     position: relative;
-    top:3vh
+    top:4vh
 }
 
 .main-form_2{

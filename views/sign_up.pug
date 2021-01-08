@@ -25,37 +25,46 @@ main.main.header-with-image.row
             .progress
                 .progress-bar(role='progressbar' style='' aria-valuenow='25' aria-valuemin='0' aria-valuemax='100') 25%
             form
-                h1.text-center.mt-4.mb-5 Sign Up
+                h1.text-center.mt-4.mb-4 Sign Up
                 .main-form_1
                     .main-form_field
                         i.fas.fa-user
-                        input.form-control(type='text' placeholder='First name')
+                        input.form-control#first-name(type='text' placeholder='First name')
+                        p.text-danger.error-message-first-name
                     .main-form_field
                         i.fas.fa-user
-                        input.form-control(type='text' placeholder='Last name')
+                        input.form-control#last-name(type='text' placeholder='Last name')
+                        p.text-danger.error-message-last-name
                     .main-form_field
                         i.fas.fa-phone
-                        input.form-control(type='text' placeholder='Phone number')
+                        input.form-control#phone-number(type='text' placeholder='Phone number')
+                        p.text-danger.error-message-phone-number
                     .main-form_field
                         i.fas.fa-envelope
-                        input.form-control(type='text' placeholder='Email')
+                        input.form-control#email(type='text' placeholder='Email')
+                        p.text-danger.error-message-email
                 .main-form_2
                     .main-form_field
                         i.fas.fa-user
-                        input.form-control(type='text' placeholder='Username')
+                        input.form-contro#username(type='text' placeholder='Username')
+                        p.text-danger.error-message-username
                     .main-form_field
                         i.fas.fa-lock
-                        input.form-control(type='text' placeholder='Password')
+                        input.form-control#password(type='text' placeholder='Password')
+                        p.text-danger.error-message-password
                     .main-form_field
                         i.fas.fa-lock
-                        input.form-control(type='text' placeholder='Confirm Password')
+                        input.form-control#confirm-password(type='text' placeholder='Confirm Password')
+                        p.text-danger.error-message-confirm-password
                 .main-form_3
                     .main-form_field
                         i.fas.fa-university
-                        input.form-control(type='text' placeholder='Univeristy name')
+                        input.form-control#univeristy(type='text' placeholder='Univeristy name')
+                        p.text-danger.error-message-univeristy
                     .main-form_field
                         i.fas.fa-id-card
-                        input.form-control(type='text' placeholder='Student ID')
+                        input.form-control#student-ID(type='text' placeholder='Student ID')
+                        p.text-danger.error-message-ID
                 .row.justify-content-center
                     button.btn.btn-previous.btn-primary.btn-lg.mr-2 Previous
                     button.btn.btn-next.btn-primary.btn-lg(type='submit') Next
@@ -95,47 +104,5 @@ footer.footer-menu
 script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js' integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' crossorigin='anonymous')
 script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
 script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' crossorigin='anonymous')
-script.
-    var formBtn = document.querySelector("form .row .btn-next");
-    var btnPrevious = document.querySelector("form .row .btn-previous");
-    var progressBar = document.querySelector(".progress-bar");
-    var progressNumber = 25;
-    var formIndex = 1;
-    formBtn.addEventListener("click",function(e){
-        //do validation based on number
-        moveForm("forward");
-        e.preventDefault();
-    })
-    btnPrevious.addEventListener("click",function(e){
-        //do validation based on number
-        moveForm("backwards");
-        e.preventDefault();
-    })
-    function moveForm(direction){
-        function loop(formIndex){
-            for(var i = 1; i<= 3;i++){
-                var elm = document.querySelector(".main-form_"+i.toString());
-                elm.style.display = i === formIndex ? "block" : "none";
-            }
-        }
-        if(direction === "forward" && formIndex <=3 ){
-            progressNumber += 25;
-            formIndex++;
-            loop(formIndex);
-        }else if(direction === "backwards" && formIndex > 1 ){
-            progressNumber -= 25;
-            formIndex--;
-            loop(formIndex);
-        }
-        if(formIndex <= 3 && formIndex >1){
-            btnPrevious.style.display = "block";
-        }else if(formIndex === 4){
-            btnPrevious.style.display = "none";
-            formBtn.style.display = "none";
-            document.querySelector("form h1").innerText = "Sign up complete!"
-        }else{
-            btnPrevious.style.display = "none";
-        }
-        $(".progress-bar").text(`${progressNumber}%`);
-        $(".progress-bar").width(`${progressNumber}%`);
-    }
+script(src='/js/sign_up.js')
+
