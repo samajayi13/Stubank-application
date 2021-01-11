@@ -1,5 +1,5 @@
 var express = require('express');
-let session = require("express-session");
+// let session = require("express-session");
 var router = express.Router();
 
 let db = require('../dbconnection');
@@ -20,10 +20,8 @@ router.get('/', function(req, res, next) {
 router.post('/signin',  function(req, res, next) {
     // store all the user input data
     const userDetails = req.body;
-    var usernameE = userDetails["username"];
-    var passwordE = userDetails["password"];
-    var username = "JohnSmith123";
-    var password = "Password123";
+    var username = userDetails["username"];
+    var password  = userDetails["password"];
 
     // console.log(usernameE+" , "+passwordE+" , "+username+" , "+password);
 
@@ -38,13 +36,15 @@ router.post('/signin',  function(req, res, next) {
     // }
 
     var sql = mysql.format("SELECT * FROM Customers WHERE Username = ? AND Password = ?", [username,password]);
-    var result = db.query(sql, function(err,rows,fields) {});
-        if(rows.length === 0){
-           res.redirect('/login');
-        }else{
-            res.redirect('/account');
-        }
-
+     db.query(sql, function(err,rows,fields) {
+         console.log(rows.length);
+         console.log(rows);
+         if (rows.length === 0) {
+             res.redirect('/login');
+         } else {
+             res.redirect('/account');
+         }
+     });
     // const { userID } = req.session;
     // console.log(userID);
     // res.render('login');
