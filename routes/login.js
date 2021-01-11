@@ -25,21 +25,25 @@ router.post('/signin',  function(req, res, next) {
     var username = "JohnSmith123";
     var password = "Password123";
 
-    console.log(usernameE+" , "+passwordE+" , "+username+" , "+password);
+    // console.log(usernameE+" , "+passwordE+" , "+username+" , "+password);
 
-    if (usernameE !== username && passwordE !== password) {
-        console.log("no such account");
-        res.redirect('/login');
-        next();
-    } else {
-        console.log("account exists");
-        res.redirect('/account');
-        next();
-    }
+    // if (usernameE !== username && passwordE !== password) {
+    //     console.log("no such account");
+    //     res.redirect('/login');
+    //     next();
+    // } else {
+    //     console.log("account exists");
+    //     res.redirect('/account');
+    //     next();
+    // }
 
     var sql = mysql.format("SELECT * FROM Customers WHERE Username = ? AND Password = ?", [username,password]);
     var result = db.query(sql, function(err,rows,fields) {});
-    console.log("QUERY: "+result.toString());
+        if(rows.length === 0){
+           res.redirect('/login');
+        }else{
+            res.redirect('/account');
+        }
 
     // const { userID } = req.session;
     // console.log(userID);
