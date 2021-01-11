@@ -27,12 +27,8 @@ router.post('/create', function(req, res, next) {
     var studentID = userDetails["student-ID"];
 
 
-    // if(univeristy.length > 1){
-    //     var sql = `INSERT INTO Customers (First_Name ,Last_Name ,Phone_Number ,Email ,Registration_Date ,Username, Password ,Customer_Account_Type_ID ,University_Name,Student_ID) VALUES('${firstName}','${lastName}','${phoneNumber}','${email}',NOW(),'${username}','${password}',1,'${univeristy}','${studentID}')`;
-    //     console.log(userDetails);
-    //     // insert user data into users table
-    //     db.query(sql);
-    // }
+    var sql = `INSERT INTO Customers (First_Name ,Last_Name ,Phone_Number ,Email ,Registration_Date ,Username, Password ,Customer_Account_Type_ID ,University_Name,Student_ID) VALUES('${firstName}','${lastName}','${phoneNumber}','${email}',NOW(),'${username}','${password}',1,'${univeristy}','${studentID}')`;
+    db.query(sql);
     let valid = "true";
     res.redirect('/sign_up?valid="'+valid+'"');
     db.endConnection();
