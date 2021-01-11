@@ -16,24 +16,24 @@ formBtn.addEventListener("click",function(e){
     }
 
     if(formValidated){
-        moveForm("forward");
+        moveForm("forward",e);
     }
 
-    e.preventDefault();
+
 })
 
 btnPrevious.addEventListener("click",function(e){
     moveForm("backwards");
-    e.preventDefault();
 })
 
-function moveForm(direction){
-    function loop(formIndex){
-        for(var i = 1; i<= 3;i++){
-            var elm = document.querySelector(".main-form_"+i.toString());
-            elm.style.display = i === formIndex ? "block" : "none";
-        }
+function loop(formIndex){
+    for(var i = 1; i<= 3;i++){
+        var elm = document.querySelector(".main-form_"+i.toString());
+        elm.style.display = i === formIndex ? "block" : "none";
     }
+}
+
+function moveForm(direction,e){
     if(direction === "forward" && formIndex <=3 ){
         progressNumber += 25;
         formIndex++;
@@ -46,14 +46,15 @@ function moveForm(direction){
     if(formIndex <= 3 && formIndex >1){
         btnPrevious.style.display = "block";
     }else if(formIndex === 4){
-        btnPrevious.style.display = "none";
-        formBtn.style.display = "none";
-        document.querySelector("form h1").innerText = "Sign up complete!"
+        formBtn.type = "submit";
+
+        //do create account mysql
     }else{
         btnPrevious.style.display = "none";
     }
     $(".progress-bar").text(`${progressNumber}%`);
     $(".progress-bar").width(`${progressNumber}%`);
+
 }
 
 
@@ -150,4 +151,13 @@ function clearErrorMessages(formElm){
     for (let childNode of childNodes) {
          childNode.childNodes[2].innerText = "";
     }
+}
+
+if(window.location.href.toString().includes("valid")){
+    loop(55);
+    $(".progress-bar").text(`100%`);
+    $(".progress-bar").width(`100%`);
+    btnPrevious.style.display = "none";
+    formBtn.style.display = "none";
+    document.querySelector("form h1").innerText = "Sign up complete!";
 }
