@@ -14,11 +14,11 @@ head
         .main-section.d-flex.justify-content-center.rounded.shadow-lg
             .main-section_img.d-none.d-sm-none.d-md-block.d-lg-block
             .main-section_form
-                form.ml-3(method='post' action="/")
+                form.ml-3(method='post' action="/login/signin")
                     img.logo(src='/images/logo.png' alt='')
                     h3.ml-3.mt-3 Sign into your account
-                    input.form-control.mt-4(type='text' placeholder='Username')
-                    input.form-control.mt-4(type='password' placeholder='Password')
+                    input.form-control.mt-4(type='text' placeholder='username' name='username')
+                    input.form-control.mt-4(type='password' placeholder='password' name='password')
                     button.btn-primary.btn.mt-4.ml-4(type="submit") Sign in
 // Optional JavaScript
 // jQuery first, then Popper.js, then Bootstrap JS
