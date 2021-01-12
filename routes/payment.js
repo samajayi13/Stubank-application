@@ -7,7 +7,6 @@ router.get('/', function(req, res, next) {
 });
 
 
-let db = require('../dbconnection');
 
 router.post('/createPayment', function(req, res, next) {
 
