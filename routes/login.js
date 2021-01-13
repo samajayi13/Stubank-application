@@ -1,19 +1,20 @@
 var express = require('express');
-// let session = require("express-session");
 var router = express.Router();
 
 let db = require('../dbconnection');
 const mysql = require("mysql");
 
-// const redirectToAccount = (req, res, next) => {
-//     if (req.session.userID) {
-//         res.redirect('/account')
-//     } else {
-//         next()
-//     }
-// }
+// if already logged in, it won't display login page
+const redirectToAccount = (req, res, next) => {
+    if (req.session.username) {
+        console.log("SESSION USERNAME: "+req.session.username);
+        res.redirect('/account')
+    } else {
+        next()
+    }
+}
 
-router.get('/', function(req, res, next) {
+router.get('/', redirectToAccount, function(req, res, next) {
     res.render('login');
 });
 
@@ -23,18 +24,7 @@ router.post('/signin',  function(req, res, next) {
     var username = userDetails["username"];
     var password  = userDetails["password"];
 
-    // console.log(usernameE+" , "+passwordE+" , "+username+" , "+password);
-
-    // if (usernameE !== username && passwordE !== password) {
-    //     console.log("no such account");
-    //     res.redirect('/login');
-    //     next();
-    // } else {
-    //     console.log("account exists");
-    //     res.redirect('/account');
-    //     next();
-    // }
-
+    // search for user in database
     var sql = mysql.format("SELECT * FROM Customers WHERE Username = ? AND Password = ?", [username,password]);
      db.query(sql, function(err,rows,fields) {
          console.log(rows.length);
@@ -42,36 +32,15 @@ router.post('/signin',  function(req, res, next) {
          if (rows.length === 0) {
              res.redirect('/login');
          } else {
+             // adds username and password to session
+             req.session.username = username;
+             req.session.password = password;
+
+             console.log("SESSION : "+req.session.username+" " + req.session.password);
+
              res.redirect('/account');
          }
      });
-    // const { userID } = req.session;
-    // console.log(userID);
-    // res.render('login');
-    //
-    // const { email, password } = req.body;
-    // console.log(email);
-    // console.log(password);
 });
-
-// router.post('/login', redirectToAccount, (req, res) => {
-//     session = req.session;
-//     const { email, password } = req.body;
-//     console.log(email);
-//     console.log(password);
-//
-//     if (email && password) {
-//         const user = users.find(
-//             user => user.email === email && user.password === password // hash
-//         )
-//
-//         if (user) {
-//             req.session.userID = user.id;
-//             return res.render('account');
-//         }
-//     }
-//
-//     res.render('login');
-// });
 
 module.exports = router;

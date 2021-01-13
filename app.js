@@ -15,6 +15,33 @@ var contactRouter = require('./routes/contact_us');
 
 var app = express();
 
+// session store and cookie
+const mysql = require("mysql");
+var session = require('express-session');
+var MySQLStore = require('express-mysql-session')(session);
+
+var options = {
+  host: 'sql2.freesqldatabase.com',
+  port: 3306,
+  user: 'sql2386191',
+  password: 'lT8!wV2!',
+  database: 'sql2386191'
+};
+
+var sessionStore = new MySQLStore(options);
+
+app.use(session({
+  key: 'session_cookie_name',
+  secret: 'session_cookie_secret',
+  store: sessionStore,
+  resave: false,
+  saveUninitialized: false,
+  cookie: { path: '/', httpOnly: true, secure: false, maxAge: null }
+}));
+
+var connection = mysql.createConnection(options);
+var sessionStore = new MySQLStore({}/* session store options */, connection);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
