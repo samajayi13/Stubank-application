@@ -1,18 +1,32 @@
 var express = require('express');
 var router = express.Router();
-let db = require('../dbconnection');
+var db = require('../dbconnection');
 
-/* GET home page. */
+/* GET transfers page. */
 router.get('/', function(req, res, next) {
-    res.render('transfers', { title: 'Transfers' });
+    res.render('transfers', { title: 'Transfer' });
 });
 
 router.get('/getTransfers', function(req, res, next) {
     var ID = req.query.ID;
+
     var sql =  ` SELECT * FROM Transfers JOIN Transfer_Information ON Transfer_Information.Transfer_Information_ID = Transfers.Transfer_Information_ID WHERE Transfers.Transfer_From_ID = ${ID} OR Transfers.Transfer_To_ID = ${ID};`;
+
+
     db.query(sql,function(error,results,fields){
         if (error) throw error;
-        res.send({transferData : results});
+        res.send({transferData : results });
+    });
+
+});
+
+router.get('/getUserFirstName', function(req, res, next) {
+    var ID = req.query.userID;
+    var sql =  `SELECT First_Name FROM Customers WHERE ID = ${ID}`;
+
+    db.query(sql,function(error,results,fields){
+        if (error) throw error;
+        res.send({transferData : results });
     });
 
 });
