@@ -4,7 +4,7 @@ var router = express.Router();
 let db = require('../dbconnection');
 const mysql = require("mysql");
 
-// if already logged in, it won't display login page
+// if already logged in, doesn't display login page
 const redirectToAccount = (req, res, next) => {
     if (req.session.username) {
         console.log("SESSION USERNAME: "+req.session.username);
@@ -19,12 +19,12 @@ router.get('/', redirectToAccount, function(req, res, next) {
 });
 
 router.post('/signin',  function(req, res, next) {
-    // store all the user input data
+    // stores all the user input data
     const userDetails = req.body;
     var username = userDetails["username"];
     var password  = userDetails["password"];
 
-    // search for user in database
+    // searches for user in database
     var sql = mysql.format("SELECT * FROM Customers WHERE Username = ? AND Password = ?", [username,password]);
      db.query(sql, function(err,rows,fields) {
          console.log(rows.length);
@@ -32,11 +32,17 @@ router.post('/signin',  function(req, res, next) {
          if (rows.length === 0) {
              res.redirect('/login');
          } else {
-             // adds username and password to session
+             // adds user information to session
              req.session.username = username;
              req.session.password = password;
-
-             console.log("SESSION : "+req.session.username+" " + req.session.password);
+             req.session.customerID = rows[0].ID;
+             req.session.firstName = rows[0].First_Name;
+             req.session.lastName = rows[0].Last_Name;
+             req.session.phoneNumber = rows[0].Phone_Number;
+             req.session.email = rows[0].Email;
+             req.session.customerAccountType = rows[0].Customer_Account_Type_ID;
+             req.session.universityName = rows[0].University_Name;
+             req.session.studentID = rows[0].Student_ID;
 
              res.redirect('/account');
          }
