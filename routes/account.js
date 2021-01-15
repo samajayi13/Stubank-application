@@ -15,4 +15,14 @@ router.get('/', redirectToLogin, function(req, res, next) {
     res.render('account', { title: 'Account' });
 });
 
+router.get('/logout',  function(req, res, next) {
+    req.session.destroy(function(err){
+        if(err){
+            console.log(err);
+        } else {
+            res.render('index', { title: 'StuBank' });
+        }
+    });
+});
+
 module.exports = router;
