@@ -12,15 +12,15 @@ const redirectToLogin = (req, res, next) => {
 
 // displays account page
 router.get('/', redirectToLogin, function(req, res, next) {
-    res.render('account', { title: 'Account' });
+    res.render('account', { session: req.session, title: 'Account' });
 });
 
-router.get('/logout',  function(req, res, next) {
+router.get('/logout', function(req, res, next) {
     req.session.destroy(function(err){
         if(err){
             console.log(err);
         } else {
-            res.render('index', { title: 'StuBank' });
+            res.redirect('/');
         }
     });
 });

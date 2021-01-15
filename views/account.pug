@@ -35,8 +35,8 @@ main.row
             .account-box_top.row.ml-2.mb-2
                 i.fas.fa-user.float-left.mt-3.mr-2
                 .float-left
-                    h6.col.mt-2 John Smith
-                    p.text-muted.ml-3 ID: 123456
+                    h6.col.mt-2 #{session.firstName.charAt(0).toUpperCase()+session.firstName.slice(1)} #{session.lastName.charAt(0).toUpperCase()+session.lastName.slice(1)}
+                    p.text-muted.ml-3 ID: #{session.customerID}
     section.float-left.col
         h1.text-primary.mb-5.mt-4 My Accounts
         .p-3.mb-2.bg-dark.text-white Banking &amp; Savings

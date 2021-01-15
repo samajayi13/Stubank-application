@@ -61,6 +61,12 @@ app.use('/sign_up', registerRouter);
 app.use('/account', accountRouter);
 app.use('/contact_us', contactRouter);
 
+// tranfers locals to pug from js
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
