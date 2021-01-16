@@ -1,8 +1,9 @@
 var formBtn = document.querySelector("form .row .btn-next");
 var btnPrevious = document.querySelector("form .row .btn-previous");
-var progressBar = document.querySelector(".progress-bar");
-var progressNumber = 25;
+var progressNumber = 0;
 var formIndex = 1;
+var verificationCode = (Math.floor(Math.random() * 100000) + 10000).toString();
+var emailSent = false
 
 formBtn.addEventListener("click",function(e){
     let  formValidated = true;
@@ -13,13 +14,13 @@ formBtn.addEventListener("click",function(e){
         formValidated = form2Validation();
     }else if (formIndex ===3 ){
         formValidated = form3Validation();
+    }else if (formIndex ===4 ){
+        formValidated = form4Validation();
     }
 
     if(formValidated){
         moveForm("forward",e);
     }
-
-
 })
 
 btnPrevious.addEventListener("click",function(e){
@@ -27,14 +28,14 @@ btnPrevious.addEventListener("click",function(e){
 })
 
 function loop(formIndex){
-    for(var i = 1; i<= 3;i++){
+    for(var i = 1; i<= 4;i++){
         var elm = document.querySelector(".main-form_"+i.toString());
         elm.style.display = i === formIndex ? "block" : "none";
     }
 }
 
 function moveForm(direction,e){
-    if(direction === "forward" && formIndex <=3 ){
+    if(direction === "forward" && formIndex <=4 ){
         progressNumber += 25;
         formIndex++;
         loop(formIndex);
@@ -43,14 +44,24 @@ function moveForm(direction,e){
         formIndex--;
         loop(formIndex);
     }
-    if(formIndex <= 3 && formIndex >1){
+    if(formIndex <= 4 && formIndex >1){
         btnPrevious.style.display = "block";
-    }else if(formIndex === 4){
+    }else if(formIndex === 5){
+        alert("working");
+        sendEmail(email,"Welcome to Stubank","Hi "+document.querySelector("#first-name").value+",\n" +
+            "\n" +
+            "Welcome to Stubank. We’re thrilled to see you here!\n" +
+            "\n" +
+            "We’re confident that our banking services will help you make the most out of your hard earn money! .\n" +
+            "\n" +
+            " Please login to to ensure you get the very best out of our service at http://localhost:3000/account.\n" +
+            "\n" +
+            "Your username:"+ document.querySelector("#username").value +
+            "\n Your password:"+ document.querySelector("#password").value + " \n" +
+            "\n" +
+            "Take care!\n" +
+            "Stubank")
         formBtn.type = "submit";
-
-        //do create account mysql
-    }else{
-        btnPrevious.style.display = "none";
     }
     $(".progress-bar").text(`${progressNumber}%`);
     $(".progress-bar").width(`${progressNumber}%`);
@@ -59,12 +70,19 @@ function moveForm(direction,e){
 
 
 function form1Validation(){
+     email = document.querySelector("#email").value;
     clearErrorMessages(document.querySelector(".main-form_1"));
     if(!checkIfInputsEmpty(".main-form_1"))
         return false;
     if((!checkIfPhoneNumberValid(document.querySelector("#phone-number").value)) ||
-        (!checkEmailValid(document.querySelector("#email").value))||
+        (!checkEmailValid(email))||
         (!validateTextField(["#first-name","#last-name"]))){return false;}
+
+    if(emailSent === false){
+        emailSent = true;
+        sendEmail(email,"Verification code",verificationCode);
+        alert(`Verification code has been sent to your email ! "${email}"`);
+    }
     return true;
 }
 
@@ -86,6 +104,21 @@ function form3Validation(){
     clearErrorMessages(document.querySelector(".main-form_3"));
     if((!checkIfInputsEmpty(".main-form_3")) || (!validateTextField(["#univeristy"])))
         return false;
+    return true;
+}
+
+function form4Validation(){
+    clearErrorMessages(document.querySelector(".main-form_4"));
+    if((!checkIfInputsEmpty(".main-form_4")) || (!validateTextField(["#univeristy"]))){
+        return false;
+    }else{
+        var userInput = document.querySelector("#verification-code").value;
+        console.log(verificationCode);
+        if(verificationCode !== userInput) {
+            updateErrorMessage(document.querySelector(".error-message-verification-code"), "invalid verification code");
+            return false;
+        }
+    }
     return true;
 }
 
@@ -161,3 +194,19 @@ if(window.location.href.toString().includes("valid")){
     formBtn.style.display = "none";
     document.querySelector("form h1").innerText = "Sign up complete!";
 }
+
+function sendEmail(toEmail,subject,body) {
+    Email.send({
+        Host: "smtp.gmail.com",
+        Username: "stubank2021@gmail.com",
+        Password: "NclStubank2021",
+        To: toEmail,
+        From: "stubank2021@gmail.com",
+        Subject: subject,
+        Body: body,
+    })
+        .then(function (message) {
+            alert("mail sent successfully")
+        });
+}
+

@@ -86,13 +86,13 @@ main{
     top:4vh
 }
 
-.main-form_2{
-    display:none;
-}
-.main-form_3{
+.main-form_2,.main-form_3,.main-form_4{
     display:none;
 }
 
+#verification-code{
+    margin-left: 8vw;
+}
 .progress-bar{
     width: 25%;
 }

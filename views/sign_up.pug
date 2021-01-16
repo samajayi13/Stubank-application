@@ -24,7 +24,7 @@ head
         section.col-6
             .main-form
                 .progress
-                    .progress-bar(role='progressbar' style='' aria-valuenow='25' aria-valuemin='0' aria-valuemax='100') 25%
+                    .progress-bar(role='progressbar' style='' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100') 0%
                 form(method="post" action='sign_up/create')
                     h1.text-center.mt-4.mb-4 Sign Up
                     .main-form_1
@@ -66,8 +66,13 @@ head
                             i.fas.fa-id-card
                             input.form-control#student-ID(type='text' placeholder='Student ID' name='student-ID')
                             p.text-danger.error-message-ID
+                    .main-form_4
+                        .main-form_field
+                            span
+                            input.form-control#verification-code(type='text' placeholder='Email Verification code' name='univeristy')
+                            p.text-danger.error-message-verification-code
                     .row.justify-content-center
-                        button.btn.btn-previous.btn-primary.btn-lg.mr-2 Previous
+                        button.btn.btn-previous.btn-primary.btn-lg.mr-2(type="button") Previous
                         button.btn.btn-next.btn-primary.btn-lg(type = "button") Next
     section.main-bottom.mb-5
         .container
@@ -105,5 +110,8 @@ head
 script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js' integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' crossorigin='anonymous')
 script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
 script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' crossorigin='anonymous')
+script(src= "https://smtpjs.com/v3/smtp.js")
 script(src='/js/sign_up.js')
+
+
 
