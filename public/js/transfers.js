@@ -20,10 +20,10 @@ function getTransfers(userID){
 
 function addTransfers(transferData){
     for(var i = 0; i < transferData.length; i++){
-        var amountTransferred = transferData[i].Amount_Transfered;
-        var dateOfTransfer = transferData[i].Date_Of_Tranfer;
-        var transferFromID = transferData[i].Transfer_From_ID;
-        var transferToID = transferData[i].Transfer_To_ID;
+        var amountTransferred = transferData[i].Amount_Transferred;
+        var dateOfTransfer = transferData[i].Date_Of_Transfer;
+        var transferFromID = transferData[i].Transfer_From_Bank_Account_ID;
+        var transferToID = transferData[i].Transfer_To_Bank_Account_ID;
 
         addTransferRow(amountTransferred,dateOfTransfer, transferFromID,transferToID);
     }
