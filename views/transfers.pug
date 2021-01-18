@@ -36,8 +36,7 @@ section.float-left.side-left.d-none.d-sm-none.d-md-block.d-lg-block
             i.fas.fa-user.float-left.mt-3.mr-2
             .float-left
                 h6.col.mt-2 John Smith
-                p.text-muted.ml-3 ID:
-                    span.userID 1
+                p.text-muted.ml-3 ID: 123456
 main.float-left.side-right
     h3 Transactions
     .container
@@ -52,8 +51,67 @@ main.float-left.side-right
                 th(scope='col') From/To
                 th(scope='col') Amount
                 th(scope='col') Date
-        tbody.table-body
-
+        tbody
+            tr
+                th(scope='row')
+                    span.transaction-out.border.border-danger.rounded-circle Out
+                td Dave
+                td &pound;3000
+                td 04/01/2021
+            tr
+                th(scope='row')
+                    span.transaction-in.border.border-primary.rounded-circle In
+                td Jacob
+                td &pound;400
+                td 04/01/2021
+            tr
+                th(scope='row')
+                    span.transaction-out.border.border-danger.rounded-circle Out
+                td James
+                td &pound;3
+                td 02/01/2021
+            tr
+                th(scope='row')
+                    span.transaction-in.border.border-primary.rounded-circle In
+                td Nafay
+                td &pound;25
+                td 02/01/2021
+            tr
+                th(scope='row')
+                    span.transaction-out.border.border-danger.rounded-circle Out
+                td Issy
+                td &pound;35
+                td 01/01/2021
+            tr
+                th(scope='row')
+                    span.transaction-in.border.border-primary.rounded-circle In
+                td Sam
+                td &pound;3
+                td 04/01/2021
+            tr
+                th(scope='row')
+                    span.transaction-in.border.border-primary.rounded-circle In
+                td IV
+                td &pound;3
+                td 29/12/2020
+            tr
+                th(scope='row')
+                    span.transaction-out.border.border-danger.rounded-circle Out
+                td Tesco
+                td &pound;1.50
+                td 27/12/2020
+            tr
+                th(scope='row')
+                    span.transaction-out.border.border-danger.rounded-circle Out
+                td LIDLI
+                td &pound;0.50
+                td 27/12/2020
+            tr
+                th(scope='row')
+                    span.transaction-in.border.border-primary.rounded-circle In
+                td FARMHOUSE LTD
+                td &pound;2500
+                td 25/12/2020
 //
   <footer class="footer-menu">
   <div class="row">
@@ -71,6 +129,5 @@ main.float-left.side-right
 script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js' integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' crossorigin='anonymous')
 script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
 script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' crossorigin='anonymous')
-script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
-script(src="/js/transfers.js")
+script(src="https://unpkg.com/axios/dist/axios.min.js")
 script(src="/js/digital_card.js")
