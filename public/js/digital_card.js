@@ -1,8 +1,7 @@
-let userID = parseInt(document.querySelector(".userID").innerText);
 
 getAccount(userID);
 function getAccount(userID){
-    axios.get('/digital_card/getAccount', {
+    axios.get('/digitalCard/getAccount', {
         //the parameters that is sent with the request
         params: {
             ID: userID,
@@ -17,7 +16,7 @@ function getAccount(userID){
         })
 }
 
-function addCard(accountUserID){
+function addCard(accountData){
     for(var i = 0; i < accountData.length; i++){
         var dbCardNumber = accountData[i].Card_Number;
         var dbAccountNumber = accountData[i].Account_Number;
@@ -32,11 +31,11 @@ function addCard(accountUserID){
 }
 
 async  function displayCard(dbCardNumber, dbAccountNumber, dbSortCode, dbAccountName, dbDateOpened, dbExpiryDate, dbCvvNumber){
-    getCard(accountUserID);
+    getCard(userID);
 }
 
 async  function getCard(accountUserID){
-    var result = await  axios.get('/digital_card/getCard', {
+    var result = await  axios.get('/digitalCard/getCard', {
         params: {
             userID: accountUserID,
         }
