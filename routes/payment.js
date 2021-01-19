@@ -12,7 +12,7 @@ const redirectToLogin = (req, res, next) => {
 }
 
 /* GET payment page. */
-router.get('/', function(req, res, next) {
+router.get('/', redirectToLogin, function(req, res, next) {
     res.render('payment', { title: 'Payment' });
 });
 
