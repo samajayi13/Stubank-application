@@ -11,10 +11,9 @@ function getAccounts(userID){
         }
     })
         .then(function(response) {
-            //what runs after the request has been made and successfully returned
             console.log(response.data.accountData);
+            //what runs after the request has been made and successfully returned
             addAccounts(response.data.accountData)
-            console.log("success1");
         })
         .catch(function(error) {
             console.log(error);
@@ -26,13 +25,10 @@ function addAccounts(accountData){
         // name, sort code+acc numer, curr balance, avail balance, Action
         var accountDetails = accountData[i].Account_Name+"\n"+ accountData[i].Sort_Code+" "+accountData[i].Account_Number;
         var currentBalance = accountData[i].Current_Balance;
-        var availableBalance = parseInt(accountData[i].Current_Balance)+ 1500;//do maths here to calc avaible balance
+        var availableBalance = accountDetails.availableBalance.toString()//do maths here to calc avaible balance
         var btn = document.createElement("button");
         btn.innerText = "See Transfers";
         btn.classList.add("btn","btn-primary");
-        console.log(btn);
-
-
         addAccountRow(accountDetails, currentBalance, availableBalance,btn);
     }
     console.log("success2");
@@ -62,7 +58,7 @@ async  function addAccountRow(accountDetails, currentBalance,availableBalance, a
     th.scope = "row";
     th.innerText = accountDetails;
     currentBalanceTd.innerText = "£" + currentBalance;
-    availableBalanceTd.innerText = "£" + availableBalance.toString();
+    availableBalanceTd.innerText = "£" + availableBalance;
     btnTd.appendChild(action);
 
     tr.appendChild(th);

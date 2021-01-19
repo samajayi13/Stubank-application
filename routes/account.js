@@ -30,7 +30,12 @@ router.get('/getAccounts', function(req, res, next) {
     // var ID = req.session.customerID;
     var ID = req.query.ID;
     console.log("REQUESTED ID: " + ID)
-    var sql =  `SELECT * FROM Bank_Accounts WHERE Customer_ID = ${ID};`;
+    var sql =  `
+                SELECT *,(Overdraft_Limit + Current_Balance) as availableBalance
+                FROM Bank_Accounts
+                JOIN Bank_Account_types
+                    ON Bank_Account_types.Account_Type = Bank_Accounts.Account_Type_ID
+                WHERE Customer_ID = ${ID}`;
 
     db.query(sql,function(error,results,fields){
         if (error) throw error;
