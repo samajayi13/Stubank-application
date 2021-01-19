@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var db =
+let db = require('../dbconnection');
+
 /* GET payment page. */
 router.get('/', function(req, res, next) {
     res.render('payment', { title: 'Payment' });
