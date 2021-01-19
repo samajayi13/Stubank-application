@@ -8,12 +8,10 @@ router.get('/', function(req, res, next) {
 
 router.get('/getAccount', function(req, res, next) {
     var ID = req.query.ID;
-    console.log('here');
     var sql =  `SELECT * FROM Bank_Accounts JOIN Customers ON Customers.ID = Bank_Accounts.Customer_ID WHERE Customers.ID = ${ID} OR Bank_Accounts.Customer_ID = ${ID};`;
 
     db.query(sql,function(error,results,fields){
         if (error) throw error;
-        console.log(results);
         res.send({accountData : results});
     });
 });
@@ -27,7 +25,5 @@ router.get('/getCard', function(req, res, next) {
         res.send({accountData : results});
     });
 });
-
-// const card1 = new digitalCards("Issy Wallwork", "1404 1239 1233 1428", "02/22", "12/24", "01-12-23", "1234123", "302");
 
 module.exports = router;

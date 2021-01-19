@@ -1,7 +1,7 @@
 
 getAccount(userID);
 function getAccount(userID){
-    axios.get('/digitalCard/getAccount', {
+    axios.get('/digital_card/getAccount', {
         //the parameters that is sent with the request
         params: {
             ID: userID,
@@ -31,17 +31,4 @@ function addCard(accountData){
 }
 
 async  function displayCard(dbCardNumber, dbAccountNumber, dbSortCode, dbAccountName, dbDateOpened, dbExpiryDate, dbCvvNumber){
-    getCard(userID);
 }
-
-async  function getCard(accountUserID){
-    var result = await  axios.get('/digitalCard/getCard', {
-        params: {
-            userID: accountUserID,
-        }
-    });
-
-    result = result.data.accountData[0].Card_Number;
-    return result;
-}
-
