@@ -1,32 +1,26 @@
-var userID = null;
-var bankAccountID = 3;
+var bankAccountID = null;
 getSession();
 function getSession(){
     axios.get('/session/getSession', {
     }).then(function(response) {
-        // userID =  response.data.result.customerID;
+        bankAccountID =  parseInt(response.data.result.bankAccountIndex);
         getTransfers(bankAccountID);
     })
 
 }
 
 
-function getTransfers(userID){
-    console.log(userID);
+function getTransfers(bankAccountID){
     axios.get('/transfers/getTransfers', {
         //the parameters that is sent with the request
         params: {
-            bankAccountID: 3,
+            bankAccountID: bankAccountID,
         }
     })
-        .then(function(response) {
-            console.log(response);
-            //what runs after the request has been made and successfully returned
-            addTransfers(response.data.transferData)
-        })
-        .catch(function(error) {
-            console.log(error);
-        })
+    .then(function(response) {
+        //what runs after the request has been made and successfully returned
+        addTransfers(response.data.transferData)
+    });
 }
 
 function addTransfers(transferData){
@@ -35,7 +29,6 @@ function addTransfers(transferData){
         var dateOfTransfer = transferData[i].Date_Of_Transfer;
         var transferFromID = transferData[i].Transfer_From_Bank_Account_ID;
         var transferToID = transferData[i].Transfer_To_Bank_Account_ID;
-
         addTransferRow(amountTransferred,dateOfTransfer, transferFromID,transferToID);
     }
 }
@@ -56,7 +49,7 @@ async  function addTransferRow(amountTransferred,dateOfTransfer, transferFromID,
 
     th.scope = "row";
     var span = document.createElement("span");
-    console.log(transferType);
+
     if(transferType === "out"){
         span.classList.add("transaction-out","border","border-danger","rounded-circle");
     }else{

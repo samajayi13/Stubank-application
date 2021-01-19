@@ -26,6 +26,7 @@ function getSession(){
 
 function addAccounts(accountData){
     for(var i = 0; i < accountData.length; i++){
+        console.log(accountData);
         // name, sort code+acc numer, curr balance, avail balance, Action
         var accountDetails = accountData[i].Account_Name+"\n"+ accountData[i].Sort_Code+" "+accountData[i].Account_Number;
         var currentBalance = accountData[i].Current_Balance;
@@ -33,6 +34,7 @@ function addAccounts(accountData){
         var btn = document.createElement("button");
         btn.innerText = "See Transfers";
         btn.classList.add("btn","btn-primary");
+        btn.id="button"+ accountData[i].toString();
         addAccountRow(accountDetails, currentBalance, availableBalance,btn);
     }
 }
@@ -71,3 +73,15 @@ async  function addAccountRow(accountDetails, currentBalance,availableBalance, a
     tbody.appendChild(tr);
 
 }
+
+
+document.addEventListener("click",function(e){
+    if(e.target.classList.contains("btn")){
+        var bankAccountIndex = e.target.id.substr(6);
+        axios.post('/session/updateBankAccountIndex', {
+                bankAccountIndex
+        }).then(function(response) {
+            window.location.href = "http://localhost:3000/transfers";
+        })
+    }
+});
