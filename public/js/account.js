@@ -1,23 +1,31 @@
-// let userID = req.session.customerID;
-let userID = parseInt(document.querySelector(".userID").innerText.substr(3));
-console.log(userID)
+var userID = null;
 
-getAccounts(userID);
-function getAccounts(userID){
-    axios.get('/account/getAccounts', {
+getSession();
+
+function getSession(){
+     axios.get('/session/getSession', {
+        //the parameters that is sent with the request
+        params: {
+            ID: userID,
+        }
+    }).then(function(response) {
+            userID =   response.data.result.customerID;
+            getAccounts(userID);
+   })
+
+ }
+
+ function getAccounts(userID){
+     axios.get('/account/getAccounts', {
         //the parameters that is sent with the request
         params: {
             ID: userID,
         }
     })
-        .then(function(response) {
-            console.log(response.data.accountData);
-            //what runs after the request has been made and successfully returned
-            addAccounts(response.data.accountData)
-        })
-        .catch(function(error) {
-            console.log(error);
-        })
+    .then(function(response) {
+        //what runs after the request has been made and successfully returned
+        addAccounts(response.data.accountData)
+    })
 }
 
 function addAccounts(accountData){
@@ -25,13 +33,12 @@ function addAccounts(accountData){
         // name, sort code+acc numer, curr balance, avail balance, Action
         var accountDetails = accountData[i].Account_Name+"\n"+ accountData[i].Sort_Code+" "+accountData[i].Account_Number;
         var currentBalance = accountData[i].Current_Balance;
-        var availableBalance = accountDetails.availableBalance.toString()//do maths here to calc avaible balance
+        var availableBalance = accountData[i].availableBalance.toString()//do maths here to calc avaible balance
         var btn = document.createElement("button");
         btn.innerText = "See Transfers";
         btn.classList.add("btn","btn-primary");
         addAccountRow(accountDetails, currentBalance, availableBalance,btn);
     }
-    console.log("success2");
 }
 
 
@@ -67,5 +74,4 @@ async  function addAccountRow(accountDetails, currentBalance,availableBalance, a
     tr.appendChild(btnTd);
     tbody.appendChild(tr);
 
-    console.log("success3");
 }
