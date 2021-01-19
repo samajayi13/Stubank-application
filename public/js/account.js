@@ -4,10 +4,6 @@ getSession();
 
 function getSession(){
      axios.get('/session/getSession', {
-        //the parameters that is sent with the request
-        params: {
-            ID: userID,
-        }
     }).then(function(response) {
             userID =   response.data.result.customerID;
             getAccounts(userID);

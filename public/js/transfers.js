@@ -1,15 +1,26 @@
-let userID = parseInt(document.querySelector(".userID").innerText);
+var userID = null;
+var bankAccountID = 3;
+getSession();
+function getSession(){
+    axios.get('/session/getSession', {
+    }).then(function(response) {
+        // userID =  response.data.result.customerID;
+        getTransfers(bankAccountID);
+    })
+
+}
 
 
-getTransfers(userID);
 function getTransfers(userID){
+    console.log(userID);
     axios.get('/transfers/getTransfers', {
         //the parameters that is sent with the request
         params: {
-            ID: userID,
+            bankAccountID: 3,
         }
     })
         .then(function(response) {
+            console.log(response);
             //what runs after the request has been made and successfully returned
             addTransfers(response.data.transferData)
         })
@@ -31,7 +42,7 @@ function addTransfers(transferData){
 
 async  function addTransferRow(amountTransferred,dateOfTransfer, transferFromID,transferToID){
     // we will insert data into table here
-    var transferType = transferToID === userID ? "in" : "out";
+    var transferType = transferToID === bankAccountID ? "in" : "out";
     var transferUserID = transferType === "in" ? transferFromID : transferToID;
     var fromToName =  await getUserFirstName(transferUserID);
 
@@ -45,7 +56,7 @@ async  function addTransferRow(amountTransferred,dateOfTransfer, transferFromID,
 
     th.scope = "row";
     var span = document.createElement("span");
-
+    console.log(transferType);
     if(transferType === "out"){
         span.classList.add("transaction-out","border","border-danger","rounded-circle");
     }else{
@@ -55,7 +66,7 @@ async  function addTransferRow(amountTransferred,dateOfTransfer, transferFromID,
     span.innerText = transferType;
 
     firstNamElm.innerText = fromToName;
-    amountTransferredElm.innerText = amountTransferred;
+    amountTransferredElm.innerText = "£" + amountTransferred.toString();
     dateSentElm.innerText = dateOfTransfer.substr(0,10);
     th.appendChild(span);
     tr.appendChild(th);
@@ -69,7 +80,7 @@ async  function addTransferRow(amountTransferred,dateOfTransfer, transferFromID,
 async function getUserFirstName(transferUserID){
     var result = await  axios.get('/transfers/getUserFirstName', {
         params: {
-            userID: transferUserID,
+            bankAccountID: transferUserID,
         }
     });
 
