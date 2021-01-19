@@ -15,7 +15,7 @@ function encryptData(data){
     return ciphertext.toString()
 }
 
-function decrpytData(ciphertext){
+function decryptData(ciphertext){
     var bytes = CryptoJS.AES.decrypt(ciphertext, key);
     var plaintext = bytes.toString(CryptoJS.enc.Utf8);
     return plaintext;
