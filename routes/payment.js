@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 let db = require('../dbconnection');
 
-// if not logged in, doesn't display account page
+// if not logged in, doesn't display payment page
 const redirectToLogin = (req, res, next) => {
     if (!req.session.username) {
         res.redirect('/login')
