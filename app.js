@@ -13,6 +13,7 @@ var registerRouter = require('./routes/sign_up');
 var accountRouter = require('./routes/account');
 var contactRouter = require('./routes/contact_us');
 var cardRouter = require('./routes/digital_card');
+var sessionRouter = require('./routes/session');
 
 var app = express();
 
@@ -62,6 +63,7 @@ app.use('/sign_up', registerRouter);
 app.use('/account', accountRouter);
 app.use('/contact_us', contactRouter);
 app.use('/digital_card', cardRouter);
+app.use('/session', sessionRouter);
 
 // tranfers locals to pug from js
 app.use((req, res, next) => {
