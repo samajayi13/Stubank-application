@@ -77,7 +77,7 @@ function makeCard(dbCardNumber, dbAccountNumber, dbSortCode, dbAccountName, dbDa
 }
 
 document.querySelector(".carousel-control-next").addEventListener("click",function(e){
-    if((index + 1) <= accountData.length-1 && (index + 1)  >= 0){
+    if(index < accountData.length-1 && index  >= 0){
         index++;
     }else{
         index = 0;
@@ -85,10 +85,10 @@ document.querySelector(".carousel-control-next").addEventListener("click",functi
     movePage();
 })
 document.querySelector(".carousel-control-prev").addEventListener("click",function(e){
-    if((index + 1) <= accountData.length-1 && (index + 1)  >= 0){
+    if(index  <= accountData.length-1 && index   >0){
         index--;
     }else{
-        index = accountData.length-1;
+            index = accountData.length-1;
     }
     movePage();
 })
