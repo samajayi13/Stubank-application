@@ -9,34 +9,7 @@ head
     link(rel='stylesheet' href='/stylesheets/logged_in_navbar.css')
 include logged_in_navbar
 main.row
-    section.float-left.side-left.d-none.d-sm-none.d-md-block.d-lg-block
-        .account-box.mt-4.ml-4.rounded-lg
-            .account-box_top.row.ml-2.mb-2
-                i.fas.fa-user-circle.float-left.mt-2.mr-2
-                .float-left
-                    h4.col #{session.bankAccountName}
-                    p.text-muted.ml-3 ID #{session.bankAccountIndex}
-            p.text-muted.float-left.ml-3.balance Balance:
-            p.float-right.mr-3.figure(style='color:white;font-weight: 800') $#{session.bankCurrentBalance}
-        .titles.ml-4
-            .titles-group.active.rounded-lg
-                i.fas.fa-donate.ml-2.mr-2
-                span.titles-group_text Transactions
-            .titles-group.rounded-lg
-                i.fas.fa-exchange-alt.ml-2.mr-2
-                span.titles-group_text Transfer
-            .titles-group.rounded-lg
-                i.fas.fa-money-check.ml-2.mr-2
-                span.titles-group_text Payment
-            .titles-group.rounded-lg
-                i.fas.fa-user-circle.ml-2.mr-2
-                span.titles-group_text Account
-        .account-box_last.mt-4.ml-5.rounded-lg
-            .account-box_top.row.ml-2.mb-2
-                i.fas.fa-user.float-left.mt-3.mr-2
-                .float-left
-                    h6.col.mt-2 #{session.firstName.charAt(0).toUpperCase()+session.firstName.slice(1)} #{session.lastName.charAt(0).toUpperCase()+session.lastName.slice(1)}
-                    p.text-muted.ml-3.userID ID: #{session.customerID}
+    include bank_account_left_side
     section.float-left.col
         h1.text-primary.mb-5.mt-4 My Accounts
         .p-3.mb-2.bg-dark.text-white Banking &amp; Savings

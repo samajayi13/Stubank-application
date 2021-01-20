@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/getAccount', function(req, res, next) {
     var ID = req.query.ID;
-    var sql =  `SELECT * FROM Bank_Accounts JOIN Customers ON Customers.ID = Bank_Accounts.Customer_ID WHERE Customers.ID = ${ID} OR Bank_Accounts.Customer_ID = ${ID};`;
+    var sql =  `SELECT *,Bank_Accounts.ID FROM Bank_Accounts JOIN Customers ON Customers.ID = Bank_Accounts.Customer_ID WHERE Customers.ID = ${ID} OR Bank_Accounts.Customer_ID = ${ID};`;
 
     db.query(sql,function(error,results,fields){
         if (error) throw error;

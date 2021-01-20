@@ -13,7 +13,7 @@ const redirectToLogin = (req, res, next) => {
 
 /* GET transfers page. */
 router.get('/', redirectToLogin, function(req, res, next) {
-    res.render('transfers', { title: 'Transfer' });
+    res.render('transfers', { title: 'Transfer',session:req.session });
 });
 
 router.get('/getTransfers', function(req, res, next) {
