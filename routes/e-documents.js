@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var db = require('../dbconnection');
 
 // if not logged in, doesn't display e-documents page
 const redirectToLogin = (req, res, next) => {
