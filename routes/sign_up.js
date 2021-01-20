@@ -2,7 +2,18 @@ var express = require('express');
 var router = express.Router();
 var CryptoJS = require("crypto-js");
 var key = 'sfsdfsdf44242sdfds34224dfsfsf34324gdfgdfgd3sdfsdfsdf23sfsdfsdfsdfsffg23@sdf@@!£"$%^&*&fg££$%££@@%$$%£$%"$%fd';
-
+// const bcrypt = require( 'bcrypt' );
+//
+// bcrypt.hash( "password", 10, function( err, hash ) {
+// });
+//
+// bcrypt.compare( "passwordEntered", hash, function( err, res ) {
+//     if( res ) {
+//         //working
+//     } else {
+//         // Password didn't match
+//     }
+// });
 router.get('/', function(req, res, next) {
     encryptData("hello my name is sam");
     res.render('sign_up');
