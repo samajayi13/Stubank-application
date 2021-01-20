@@ -11,6 +11,8 @@ function getSession(){
 
  }
 
+
+
  function getAccounts(userID){
      axios.get('/account/getAccounts', {
         //the parameters that is sent with the request
@@ -34,7 +36,7 @@ function addAccounts(accountData){
         var btn = document.createElement("button");
         btn.innerText = "See Transfers";
         btn.classList.add("btn","btn-primary");
-        btn.id="button"+ accountData[i].toString();
+        btn.id="button"+ accountData[i].ID.toString();
         addAccountRow(accountDetails, currentBalance, availableBalance,btn);
     }
 }
