@@ -98,7 +98,7 @@ function movePage(){
     document.querySelector(".table-body").innerHTML = "";
     document.querySelector("#bankAccountName").innerText = accountData[index].Account_Name;
     document.querySelector("#bankAccountID").innerText = "ID " + accountData[index].ID;
-    document.querySelector(".figure").innerText = accountData[index].Current_Balance;
+    document.querySelector(".figure").innerText = "£" + accountData[index].Current_Balance.toString();
 
     if(!firstLoad){
         getTransfers(accountData[index].ID);
