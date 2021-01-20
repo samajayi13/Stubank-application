@@ -20,7 +20,7 @@ function getAccountsEDocs(userID){
     })
         .then(function(response) {
             //what runs after the request has been made and successfully returned
-            addAccountsEDocs(response.data.edocsData)
+            addAccountsEDocs(response.data.edocsData);
         })
 }
 
@@ -35,17 +35,6 @@ function addAccountsEDocs(edocsData){
         addEDocsRow(accountDetails, btn);
     }
 }
-
-
-//tr
-//    th(scope='row')
-//        | eSaver
-//        br
-//        | 09-01-26 12345678
-//    td &pound; 10,123.00
-//    td &pound; 10,123.00
-//    td
-//        button.btn.btn-primary(type='button') See Transfers
 
 async  function addEDocsRow(accountDetails, action){
     // we will insert data into table here
