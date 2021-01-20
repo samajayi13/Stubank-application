@@ -11,8 +11,6 @@ function getSession(){
 
  }
 
-
-
  function getAccounts(userID){
      axios.get('/account/getAccounts', {
         //the parameters that is sent with the request
@@ -29,10 +27,10 @@ function getSession(){
 function addAccounts(accountData){
     for(var i = 0; i < accountData.length; i++){
         console.log(accountData);
-        // name, sort code+acc numer, curr balance, avail balance, Action
+        // Name, Sort code + Account number, Current balance, Available balance, Action
         var accountDetails = accountData[i].Account_Name+"\n"+ accountData[i].Sort_Code+" "+accountData[i].Account_Number;
         var currentBalance = accountData[i].Current_Balance;
-        var availableBalance = accountData[i].availableBalance.toString()//do maths here to calc avaible balance
+        var availableBalance = accountData[i].availableBalance.toString()
         var btn = document.createElement("button");
         btn.innerText = "See Transfers";
         btn.classList.add("btn","btn-primary");
@@ -41,19 +39,8 @@ function addAccounts(accountData){
     }
 }
 
-
-//tr
-//    th(scope='row')
-//        | eSaver
-//        br
-//        | 09-01-26 12345678
-//    td &pound; 10,123.00
-//    td &pound; 10,123.00
-//    td
-//        button.btn.btn-primary(type='button') See Transfers
-
 async  function addAccountRow(accountDetails, currentBalance,availableBalance, action){
-    // we will insert data into table here
+    // we will insert data into the table here
     var tbody = document.querySelector(".table-body");
 
     var tr = document.createElement("tr");
@@ -73,9 +60,7 @@ async  function addAccountRow(accountDetails, currentBalance,availableBalance, a
     tr.appendChild(availableBalanceTd);
     tr.appendChild(btnTd);
     tbody.appendChild(tr);
-
 }
-
 
 document.addEventListener("click",function(e){
     if(e.target.classList.contains("btn")){
