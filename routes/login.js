@@ -25,7 +25,7 @@ router.post('/signin',  function(req, res, next) {
     var password  = userDetails["password"];
 
     // searches for user in database
-    var sql = mysql.format("SELECT * FROM Customers WHERE Username = ? AND Password = ?", [username,password]);
+    var sql = mysql.format("SELECT *,Bank_Accounts.ID as Bank_ID,Customers.ID  as Customer_ID FROM Customers RIGHT JOIN Bank_Accounts ON Customers.ID = Bank_Accounts.Customer_ID WHERE Username = ? AND Password = ?", [username,password]);
      db.query(sql, function(err,rows,fields) {
          console.log(rows.length);
          console.log(rows);
@@ -35,7 +35,7 @@ router.post('/signin',  function(req, res, next) {
              // adds user information to session
              req.session.username = username;
              req.session.password = password;
-             req.session.customerID = rows[0].ID;
+             req.session.customerID = rows[0].Customer_ID;
              req.session.firstName = rows[0].First_Name;
              req.session.lastName = rows[0].Last_Name;
              req.session.phoneNumber = rows[0].Phone_Number;
@@ -43,7 +43,7 @@ router.post('/signin',  function(req, res, next) {
              req.session.customerAccountType = rows[0].Customer_Account_Type_ID;
              req.session.universityName = rows[0].University_Name;
              req.session.studentID = rows[0].Student_ID;
-
+             req.session.bankAccountIndex = rows[0].Bank_ID;
              res.redirect('/account');
          }
      });

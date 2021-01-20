@@ -6,9 +6,6 @@ var db = require('../dbconnection');
 
 
 router.get('/getSession', function(req, res, next) {
-    if(!req.session.bankAccountIndex){
-        makeDefaultIndex(req);
-    }
     var sql =  `
         SELECT Account_Name , Current_Balance
         FROM Bank_Accounts
@@ -27,18 +24,6 @@ router.post('/updateBankAccountIndex', function(req, res, next) {
     res.send({result:true});
 });
 
-function makeDefaultIndex(req){
-    console.log("here");
-    var sql =  `
-    SELECT ID
-    FROM Bank_Accounts
-    WHERE Customer_ID =  ${req.session.customerID}`;
-    db.query(sql,function(error,results,fields){
-        // req.session.bankAccountIndex = results[0].ID;
-        req.session.bankAccountIndex = 101;
-        console.log("id = "+ req.session.bankAccountIndex);
-    });
-    console.log(req.session);
-}
+
 
 module.exports = router;
