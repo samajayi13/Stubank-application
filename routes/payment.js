@@ -17,10 +17,10 @@ router.get('/', redirectToLogin, function(req, res, next) {
 });
 
 router.post('/createPayment', function(req, res, next) {
-    console.out("createPayment working");
+    console.log("createPayment working");
     const transferDetails = req.body;
     var purpose = transferDetails["transferPurpose"];
-    console.out(purpose);
+    console.log(purpose);
     var sql = `INSERT INTO Transfer_Information (Transfer_Description, Amount_Transferred, Date_Of_Transfer)
                 VALUES (1,1,1);`;
 
