@@ -49,9 +49,9 @@ router.post('/create', function(req, res, next) {
     var email = encryptData(userDetails["email"]);
     var username = encryptData(userDetails["username"]);
     var password = encryptData(userDetails["password"]);
-    var univeristy = encryptData(userDetails["university"]);
+    var university = encryptData(userDetails["university"]);
     var studentID = encryptData(userDetails["student-ID"]);
-    var sql = `INSERT INTO Customers (First_Name ,Last_Name ,Phone_Number ,Email ,Registration_Date ,Username, Password ,Customer_Account_Type_ID ,University_Name,Student_ID) VALUES('${firstName}','${lastName}','${phoneNumber}','${email}',NOW(),'${username}','${password}',1,'${univeristy}','${studentID}')`;
+    var sql = `INSERT INTO Customers (First_Name ,Last_Name ,Phone_Number ,Email ,Registration_Date ,Username, Password ,Customer_Account_Type_ID ,University_Name,Student_ID) VALUES('${firstName}','${lastName}','${phoneNumber}','${email}',NOW(),'${username}','${password}',1,'${university}','${studentID}')`;
     db.query(sql);
     let valid = "true";
     res.redirect('/sign_up?valid="'+valid+'"');
