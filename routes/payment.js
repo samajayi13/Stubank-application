@@ -23,7 +23,9 @@ router.post('/createPayment', function(req, res, next) {
     var date = new Date().toLocaleString("en-GB");
     console.log(purpose, amount, date);
     var sql = `INSERT INTO Transfer_Information (Transfer_Description, Amount_Transferred, Date_Of_Transfer) VALUES (${purpose},${amount},${date});`;
-
+    db.query(sql);
+    let valid = "true";
+    res.redirect('/payment?valid="'+valid+'"');
 });
 
 module.exports = router;
