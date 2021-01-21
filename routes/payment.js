@@ -22,7 +22,7 @@ router.post('/createPayment', function(req, res, next) {
     var amount = transferDetails["amount-to-send"];
     var date = new Date().toLocaleString("en-GB");
     console.log(purpose, amount, date);
-    var sql = `INSERT INTO Transfer_Information (Transfer_Description, Amount_Transferred, Date_Of_Transfer) VALUES (purpose,amount,data);`;
+    var sql = `INSERT INTO Transfer_Information (Transfer_Description, Amount_Transferred, Date_Of_Transfer) VALUES (${purpose},${amount},${date});`;
 
 });
 
