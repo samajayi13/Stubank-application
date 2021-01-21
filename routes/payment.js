@@ -17,7 +17,6 @@ router.get('/', redirectToLogin, function(req, res, next) {
 });
 
 router.post('/createPayment', function(req, res, next) {
-    console.log("createPayment working");
     const transferDetails = req.body;
     var purpose = transferDetails["transfer-purpose"];
     var amount = transferDetails["amount-to-send"];
