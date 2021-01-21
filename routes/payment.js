@@ -20,9 +20,7 @@ router.post('/createPayment', function(req, res, next) {
     const transferDetails = req.body;
     var purpose = transferDetails["transfer-purpose"];
     var amount = transferDetails["amount-to-send"];
-    var date = new Date().toLocaleString("en-GB");
-    console.log(purpose, amount, date);
-    var sql = `INSERT INTO Transfer_Information (Transfer_Description, Amount_Transferred, Date_Of_Transfer) VALUES ("${purpose}","${amount}","${date}");`;
+    var sql = `INSERT INTO Transfer_Information (Transfer_Description, Amount_Transferred, Date_Of_Transfer) VALUES ("${purpose}","${amount}",now());`;
     db.query(sql);
     let valid = "true";
     res.redirect('/payment?valid="'+valid+'"');
