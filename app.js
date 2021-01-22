@@ -66,6 +66,7 @@ app.use('/contact_us', contactRouter);
 app.use('/digital_card', cardRouter);
 app.use('/session', sessionRouter);
 app.use('/e-documents', eDocumentsRouter);
+app.use('/download', eDocumentsRouter);
 
 // tranfers locals to pug from js
 app.use((req, res, next) => {
