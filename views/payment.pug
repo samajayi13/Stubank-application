@@ -51,7 +51,6 @@ main.main.header-with-image.row
                     .form-group
                         label(for='sendingAccount') Account to send from
                         select#sendingAccount.form-control(name="sending-account")
-                            option Salva Personal
                     .form-group
                         label(for='receivingAccount') Receiving Account Number
                         input.form-control(id='receivingAccount', type='text' placeholder='23242234454' name="account-number")
@@ -120,34 +119,5 @@ section.our-features
 script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js' integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' crossorigin='anonymous')
 script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
 script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' crossorigin='anonymous')
-script.
-    var formBtn = document.querySelector(".btn");
-    var formIndex = 1;
-    formBtn.addEventListener("click",function(e){
-        // insert form validation here
-        //moveForm allows the mutlistep form to take place
-        moveForm("forward");
-        e.preventDefault();
-    })
-    //MOVES THE FORM FORWARD AND SHOWS A NEW STEP IN THE FORM
-    function moveForm(direction){
-        formIndex++;
-        function setDisplayProperty(formIndex){
-            for(var i = 1; i<= 3;i++){
-                var elm = document.querySelector(".form_"+i.toString());
-                elm.style.display = i === formIndex ? "block" : "none";
-                console.log(elm);
-            }
-        }
-        setDisplayProperty(formIndex);
-        if (direction === "forward" && formIndex === 3 ) {
-            document.querySelector(".btn-submit").style.display = "block";
-            document.querySelector(".btn-continue").style.display = "none";
-        }
-    }
-    document.querySelector(".btn-submit").addEventListener("click",function(e){
-        document.querySelector(".form_3").style.display = "none";
-        document.querySelector(".success-message").style.display = "block";
-        document.querySelector(".transfer-form h3").style.display = "none";
-        document.querySelector(".btn-submit").style.display = "none";
-    });
+script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
+script(src='js/payment.js')
