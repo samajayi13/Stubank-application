@@ -1,6 +1,45 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../dbconnection');
+var CryptoJS = require("crypto-js");
+var key = 'sfsdfsdf44242sdfds34224dfsfsf34324gdfgdfgd3sdfsdfsdf23sfsdfsdfsdfsffg23@sdf@@!£"$%^&*&fg££$%££@@%$$%£$%"$%fd';
+
+function encryptData(data){
+    console.log(data + "working here");
+    var ciphertext = CryptoJS.AES.encrypt(data, key);
+    console.log(data + "working here 2");
+    return ciphertext.toString()
+}
+
+function decryptData(ciphertext){
+    var bytes = CryptoJS.AES.decrypt(ciphertext, key);
+    var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+    return plaintext;
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+}
+
+function checkForIdenticalAccount(array, number) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].Account_Number==number) {
+            return true
+        }
+    };
+    return false;
+}
+
+function checkForIdenticalCard(array, number) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].Card_Number==number) {
+            return true
+        }
+    };
+    return false;
+}
 
 // if not logged in, doesn't display account page
 const redirectToLogin = (req, res, next) => {
@@ -39,9 +78,86 @@ router.get('/getAccounts', function(req, res, next) {
 
     db.query(sql,function(error,results,fields){
         if (error) throw error;
-        console.log("test1");
         res.send({accountData : results });
     });
+});
+
+router.post('/createAccount', function (req,res,next) {
+    // gets html input
+    const accountDetails = req.body;
+
+    // stores all the user input data
+    // TODO: encrypt this!
+    var accountName = accountDetails["name"];
+    var dateOpened;
+    var accountTypeID = 2; // savings account type
+    var customerID = req.session.customerID;
+    var currentBalance = 0.00;
+    var sortCode;
+    var accountNumber = getRandomInt(1000000000,9999999999); // random number that isnt in DB
+    var cardNumber = getRandomInt(10000000000000,99999999999999); // random number that isnt in DB
+    var cvvNumber = getRandomInt(100,999); // random number
+    var expiryDate;
+
+    switch (accountDetails["colors"]) {
+        case "blue":
+            var cardColor = "#0080ff";
+            break;
+        case "red":
+            var cardColor = "#e50000";
+            break;
+        case "green":
+            var cardColor = "#00e600";
+            break;
+        case "pink":
+            var cardColor = "#ffc0cb";
+            break;
+    }
+
+    // checks if account number or card number is already in database
+    var sql =  `
+                SELECT Account_Number, Card_Number
+                FROM Bank_Accounts`;
+
+    db.query(sql,function(error,rows,fields){
+        if (error) throw error;
+        console.log(rows.length);
+        console.log(rows);
+
+        var takenAcc = checkForIdenticalAccount(rows, accountNumber);
+        var takenCard = checkForIdenticalCard(rows, cardNumber);
+
+        if (takenAcc==true) {
+            accountNumber=getRandomInt(1000000000,9999999999);
+        }
+
+        if (takenCard==true) {
+            cardNumber=getRandomInt(10000000000000,99999999999999);
+        }
+    });
+
+    console.log("REQUESTED ID: " + customerID)
+
+    // gets the user's accounts so we can get the same variables like account date of opening, date of expiry and sort code
+    var sql2 =  `
+                SELECT *
+                FROM Bank_Accounts
+                WHERE Customer_ID = ${customerID}`;
+
+    db.query(sql2,function(error,rows,fields){
+        if (error) throw error;
+        console.log(rows.length);
+        console.log(rows);
+        dateOpened = rows[0].Date_Opened;
+        sortCode = toString(rows[0].Sort_Code);
+        expiryDate = rows[0].Expiry_Date;
+    });
+
+    // creates new roll in table
+    var sql3 = `INSERT INTO Bank_Accounts (Account_Name, Date_Opened, Account_Type_ID, Customer_ID, Current_Balance, Sort_Code, Account_Number, Card_Number, Cvv_Number, Expiry_Date, Card_Color) VALUES('${accountName}','${dateOpened}','${accountTypeID}','${customerID}','${currentBalance}','${sortCode}','${accountNumber}','${cardNumber}','${cvvNumber}','${expiryDate}','${cardColor}')`;
+    db.query(sql3);
+
+    res.redirect('/account');
 });
 
 module.exports = router;
