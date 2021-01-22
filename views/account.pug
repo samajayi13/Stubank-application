@@ -16,7 +16,24 @@ main.row
                 .service.col-12.col-sm-6.col-md-8
                     h1.text-primary.mb-5.mt-4 My Accounts
                 .service.col-6.col-md-4.mb-5.mt-4
-                    button.btn-primary.btn.mt-4.ml-4(type="button" onclick="location.href = 'localhost:3000/add_account';") Add account
+                    div(id="add-account")
+                        button.btn-primary.btn.mt-4.ml-4(type="button" id="addaccountbtn" onclick="change()") Add account
+                    script.
+                        function change() {
+                            $("#add-account").html('<form method=\'post\' action="/account/createAccount">' +
+                                '<input type="text" id="name" placeholder="New account name" />' +
+                                '<br>' +
+                                '<select name="colors" id="colors">' +
+                                '<option value="blue">Blue</option>' +
+                                '<option value="red">Red</option>' +
+                                '<option value="green">Preen</option>' +
+                                '<option value="pink">Pink</option>' +
+                                '</select>' +
+                                '<br>' +
+                                '<input type="submit" value="Create">' +
+                                '</form>');;
+                            $("#add-account #input").focus();
+                        };
         .p-3.mb-2.bg-dark.text-white Banking &amp; Savings
         table.table.table-striped
             thead
