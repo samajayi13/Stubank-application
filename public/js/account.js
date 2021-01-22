@@ -26,6 +26,7 @@ function getSession(){
 
 function addAccounts(accountData){
     for(var i = 0; i < accountData.length; i++){
+        var currentBTNID = "button"+ accountData[i].ID.toString();
         console.log(accountData);
         // Name, Sort code + Account number, Current balance, Available balance, Action
         var accountDetails = accountData[i].Account_Name+"\n"+ accountData[i].Sort_Code+" "+accountData[i].Account_Number;
@@ -35,11 +36,14 @@ function addAccounts(accountData){
         btn.innerText = "See Transfers";
         btn.classList.add("btn","btn-primary");
         btn.id="button"+ accountData[i].ID.toString();
-        addAccountRow(accountDetails, currentBalance, availableBalance,btn);
+        var script = document.createElement("script");
+        script.type="text/javascript";
+        script.innerHTML='$("#'+currentBTNID+'").click(function () {window.'+"open('"+"/transfers'); })";
+        addAccountRow(accountDetails, currentBalance, availableBalance,btn, script);
     }
 }
 
-async  function addAccountRow(accountDetails, currentBalance,availableBalance, action){
+async  function addAccountRow(accountDetails, currentBalance,availableBalance, action, script){
     // we will insert data into the table here
     var tbody = document.querySelector(".table-body");
 
@@ -54,6 +58,7 @@ async  function addAccountRow(accountDetails, currentBalance,availableBalance, a
     currentBalanceTd.innerText = "£" + currentBalance;
     availableBalanceTd.innerText = "£" + availableBalance;
     btnTd.appendChild(action);
+    btnTd.appendChild(script);
 
     tr.appendChild(th);
     tr.appendChild(currentBalanceTd);
@@ -61,14 +66,3 @@ async  function addAccountRow(accountDetails, currentBalance,availableBalance, a
     tr.appendChild(btnTd);
     tbody.appendChild(tr);
 }
-
-document.addEventListener("click",function(e){
-    if(e.target.classList.contains("btn")){
-        var bankAccountIndex = e.target.id.substr(6);
-        axios.post('/session/updateBankAccountIndex', {
-                bankAccountIndex
-        }).then(function(response) {
-            window.location.href = "http://localhost:3000/transfers";
-        })
-    }
-});
