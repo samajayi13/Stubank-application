@@ -4,17 +4,22 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
+var sessionRouter = require('./routes/session');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var paymentRouter = require('./routes/payment');
-var transfersRouter = require('./routes/transfers');
-var loginRouter = require('./routes/login');
+
+// var faqRouter = require('./routes/faq');
 var registerRouter = require('./routes/sign_up');
+var loginRouter = require('./routes/login');
+
 var accountRouter = require('./routes/account');
+var transfersRouter = require('./routes/transfers');
+var paymentRouter = require('./routes/payment');
+var eDocumentsRouter = require('./routes/e-documents');
+// var settingsRouter = require('./routes/settings');
 var contactRouter = require('./routes/contact_us');
 var cardRouter = require('./routes/digital_card');
-var sessionRouter = require('./routes/session');
-var eDocumentsRouter = require('./routes/e-documents');
+
 
 var app = express();
 
@@ -55,18 +60,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/payment', paymentRouter);
-app.use('/transfers', transfersRouter);
-app.use('/login', loginRouter);
+app.use('/session', sessionRouter);
+app.use('/index', indexRouter);
+
+// app.use('/faq', faqRouter);
 app.use('/sign_up', registerRouter);
+app.use('/login', loginRouter);
+
 app.use('/account', accountRouter);
+app.use('/transfers', transfersRouter);
+app.use('/payment', paymentRouter);
+app.use('/e-documents', eDocumentsRouter);
+// app.use('/settings', settingsRouter);
 app.use('/contact_us', contactRouter);
 app.use('/digital_card', cardRouter);
-app.use('/session', sessionRouter);
-app.use('/e-documents', eDocumentsRouter);
-app.use('/download', eDocumentsRouter);
+
 
 // tranfers locals to pug from js
 app.use((req, res, next) => {
