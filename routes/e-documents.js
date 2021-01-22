@@ -11,6 +11,12 @@ const redirectToLogin = (req, res, next) => {
     }
 }
 
+router.get('/download', function (req,res, next) {
+    var filepath = "routes/generatedStatements/SALVA.pdf";
+    console.log("Test");
+    res.download('generatedStatements/SALVA.pdf');
+});
+
 /* GET e-documents page. */
 router.get('/', redirectToLogin, function(req, res, next) {
     res.render('e-documents', { title: 'E-Documents' });
