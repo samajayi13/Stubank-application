@@ -26,17 +26,23 @@ function getAccountsEDocs(userID){
 
 function addAccountsEDocs(edocsData){
     for(var i = 0; i < edocsData.length; i++){
+        var currentBTNID = "button"+ edocsData[i].ID.toString();
         console.log(edocsData);
         var accountDetails = edocsData[i].Account_Name+"\n"+ edocsData[i].Sort_Code+" "+edocsData[i].Account_Number;
-        var btn = document.createElement("button");
+        var btn = document.createElement("a");
         btn.innerText = "Get Statement";
+        btn.type="submit";
         btn.classList.add("btn","btn-primary");
         btn.id="button"+ edocsData[i].ID.toString();
-        addEDocsRow(accountDetails, btn);
+        var script = document.createElement("script");
+        script.type="text/javascript";
+        script.innerHTML='$("#'+currentBTNID+'").click(function () {window.'+"open('"+"/download'); })";
+
+        addEDocsRow(accountDetails, btn, script);
     }
 }
 
-async  function addEDocsRow(accountDetails, action){
+async  function addEDocsRow(accountDetails, action, script){
     // we will insert data into table here
     var tbody = document.querySelector(".table-body");
 
@@ -47,6 +53,7 @@ async  function addEDocsRow(accountDetails, action){
     th.scope = "row";
     th.innerText = accountDetails;
     btnTd.appendChild(action);
+    btnTd.appendChild(script);
 
     tr.appendChild(th);
     tr.appendChild(btnTd);
