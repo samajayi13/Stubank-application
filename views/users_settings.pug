@@ -1,0 +1,136 @@
+doctype html
+head
+    // Required meta tags
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    // Bootstrap CSS
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
+    script(src='https://kit.fontawesome.com/2354c028ce.js' crossorigin='anonymous')
+    link(rel='stylesheet' href='/stylesheets/logged_in_navbar.css')
+    link(rel='stylesheet' href='/stylesheets/user_settings.css')
+    title Hello, world!
+
+include logged_in_navbar
+.container.light-style.flex-grow-1.container-p-y.mb-5
+    h1.font-weight-bold.py-3.mb-4.text-primary
+        | Account settings
+    .card.overflow-hidden
+        .row.no-gutters.bordered-row.row-border-light
+            .col-md-3.pt-0
+                .list-group.list-group-flush.user-settings-links
+                    a.list-group-item.list-group-item-action.active(data-toggle='list' href='#account-general') General Settings
+                    a.list-group-item.list-group-item-action(data-toggle='list' href='#account-change-password') Change password
+                    a.list-group-item.list-group-item-action(data-toggle='list' href='#account-info') Personal Information
+                    a.list-group-item.list-group-item-action(data-toggle='list' href='#account-social-links')
+                        select#bank-accounts.form-control.w-75.bg-light
+            .col-md-9
+                .tab-content
+                    #account-general.tab-pane.fade.active.show
+                        .card-body.media.align-items-center
+                            img.d-block.ui-w-80(src='' alt='')
+                            .media-body.ml-4
+                                button.btn.btn-primary(type='button' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap') Choose new avatar
+                        #exampleModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+                            .modal-dialog(role='document')
+                                .modal-content
+                                    .modal-header
+                                        h5#exampleModalLabel.modal-title Select New Avatar
+                                        button.close(type='button' data-dismiss='modal' aria-label='Close')
+                                            span(aria-hidden='true') &times;
+                                    .modal-body
+                                        .pictures
+                        hr.border-light.m-0
+                        .card-body
+                            .form-group
+                                label.form-label ID:
+                                input.form-control.mb-1#user-ID(type='text' value='12345675' readonly='')
+                            .form-group
+                                label.form-label Username:
+                                input.form-control.mb-1#username(type='text' value='user1234')
+                            .form-group
+                                label.form-label Registration Date:
+                                input.form-control#signed-up-date(type='text' value='01/02/2021' readonly='')
+                            .form-group
+                                label.form-label Customer Type:
+                                input.form-control#customer-type(type='text' value='Student' readonly='')
+                            //
+                    #account-change-password.tab-pane.fade
+                        .card-body.pb-2
+                            .form-group
+                                label.form-label Current password
+                                input.form-control#current-password(type='password')
+                            .form-group
+                                label.form-label New password
+                                input.form-control#new-password(type='password')
+                            .form-group
+                                label.form-label Repeat new password
+                                input.form-control#new-password-repeat(type='password')
+                    #account-info.tab-pane.fade
+                        .card-body.pb-2
+                            .form-group
+                                label.form-label First Name:
+                                input.form-control#first-name(type='text' value='Sam')
+                            .form-group
+                                label.form-label Last Name:
+                                input.form-control#last-name(type='text' value='Sam')
+                            .form-group
+                                label.form-label Phone number:
+                                input.form-control#phone-number(type='text' value='+447446227779')
+                            .form-group
+                                label.form-label E-mail:
+                                input.form-control.mb-1#email(type='text' value='nmaxwell@mail.com')
+                            .form-group
+                                label.form-label Univeristy name:
+                                input.form-control#uni-name(type='text' value='Newcastle')
+                            .form-group
+                                label.form-label Student ID:
+                                input.form-control#studetn-ID(type='text' value='1234343')
+                    #account-social-links.tab-pane.fade
+                        .card-body.pb-2
+                            #carouselExampleControls.carousel.shadow-lg.slide.mb-2.mt-5(data-ride='carousel' data-interval='false')
+                                .carousel-inner
+                                a.carousel-control-prev(href='#carouselExampleControls' role='button' data-slide='prev')
+                                    span.carousel-control-prev-icon(aria-hidden='true')
+                                    span.sr-only Previous
+                                a.carousel-control-next(href='#carouselExampleControls' role='button' data-slide='next')
+                                    span.carousel-control-next-icon(aria-hidden='true')
+                                    span.sr-only Next
+                            .theme-options
+                                h4 Choose theme:
+                                .theme-options-buttons
+                                    .buttons-row
+                                        button.btn.theme-button(style='background-color:cyan')
+                                        button.btn.theme-button(style='background-color:chartreuse')
+                                        button.btn.theme-button(style='background-color:cadetblue')
+                                        button.btn.theme-button(style='background-color:darkorange')
+                                        button.btn.theme-button(style='background-color:crimson')
+                                        button.btn.theme-button(style='background-color:darkturquoise')
+                                        button.btn.theme-button(style='background-color:deeppink')
+                                        button.btn.theme-button(style='background-color:#bf9cb4')
+                                    .buttons-row
+                                        button.btn.theme-button(style='background-color:#060114')
+                                        button.btn.theme-button(style='background-color:#edb1ca')
+                                        button.btn.theme-button(style='background-color:darkkhaki')
+                                        button.btn.theme-button(style='background-color:fuchsia')
+                                        button.btn.theme-button(style='background-color:#ecef15')
+                                        button.btn.theme-button(style='background-color:#f2c84b')
+                                        button.btn.theme-button(style='background-color:#8f10ce')
+                                        button.btn.theme-button(style='background-color:#10ce1a')
+                                    .buttons-row
+                                        button.btn.theme-button(style='background-color:#ce1062')
+                                        button.btn.theme-button(style='background-color:#990d9b')
+                                        button.btn.theme-button(style='background-color:#013f3e')
+                                        button.btn.theme-button(style='background-color:#d8c304')
+                                        button.btn.theme-button(style='background-color:#420503')
+                                        button.btn.theme-button(style='background-color:#d7ef1f')
+                                        button.btn.theme-button(style='background-color:#744bf2')
+                                        button.btn.theme-button(style='background-color:#969696')
+    .text-right.mt-3
+        button.btn.btn-primary#btn-save-changes(type='button') Save changes
+// Optional JavaScript
+// jQuery first, then Popper.js, then Bootstrap JS
+script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js' integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
+script(src='/js/users_settings.js')

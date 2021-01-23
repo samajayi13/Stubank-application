@@ -7,7 +7,8 @@ const con = mysql.createConnection({
     host: 'sql2.freesqldatabase.com',
     user: 'sql2386191',
     password: 'lT8!wV2!',
-    database: 'sql2386191'
+    database: 'sql2386191',
+    multipleStatements: true
 });
 con.connect((err) => {
     if(err){

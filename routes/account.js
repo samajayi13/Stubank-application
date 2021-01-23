@@ -43,5 +43,18 @@ router.get('/getAccounts', function(req, res, next) {
         res.send({accountData : results });
     });
 });
+router.get('/getAvatar', function(req, res, next) {
+    var ID = req.query.ID;
+    console.log("REQUESTED ID: " + ID)
+    var sql =  `
+                SELECT Avatar_Person
+                FROM Customers
+                WHERE Customers.ID = ${ID}`;
+
+    db.query(sql,function(error,results,fields){
+        if (error) throw error;
+        res.send({accountData : results });
+    });
+});
 
 module.exports = router;

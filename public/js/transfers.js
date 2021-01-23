@@ -5,6 +5,7 @@ function getSession(){
     }).then(function(response) {
         bankAccountID =  parseInt(response.data.result.bankAccountIndex);
         getTransfers(bankAccountID);
+        getAvatar();
     })
 
 }
@@ -81,3 +82,23 @@ async function getUserFirstName(transferUserID){
     return result;
 }
 
+function getAvatar(){
+    axios.get('/account/getAvatar', {
+        //the parameters that is sent with the request
+        params: {
+            ID: userID,
+        }
+    })
+        .then(function(response) {
+            console.log(response.data.accountData[0].Avatar_Person);
+            var avatar = response.data.accountData[0].Avatar_Person;
+            if(avatar === "no-person"){
+                document.querySelector('.account-box_top img').style.display  = "none";
+                document.querySelector('i.fas.fa-user-circle').style.display  = "block";
+            }else{
+                document.querySelector('.account-box_top img').style.display  = "block";
+                document.querySelector('.account-box_top img').src = avatar;
+                document.querySelector('i.fas.fa-user-circle').style.display  = "none";
+            }
+        });
+}
