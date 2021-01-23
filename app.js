@@ -16,9 +16,9 @@ var accountRouter = require('./routes/account');
 var transfersRouter = require('./routes/transfers');
 var paymentRouter = require('./routes/payment');
 var eDocumentsRouter = require('./routes/e-documents');
-// var settingsRouter = require('./routes/settings');
 var contactRouter = require('./routes/contact_us');
 var cardRouter = require('./routes/digital_card');
+var usersSettings = require('./routes/users_settings');
 
 
 var app = express();
@@ -61,7 +61,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/payment', paymentRouter);
 app.use('/transfers', transfersRouter);
 app.use('/login', loginRouter);
@@ -71,6 +70,7 @@ app.use('/contact_us', contactRouter);
 app.use('/digital_card', cardRouter);
 app.use('/session', sessionRouter);
 app.use('/e-documents', eDocumentsRouter);
+app.use('/users_settings', usersSettings);
 
 // tranfers locals to pug from js
 app.use((req, res, next) => {

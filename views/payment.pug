@@ -28,7 +28,7 @@ main.main.header-with-image.row
                     .input-group.mb-3
                         .input-group-prepend
                             span.input-group-text &pound;
-                        input.form-control(id='sendAmount', type='text' placeholder='£1,000' name="amount-to-send")
+                        input.form-control#sendAmount(type='text' placeholder='£1,000' name="amount-to-send")
                         .input-group-append
                             textarea.input-group-text .00
                     .form-group
@@ -53,16 +53,12 @@ main.main.header-with-image.row
                         select#sendingAccount.form-control(name="sending-account")
                     .form-group
                         label(for='receivingAccount') Receiving Account Number
-                        input.form-control(id='receivingAccount', type='text' placeholder='23242234454' name="account-number")
-                    .form-group
-                        label(for='receiverName') Receiver name
-                        input.form-control(id='receiverName', type='text' placeholder='John Smith' name="receiver-name")
+                        input.form-control#receivingAccount(type='text' placeholder='23242234454' name="account-number")
                 .form_3
                     .form-group.mb-3
                         label(for='passCode') One time passcode (Please check your email)
-                        input.form-control(id='passCode', type='text' placeholder='' name="one-time-passcode")
+                        input.form-control#passCode( type='text' placeholder='' name="one-time-passcode")
                 button.btn.btn-lg.mt-4.btn-continue Continue Transfer
-                button.btn.btn-lg.mt-4.btn-submit(type='submit') Submit Transfer
             .success-message
                 h1.text-center.text-success.pt-5 Transfer completed
 section.our-features
@@ -120,4 +116,5 @@ script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js' integrity='sha384-
 script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
 script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' crossorigin='anonymous')
 script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
+script(src= "https://smtpjs.com/v3/smtp.js")
 script(src='js/payment.js')
