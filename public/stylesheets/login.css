@@ -187,7 +187,9 @@ body{
 
 }
 
-
+#forgot-password:hover{
+    cursor: pointer;
+}
 
 
 

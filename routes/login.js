@@ -49,4 +49,15 @@ router.post('/signin',  function(req, res, next) {
      });
 });
 
+router.get('/checkIfEmailValid', function(req, res, next) {
+    var email  = req.query.email;
+    var sql =  `SELECT * FROM Customers WHERE Email = '${email}'`;
+
+    db.query(sql,function(error,results,fields){
+        if (error) throw error;
+        var valid = results.length > 0 ? true : false;
+        res.send({valid : valid,password : results[0].Password});
+    });
+});
+
 module.exports = router;
