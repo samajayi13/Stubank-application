@@ -66,7 +66,10 @@ async  function addAccountRow(accountDetails, currentBalance,availableBalance, a
 }
 
 document.addEventListener("click",function(e){
-    if(e.target.classList.contains("btn")){
+    console.log(e.target.classList);
+    if(e.target.id = "btn-add-account") {
+        return;
+    }else if(e.target.classList.contains("btn")){
         var bankAccountIndex = e.target.id.substr(6);
         axios.post('/session/updateBankAccountIndex', {
                 bankAccountIndex

@@ -16,8 +16,8 @@ main.row
                 .service.col-12.col-sm-6.col-md-8
                     h1.text-primary.mb-5.mt-4 My Accounts
                 .service.col-6.col-md-4.mb-5.mt-4
-                    div(id="add-account")
-                        button.btn-primary.btn.mt-4.ml-4(type="button" id="addaccountbtn" onclick="change()") Add account
+                    div#add-account
+                        button.btn-primary.btn.mt-4.ml-4#btn-add-account(type="button" onclick="change()") Add account
                     script.
                         function change() {
                             $("#add-account").html('<form method=\'post\' action="/account/createAccount">' +
