@@ -9,7 +9,7 @@ document.querySelector("#forgot-password-btn").addEventListener("click",function
             if(response.data.valid){
                 sendEmail(document.querySelector("#forgot-password-email").value,
                     "Your account password",
-                    "Your password is: " + response.data.password  + " if you have any problems please contact the bank");
+                    "Your password is: ' " + response.data.password  + " ' if you have any problems please contact the bank");
             }else{
                 alert("no email assoicated with this account");
             }
