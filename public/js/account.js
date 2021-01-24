@@ -66,8 +66,7 @@ async  function addAccountRow(accountDetails, currentBalance,availableBalance, a
 }
 
 document.addEventListener("click",function(e){
-    console.log(e.target.classList);
-    if(e.target.id = "btn-add-account") {
+    if(e.target.id === "btn-add-account") {
         return;
     }else if(e.target.classList.contains("btn")){
         var bankAccountIndex = e.target.id.substr(6);
@@ -87,7 +86,6 @@ function getAvatar(){
         }
     })
         .then(function(response) {
-            console.log(response.data.accountData[0].Avatar_Person);
             var avatar = response.data.accountData[0].Avatar_Person;
             if(avatar === "no-person"){
                 document.querySelector('.account-box_top img').style.display  = "none";
