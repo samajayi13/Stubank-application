@@ -1,0 +1,161 @@
+doctype html
+head
+    // Required meta tags
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    // Bootstrap CSS
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
+    link(rel='stylesheet' href='/stylesheets/navbar.css')
+    script(src='https://kit.fontawesome.com/2354c028ce.js' crossorigin='anonymous')
+    title Frequently asked questions
+    style.
+        main{
+            max-width: 1000px;
+        }
+        .btn-link{
+            color:black;
+            font-size:16px;
+        }
+        .btn-link:active,.btn-link:hover{
+            color:black;
+        }
+        .card-header i{
+            position: relative;
+            top:-15px;
+            font-size:20px;
+        }
+        .card-header h2{
+            margin-bottom:  -15px !important;
+        }
+        .jumbotron{
+            padding-top:0px;
+            padding-bottom:10px;
+        }
+
+include navbar
+main.mx-5.jumbotron.shadow-lg.mx-auto
+    section.mb-5
+        h4.my-3 General questions:
+        #accordionExample.accordion
+            .card
+                #headingOne.card-header
+                    h2.mb-0
+                        button.btn.btn-link(type='button' data-toggle='collapse' data-target='#collapseGeneralOne' aria-expanded='true' aria-controls='collapseGeneralOne')
+                            | Question 1:
+                    i.fas.fa-angle-down.float-right
+                #collapseGeneralOne.collapse(aria-labelledby='headingOne' data-parent='#accordionExample')
+                    .card-body
+                        | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&apos;t heard of them accusamus labore sustainable VHS.
+            .card
+                #headingTwo.card-header
+                    h2.mb-0
+                        button.btn.btn-link.collapsed(type='button' data-toggle='collapse' data-target='#collapseGeneralTwo' aria-expanded='false' aria-controls='collapseGeneralTwo')
+                            | Question 2:
+                    i.fas.fa-angle-down.float-right
+                #collapseGeneralTwo.collapse(aria-labelledby='headingTwo' data-parent='#accordionExample')
+                    .card-body
+                        | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&apos;t heard of them accusamus labore sustainable VHS.
+            .card
+                #headingThree.card-header
+                    h2.mb-0
+                        button.btn.btn-link.collapsed(type='button' data-toggle='collapse' data-target='#collapseGeneralThree' aria-expanded='false' aria-controls='collapseGeneralThree')
+                            | Question 3:
+                    i.fas.fa-angle-down.float-right
+                #collapseGeneralThree.collapse(aria-labelledby='headingThree' data-parent='#accordionExample')
+                    .card-body
+                        | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&apos;t heard of them accusamus labore sustainable VHS.
+    section.mb-5
+        h4.my-3 Payment  Questions:
+        #accordionExample.accordion
+            .card
+                #headingOne.card-header
+                    h2.mb-0
+                        button.btn.btn-link(type='button' data-toggle='collapse' data-target='#collapsePaymentOne' aria-expanded='true' aria-controls='collapsePaymentOne')
+                            | Question 1:
+                    i.fas.fa-angle-down.float-right
+                #collapsePaymentOne.collapse(aria-labelledby='headingOne' data-parent='#accordionExample')
+                    .card-body
+                        | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&apos;t heard of them accusamus labore sustainable VHS.
+            .card
+                #headingTwo.card-header
+                    h2.mb-0
+                        button.btn.btn-link.collapsed(type='button' data-toggle='collapse' data-target='#collapsePaymentTwo' aria-expanded='false' aria-controls='collapsePaymentTwo')
+                            | Question 2:
+                    i.fas.fa-angle-down.float-right
+                #collapsePaymentTwo.collapse(aria-labelledby='headingTwo' data-parent='#accordionExample')
+                    .card-body
+                        | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&apos;t heard of them accusamus labore sustainable VHS.
+            .card
+                #headingThree.card-header
+                    h2.mb-0
+                        button.btn.btn-link.collapsed(type='button' data-toggle='collapse' data-target='#collapsePaymentThree' aria-expanded='false' aria-controls='collapsePaymentThree')
+                            | Question 3:
+                    i.fas.fa-angle-down.float-right
+                #collapsePaymentThree.collapse(aria-labelledby='headingThree' data-parent='#accordionExample')
+                    .card-body
+                        | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&apos;t heard of them accusamus labore sustainable VHS.
+    section.mb-5
+        h4.my-3 Account Questions:
+        #accordionExample.accordion
+            .card
+                #headingOne.card-header
+                    h2.mb-0
+                        button.btn.btn-link(type='button' data-toggle='collapse' data-target='#collapseAccountOne' aria-expanded='true' aria-controls='collapseAccountOne')
+                            | Question 1:
+                    i.fas.fa-angle-down.float-right
+                #collapseAccountOne.collapse(aria-labelledby='headingOne' data-parent='#accordionExample')
+                    .card-body
+                        | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&apos;t heard of them accusamus labore sustainable VHS.
+            .card
+                #headingTwo.card-header
+                    h2.mb-0
+                        button.btn.btn-link.collapsed(type='button' data-toggle='collapse' data-target='#collapseAccountTwo' aria-expanded='false' aria-controls='collapseAccountTwo')
+                            | Question 2:
+                    i.fas.fa-angle-down.float-right
+                #collapseAccountTwo.collapse(aria-labelledby='headingTwo' data-parent='#accordionExample')
+                    .card-body
+                        | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&apos;t heard of them accusamus labore sustainable VHS.
+            .card
+                #headingThree.card-header
+                    h2.mb-0
+                        button.btn.btn-link.collapsed(type='button' data-toggle='collapse' data-target='#collapeAccountThree' aria-expanded='false' aria-controls='collapeAccountThree')
+                            | Question 3:
+                    i.fas.fa-angle-down.float-right
+                #collapeAccountThree.collapse(aria-labelledby='headingThree' data-parent='#accordionExample')
+                    .card-body
+                        | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&apos;t heard of them accusamus labore sustainable VHS.
+// Optional JavaScript
+// jQuery first, then Popper.js, then Bootstrap JS
+script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js' integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' crossorigin='anonymous')
+script.
+    document.addEventListener("click",function(e){
+        var parentElm = null;
+        if(e.target.classList.contains("btn-link")){
+            if(document.querySelector(".fa-angle-up")){
+                var angleUp = document.querySelector(".fa-angle-up");
+                angleUp.classList.remove("fa-angle-up");
+                angleUp.classList.add("fa-angle-down")
+                angleUp.style.color = "black";
+                parentElm = angleUp.parentElement;
+            }
+            if(e.target.parentElement.parentElement.children[1].classList.contains("fa-angle-down")){
+                if(parentElm){
+                    if(parentElm !== e.target.parentElement.parentElement){
+                        e.target.parentElement.parentElement.children[1].classList.remove("fa-angle-down");
+                        e.target.parentElement.parentElement.children[1].classList.add("fa-angle-up");
+                        e.target.parentElement.parentElement.children[1].style.color = "#2D7DE9";
+                    }
+                }else{
+                    e.target.parentElement.parentElement.children[1].classList.remove("fa-angle-down");
+                    e.target.parentElement.parentElement.children[1].classList.add("fa-angle-up");
+                    e.target.parentElement.parentElement.children[1].style.color = "#2D7DE9";
+                }
+            } else if(e.target.parentElement.parentElement.children[1].classList.contains("fa-angle-up")){
+                e.target.parentElement.parentElement.children[1].classList.remove("fa-angle-up");
+                e.target.parentElement.parentElement.children[1].classList.add("fa-angle-down");
+                e.target.parentElement.parentElement.children[1].style.color = "black";
+            }
+        }
+    })

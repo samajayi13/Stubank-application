@@ -8,7 +8,7 @@ var logger = require('morgan');
 var sessionRouter = require('./routes/session');
 var indexRouter = require('./routes/index');
 
-// var faqRouter = require('./routes/faq');
+var faqRouter = require('./routes/faq');
 var registerRouter = require('./routes/sign_up');
 var loginRouter = require('./routes/login');
 
@@ -71,6 +71,7 @@ app.use('/digital_card', cardRouter);
 app.use('/session', sessionRouter);
 app.use('/e-documents', eDocumentsRouter);
 app.use('/users_settings', usersSettings);
+app.use('/faq', faqRouter);
 
 // tranfers locals to pug from js
 app.use((req, res, next) => {
