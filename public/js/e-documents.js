@@ -60,9 +60,15 @@ document.addEventListener("click",function(e){
     if(e.target.classList.contains("btn")){
         var bankAccountIndex = e.target.id.substr(6);
         axios.post('/session/updateBankAccountIndex', {
-            bankAccountIndex
+            bankAccountIndex,
+            responseType: 'blob',
         }).then(function(response) {
-            window.location.href = "http://localhost:3000/e-documents";
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'statement.pdf'); //or any other extension
+            document.body.appendChild(link);
+            link.click();
         })
     }
 });
