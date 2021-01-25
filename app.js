@@ -19,7 +19,7 @@ var eDocumentsRouter = require('./routes/e-documents');
 var contactRouter = require('./routes/contact_us');
 var cardRouter = require('./routes/digital_card');
 var usersSettings = require('./routes/users_settings');
-var trainRouter = require('./routes/train')
+var trainRouter = require('./routes/train');
 
 var app = express();
 
