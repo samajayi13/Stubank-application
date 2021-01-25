@@ -19,7 +19,7 @@ var eDocumentsRouter = require('./routes/e-documents');
 var contactRouter = require('./routes/contact_us');
 var cardRouter = require('./routes/digital_card');
 var usersSettings = require('./routes/users_settings');
-var trainRouter = require('./routes/train')
+// var trainRouter = require('./routes/train')
 
 var app = express();
 
@@ -72,7 +72,7 @@ app.use('/session', sessionRouter);
 app.use('/e-documents', eDocumentsRouter);
 app.use('/users_settings', usersSettings);
 app.use('/faq', faqRouter);
-app.use('/train', trainRouter);
+// app.use('/train', trainRouter);
 
 // tranfers locals to pug from js
 app.use((req, res, next) => {
