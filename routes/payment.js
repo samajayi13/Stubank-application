@@ -22,7 +22,37 @@ router.post('/createPayment', function(req, res, next) {
     const bankAccountName  = req.body.bankAccountName;
     const userID  = req.body.userID;
     const accountSendingToNumber  = req.body.accountSendingToNumber;
-    var sql = `INSERT INTO Transfer_Information(TRANSFER_DESCRIPTION, AMOUNT_TRANSFERRED, DATE_OF_TRANSFER) VALUES ('${transferDescription}', ${amountSent},NOW()); SET @Transfer_Information_ID = (SELECT Transfer_Information_ID FROM Transfer_Information ORDER BY Transfer_Information_ID DESC LIMIT 1); SET @UserBankAccountID  = (SELECT Bank_Accounts.ID FROM Bank_Accounts WHERE Bank_Accounts.Account_Name = '${bankAccountName}' AND Bank_Accounts.Customer_ID = ${userID}); set @BankAccountID = (SELECT Bank_Accounts.ID FROM Bank_Accounts WHERE Account_Number = '${accountSendingToNumber}' ); insert into Transfers(transfer_from_bank_account_id, transfer_to_bank_account_id, transfer_information_id) values(@UserBankAccountID,@BankAccountID,@Transfer_Information_ID);`;
+    const sendingToPot = req.body.sendingToPot;
+    var potSql = "";
+    if(sendingToPot){
+        const savingPotAmountSent = Math.ceil(req.body.amountSent).toFixed(2) - amountSent;
+            potSql = ` 
+SET @SavingsPotID = (SELECT Bank_Accounts.ID
+FROM Bank_Accounts
+WHERE Customer_ID = ${userID} AND Account_Name = 'Savings Pot'
+LIMIT 1);
+
+INSERT INTO Transfer_Information(TRANSFER_DESCRIPTION, AMOUNT_TRANSFERRED, DATE_OF_TRANSFER) VALUES ('${transferDescription}', ${savingPotAmountSent},NOW()); 
+SET @Transfer_Information_Savings_Pot_ID = (SELECT Transfer_Information_ID FROM Transfer_Information ORDER BY Transfer_Information_ID DESC LIMIT 1); 
+insert into Transfers(transfer_from_bank_account_id, transfer_to_bank_account_id, transfer_information_id) values(@UserBankAccountID,@SavingsPotID,@Transfer_Information_Savings_Pot_ID);
+Update Bank_Accounts
+SET Current_Balance = Current_Balance + ${savingPotAmountSent}
+WHERE Bank_Accounts.ID = @SavingsPotID;`;
+    }
+    var sql = `INSERT INTO Transfer_Information(TRANSFER_DESCRIPTION, AMOUNT_TRANSFERRED, DATE_OF_TRANSFER) VALUES ('${transferDescription}', ${amountSent},NOW());
+     SET @Transfer_Information_ID = (SELECT Transfer_Information_ID FROM Transfer_Information ORDER BY Transfer_Information_ID DESC LIMIT 1);
+      SET @UserBankAccountID  = (SELECT Bank_Accounts.ID FROM Bank_Accounts WHERE Bank_Accounts.Account_Name = '${bankAccountName}' AND Bank_Accounts.Customer_ID = ${userID} LIMIT 1); 
+      set @BankAccountID = (SELECT Bank_Accounts.ID FROM Bank_Accounts WHERE Account_Number = '${accountSendingToNumber}' limit 1); 
+      insert into Transfers(transfer_from_bank_account_id, transfer_to_bank_account_id, transfer_information_id) values(@UserBankAccountID,@BankAccountID,@Transfer_Information_ID);
+       Update Bank_Accounts
+       SET Current_Balance = Current_Balance - ${amountSent}
+       WHERE Bank_Accounts.ID = @UserBankAccountID;
+       
+       Update Bank_Accounts
+       SET Current_Balance = Current_Balance + ${amountSent}
+       WHERE Bank_Accounts.ID = @BankAccountID;
+       
+    ${potSql}`;
     db.query(sql,function(error,results,fields){
         if (error) throw error;
         res.send({result : true });

@@ -110,7 +110,7 @@ router.post('/createAccount', function (req,res,next) {
     var accountTypeID = 2; // savings account type
     var customerID = req.session.customerID;
     var currentBalance = 0.00;
-    var sortCode;
+    var sortCode = "01-09-02";
     var accountNumber = getRandomInt(1000000000,9999999999); // random number that isnt in DB
     var cardNumber = getRandomInt(10000000000000,99999999999999); // random number that isnt in DB
     var cvvNumber = getRandomInt(100,999); // random number
@@ -171,7 +171,7 @@ router.post('/createAccount', function (req,res,next) {
     });
 
     // creates new roll in table
-    var sql3 = `INSERT INTO Bank_Accounts (Account_Name, Date_Opened, Account_Type_ID, Customer_ID, Current_Balance, Sort_Code, Account_Number, Card_Number, Cvv_Number, Expiry_Date, Card_Color) VALUES('${accountName}','${dateOpened}','${accountTypeID}','${customerID}','${currentBalance}','${sortCode}','${accountNumber}','${cardNumber}','${cvvNumber}','${expiryDate}','${cardColor}')`;
+    var sql3 = `INSERT INTO Bank_Accounts (Account_Name, Date_Opened, Account_Type_ID, Customer_ID, Current_Balance, Sort_Code, Account_Number, Card_Number, Cvv_Number, Expiry_Date, Card_Color) VALUES('${accountName}',now(),'${accountTypeID}','${customerID}','${currentBalance}','${sortCode}','${accountNumber}','${cardNumber}','${cvvNumber}',date_add(now(),interval  5 year),'${cardColor}')`;
     db.query(sql3);
 
     res.redirect('/account');

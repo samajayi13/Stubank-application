@@ -43,18 +43,30 @@ router.post('/create', function(req, res, next) {
     console.log("in create");
     // store all the user input data
     const userDetails = req.body;
-    var firstName = encryptData(userDetails["first-name"]);
-    var lastName = encryptData(userDetails["last-name"]);
-    var phoneNumber = encryptData(userDetails["phone-number"]);
-    var email = encryptData(userDetails["email"]);
-    var username = encryptData(userDetails["username"]);
-    var password = encryptData(userDetails["password"]);
-    var university = encryptData(userDetails["university"]);
-    var studentID = encryptData(userDetails["student-ID"]);
-    var sql = `INSERT INTO Customers (First_Name ,Last_Name ,Phone_Number ,Email ,Registration_Date ,Username, Password ,Customer_Account_Type_ID ,University_Name,Student_ID) VALUES('${firstName}','${lastName}','${phoneNumber}','${email}',NOW(),'${username}','${password}',1,'${university}','${studentID}')`;
+    var firstName =userDetails["first-name"];
+    var lastName = userDetails["last-name"];
+    var phoneNumber = userDetails["phone-number"];
+    var email = userDetails["email"];
+    var username = userDetails["username"];
+    var password = userDetails["password"];
+    var university = userDetails["university"];
+    var studentID = userDetails["student-ID"];
+    var savingsPotAccountNumber = getRandomNumberInString(111111111,999999999);
+    var savingsPotCardNumber = getRandomNumberInString(11111111111111,99999999999999);
+    var savingsPotSecurityNumber = getRandomNumberInString(111,99);
+    var sql = `INSERT INTO Customers (First_Name ,Last_Name ,Phone_Number ,Email ,Registration_Date ,Username, Password ,Customer_Account_Type_ID ,University_Name,Student_ID) VALUES('${firstName}','${lastName}','${phoneNumber}','${email}',NOW(),'${username}','${password}',1,'${university}','${studentID}');
+    SET @Customer_ID = (select ID from Customers  order by ID desc LIMIT 1);
+    Insert into Bank_Accounts(account_name, date_opened, account_type_id, customer_id, current_balance, sort_code, account_number, card_number, cvv_number, expiry_date)
+    values('Savings Pot',now(),4,@Customer_ID,0.00,'01-09-02','${savingsPotAccountNumber}',${savingsPotCardNumber},'${savingsPotSecurityNumber}',date_add(now(), interval 6 year));
+    INSERT INTO saving_pot_goals( Customer_ID)
+    VALUES(@Customer_ID);
+    `;
     db.query(sql);
     let valid = "true";
     res.redirect('/sign_up?valid="'+valid+'"');
 });
 
+function getRandomNumberInString(min,max){
+    return (Math.floor(Math.random()  * min) + max).toString();
+}
 module.exports = router;

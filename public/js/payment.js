@@ -13,6 +13,7 @@ function getSession(){
     })
 
 }
+
 formBtn.addEventListener("click",function(e){
     e.preventDefault();
     // insert form validation here
@@ -21,6 +22,9 @@ formBtn.addEventListener("click",function(e){
     var accountName = document.querySelector("#sendingAccount").value;
     var accountNumber = document.querySelector("#receivingAccount").value;
     if(amount && formIndex === 1){
+        if(document.querySelector("#savings-pot-check").checked){
+            alert((Math.ceil(amount) - amount).toFixed(2).toString() + " will be sent to your savings pot");
+        }
         axios.get('/payment/checkBalance', {
             params : {
                 ID : userID,
@@ -77,7 +81,8 @@ formBtn.addEventListener("click",function(e){
                     transferDescription: document.querySelector("#transferPurpose").value,
                     bankAccountName : document.querySelector("#sendingAccount").value,
                     userID : userID,
-                    accountSendingToNumber : document.querySelector("#receivingAccount").value
+                    accountSendingToNumber : document.querySelector("#receivingAccount").value,
+                    sendingToPot : document.querySelector("#savings-pot-check").checked
             }).then(function(){
                 document.querySelector(".form_3").style.display = "none";
                 document.querySelector(".success-message").style.display = "block";
