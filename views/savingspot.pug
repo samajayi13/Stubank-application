@@ -14,46 +14,47 @@ section.jumbotron.jumbo-main-figure
     .logo-img.w-25
         img.img-fluid(src='/images/logo.png' alt='')
     h1.current-balance
-        | Current Amount in Saving Pot : &pound;20000.74
+        | Current Amount in Saving Pot : &pound;
+        span#current-balance
 section.savings
     h1.text-center.mb-5 Your savings goals per month
     .goals-section
         .form-group
             label() Jan:
-            input.form-control(type='number')
+            input.form-control#Jan(type='number')
         .form-group
             label() Feb:
-            input.form-control(type='number')
+            input.form-control#Feb(type='number')
         .form-group
             label() Mar:
-            input.form-control(type='number')
+            input.form-control#Mar(type='number')
         .form-group
             label() Apr:
-            input.form-control(type='number')
+            input.form-control#Apr(type='number')
         .form-group
             label() May:
-            input.form-control(type='number')
+            input.form-control#May(type='number')
         .form-group
             label() Jun:
-            input.form-control(type='number')
+            input.form-control#Jun(type='number')
         .form-group
             label() Jul:
-            input.form-control(type='number')
+            input.form-control#Jul(type='number')
         .form-group
             label() Aug:
-            input.form-control(type='number')
+            input.form-control#Aug(type='number')
         .form-group
             label() Sept:
-            input.form-control(type='number')
+            input.form-control#Sept(type='number')
         .form-group
             label() Oct:
-            input.form-control(type='number')
+            input.form-control#Oct(type='number')
         .form-group
             label() Nov:
-            input.form-control(type='number')
+            input.form-control#Nov(type='number')
         .form-group
             label() Dec:
-            input.form-control(type='number')
+            input.form-control#December(type='number')
     button.btn.btn-primary.btn-lg.btn-update-goals Update goals
 section.d-none.d-lg-block.d-xl-block.pictures
     .img-left
@@ -92,169 +93,7 @@ script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.
 script(src='https://cdn.jsdelivr.net/npm/chart.js@2.8.0')
 script(src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js')
 script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
-script.
-    var DEFAULT_DATASET_SIZE = 7,
-        addedCount = 0,
-        color = Chart.helpers.color;
-    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    var chartColors = {
-        red: 'rgb(255, 99, 132)',
-        orange: 'rgb(255, 159, 64)',
-        yellow: 'rgb(255, 205, 86)',
-        green: 'rgb(75, 192, 192)',
-        blue: 'rgb(54, 162, 235)',
-        purple: 'rgb(153, 102, 255)',
-        grey: 'rgb(231,233,237)'
-    };
-    function randomScalingFactor() {
-        return Math.round(Math.random() * 100);
-    }
-    var barData = {
-        labels: ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"],
-        datasets: [{
-            label: 'Savings Goal',
-            backgroundColor: color(chartColors.green).alpha(0.5).rgbString(),
-            borderColor: chartColors.red,
-            borderWidth: 1,
-            data: [
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor()
-            ]
-        }, {
-            label: 'Actual Savings',
-            backgroundColor: color(chartColors.blue).alpha(0.5).rgbString(),
-            borderColor: chartColors.blue,
-            borderWidth: 1,
-            data: [
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor()
-            ]
-        }]
-    };
-    var index = 11;
-    var ctx = document.getElementById("barChart").getContext("2d");
-    var	myNewChartB = new Chart(ctx, {
-        type: 'bar',
-        data: barData,
-        options: {
-            responsive: true,
-            maintainAspectRation: true,
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Bar Chart'
-            }
-        }
-    });
-    var svg ;
-    function drawProgress(end){
-        d3.select("svg").remove()
-        if(svg){
-            svg.selectAll("*").remove();
-        }
-        var wrapper = document.getElementById('radialprogress');
-        var start = 0;
-        var colours = {
-            fill: '#2d7de9',
-            track: '#555555',
-            text: '#00C0FF',
-            stroke: '#FFFFFF',
-        }
-        var radius = 80;
-        var border = 20;
-        var strokeSpacing = 4;
-        var endAngle = Math.PI * 2;
-        var formatText = d3.format('.0%');
-        var boxSize = radius * 2;
-        var count = end;
-        var progress = start;
-        var step = end < start ? -0.01 : 0.01;
-        //Define the circle
-        var circle = d3.svg.arc()
-            .startAngle(0)
-            .innerRadius(radius)
-            .outerRadius(radius - border);
-        //setup SVG wrapper
-        svg = d3.select(wrapper)
-            .append('svg')
-            .attr('width', boxSize)
-            .attr('height', boxSize);
-        // ADD Group container
-        var g = svg.append('g')
-            .attr('transform', 'translate(' + boxSize / 2 + ',' + boxSize / 2 + ')');
-        //Setup track
-        var track = g.append('g').attr('class', 'radial-progress');
-        track.append('path')
-            .attr('fill', colours.track)
-            .attr('stroke', colours.stroke)
-            .attr('stroke-width', strokeSpacing + 'px')
-            .attr('d', circle.endAngle(endAngle));
-        //Add colour fill
-        var value = track.append('path')
-            .attr('fill', colours.fill)
-            .attr('stroke', colours.stroke)
-            .attr('stroke-width', strokeSpacing + 'px');
-        //Add text value
-        var numberText = track.append('text')
-            .attr('fill', colours.text)
-            .attr('text-anchor', 'middle')
-            .attr('dy', '.5rem');
-        //update position of endAngle
-        value.attr('d', circle.endAngle(endAngle * end));
-        //update text value
-        numberText.text(formatText(end));
-    }
-    $('#submitClick').click(function(){
-        var val = parseInt($('#percent').val());
-        drawProgress(val/100)
-    })
-    drawProgress(10/100);
-    var oilCanvas = document.getElementById("oilChart");
-    Chart.defaults.global.defaultFontFamily = "Lato";
-    Chart.defaults.global.defaultFontSize = 18;
-    var oilData = {
-        labels: [
-            "Saudi Arabia",
-            "Russia",
-            "Iraq",
-            "United Arab Emirates",
-            "Canada"
-        ],
-        datasets: [
-            {
-                data: [133.3, 86.2, 52.2, 51.2, 50.2],
-                backgroundColor: [
-                    "#FF6384",
-                    "#63FF84",
-                    "#84FF63",
-                    "#8463FF",
-                    "#6384FF"
-                ]
-            }]
-    };
-    var pieChart = new Chart(oilCanvas, {
-        type: 'pie',
-        data: oilData
-    });
+script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
+script(src='js/savingspot.js')
+
+
