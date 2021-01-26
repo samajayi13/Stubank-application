@@ -59,7 +59,10 @@ router.get('/', redirectToLogin, function(req, res, next) {
 router.get('/logout', function(req, res, next) {
     var id = req.session.customerID.toString();
     var filePath = __dirname + '\\generatedStatements\\statement_'+id+".pdf";
-    fs.unlinkSync(filePath);
+    if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+    }
+
     req.session.destroy(function(err){
         if(err){
             console.log(err);
