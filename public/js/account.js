@@ -2,6 +2,7 @@ var userID = null;
 
 getSession();
 
+// fetches session data for logged in user
 function getSession(){
      axios.get('/session/getSession', {
     }).then(function(response) {
@@ -13,7 +14,7 @@ function getSession(){
  }
 
 
-
+// fetches accounts for logged in user
  function getAccounts(userID){
      axios.get('/account/getAccounts', {
         //the parameters that is sent with the request
@@ -27,6 +28,7 @@ function getSession(){
     })
 }
 
+// makes buttons for each fetched account
 function addAccounts(accountData){
     for(var i = 0; i < accountData.length; i++){
         console.log(accountData);
@@ -42,6 +44,7 @@ function addAccounts(accountData){
     }
 }
 
+// adds a row to the page with the created buttons
 async  function addAccountRow(accountDetails, currentBalance,availableBalance, action){
     // we will insert data into the table here
     var tbody = document.querySelector(".table-body");
@@ -65,7 +68,9 @@ async  function addAccountRow(accountDetails, currentBalance,availableBalance, a
     tbody.appendChild(tr);
 }
 
+// listens for button clicks
 document.addEventListener("click",function(e){
+    // if add account button return, otherwise update the bank account index
     if(e.target.id === "btn-add-account") {
         return;
     }else if(e.target.classList.contains("btn")){
@@ -78,6 +83,7 @@ document.addEventListener("click",function(e){
     }
 });
 
+// gets the profile avatar for the current user
 function getAvatar(){
     axios.get('/account/getAvatar', {
         //the parameters that is sent with the request
