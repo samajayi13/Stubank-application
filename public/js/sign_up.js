@@ -49,7 +49,6 @@ function moveForm(direction,e){
     if(formIndex <= 4 && formIndex >1){
         btnPrevious.style.display = "block";
     }else if(formIndex === 5){
-        alert("working");
         sendEmail(email,"Welcome to Stubank","Hi "+document.querySelector("#first-name").value+",\n" +
             "\n" +
             "Welcome to Stubank. We’re thrilled to see you here!\n" +
