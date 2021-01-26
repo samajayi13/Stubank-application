@@ -112,6 +112,7 @@ function moveForm(direction){
 
 // document.querySelector("#sendingAccount").innerHTML = getUserAccounts();
 
+// gets bank account for current user and adds them to drop down list so they can be selected
 function getUserAccounts(){
     let userAccounts = null;
     axios.get('/payment/getUserAccounts', {
@@ -128,11 +129,13 @@ function getUserAccounts(){
     });
 }
 
+// sends a verification email with a code that you need to enter to make the payment
 function send2FAEmail(){
     randomNumber = Math.floor(Math.random() * (999999 - 111111) + 111111);
     sendEmail(email,"Verification Code",`Your code is ${randomNumber.toString()}`);
 }
 
+// sends an email from the bank email address to given address with given subject and content
 function sendEmail(toEmail,subject,body) {
     Email.send({
         Host: "smtp.gmail.com",
