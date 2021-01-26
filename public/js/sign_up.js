@@ -5,6 +5,7 @@ var formIndex = 1;
 var verificationCode = (Math.floor(Math.random() * 100000) + 10000).toString();
 var emailSent = false
 
+// checks form validation and moves form forward if valid
 formBtn.addEventListener("click",function(e){
     let  formValidated = true;
 
@@ -23,6 +24,7 @@ formBtn.addEventListener("click",function(e){
     }
 })
 
+// button to move form backwards
 btnPrevious.addEventListener("click",function(e){
     moveForm("backwards");
 })
@@ -52,7 +54,7 @@ function moveForm(direction,e){
             "\n" +
             "Welcome to Stubank. We’re thrilled to see you here!\n" +
             "\n" +
-            "We’re confident that our banking services will help you make the most out of your hard earn money! .\n" +
+            "We’re confident that our banking services will help you make the most out of your hard earned money! .\n" +
             "\n" +
             " Please login to to ensure you get the very best out of our service at http://localhost:3000/account.\n" +
             "\n" +
