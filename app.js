@@ -45,7 +45,7 @@ app.use(session({
   store: sessionStore,
   resave: false,
   saveUninitialized: false,
-  cookie: { path: '/', httpOnly: true, secure: false, maxAge: null }
+  cookie: { path: '/', httpOnly: true, secure: false, maxAge: 3600000 }
 }));
 
 var connection = mysql.createConnection(options);
