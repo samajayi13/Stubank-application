@@ -81,7 +81,6 @@ formBtn.addEventListener("click",function(e){
         if(document.querySelector("#passCode").value !== randomNumber.toString()){
             alert("Invalid passcode");
         }else{
-            alert("working!");
             // moveForm("forward");
             axios.post('/payment/createPayment', {
                     amountSent: document.querySelector('#sendAmount').value,
