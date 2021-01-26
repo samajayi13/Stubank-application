@@ -30,8 +30,6 @@ main.main.header-with-image.row
                         .input-group-prepend
                             span.input-group-text &pound;
                         input.form-control#sendAmount(type='text' placeholder='£1,000' name="amount-to-send")
-                        .input-group-append
-                            textarea.input-group-text .00
                     .form-group
                         label(for='transferPurpose') Transfer purpose
                         select#transferPurpose.form-control(name="transfer-purpose")
@@ -48,6 +46,9 @@ main.main.header-with-image.row
                             option Holidays
                             option Personal care
                             option Charity
+                    .form-check
+                        input.form-check-input#savings-pot-check(type="checkbox" value="")
+                        label.form-check-label(for="savings-pot-check") Round to savings pot
                 .form_2
                     .form-group
                         label(for='sendingAccount') Account to send from
@@ -55,6 +56,7 @@ main.main.header-with-image.row
                     .form-group
                         label(for='receivingAccount') Receiving Account Number
                         input.form-control#receivingAccount(type='text' placeholder='23242234454' name="account-number")
+
                 .form_3
                     .form-group.mb-3
                         label(for='passCode') One time passcode (Please check your email)

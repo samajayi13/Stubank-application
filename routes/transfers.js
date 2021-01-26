@@ -27,7 +27,8 @@ router.get('/getTransfers', function(req, res, next) {
         JOIN Bank_Accounts
             ON  Bank_Accounts.ID = Transfers.Transfer_From_Bank_Account_ID OR  Transfers.Transfer_To_Bank_Account_ID
         WHERE Transfers.Transfer_From_Bank_Account_ID = ${bankAccountID} OR Transfers.Transfer_To_Bank_Account_ID = ${bankAccountID}
-        GROUP BY Transfers.ID`;
+        GROUP BY Transfers.ID
+        ORDER BY Transfer_Information.Date_Of_Transfer DESC`;
 
 
     db.query(sql,function(error,results,fields){
