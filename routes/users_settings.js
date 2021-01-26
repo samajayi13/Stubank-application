@@ -2,8 +2,17 @@ var express = require('express');
 var router = express.Router();
 var db = require('../dbconnection');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
+// if not logged in, doesn't display users settings page
+const redirectToLogin = (req, res, next) => {
+    if (!req.session.username) {
+        res.redirect('/login');
+    } else {
+        next();
+    }
+}
+
+// GET users settings page
+router.get('/', redirectToLogin, function(req, res, next) {
     res.render('users_settings', { title: 'StuBank' });
 });
 
