@@ -22,7 +22,6 @@ main.main.header-with-image.row
     .main-transfer-form.col
         .transfer-form.rounded.shadow-lg
             h3 Send Money
-            h5#micro-out-div Predicting...
             form#form_1.mt-4(action='/payment/createPayment' method="post")
                 .form_1
                     label(for='sendAmount') Send Amount
@@ -32,20 +31,22 @@ main.main.header-with-image.row
                         input.form-control#sendAmount(type='text' placeholder='£1,000' name="amount-to-send")
                     .form-group
                         label(for='transferPurpose') Transfer purpose
+                        p Prediction:
+                        p#micro-out-div Predicting...
                         select#transferPurpose.form-control(name="transfer-purpose")
-                            option General
-                            option Family/Friends
-                            option Groceries
-                            option Shopping
-                            option Bills
-                            option Eating Out
-                            option Entertainment
-                            option Finances
-                            option Transport
-                            option Gift
-                            option Holidays
-                            option Personal care
-                            option Charity
+                            option 1 General
+                            option 2 Family/Friends
+                            option 3 Groceries
+                            option 4 Shopping
+                            option 5 Bills
+                            option 6 Eating Out
+                            option 7 Entertainment
+                            option 8 Finances
+                            option 9 Transport
+                            option 10 Gift
+                            option 11 Holidays
+                            option 12 Personal care
+                            option 13 Charity
                     .form-check
                         input.form-check-input#savings-pot-check(type="checkbox" value="")
                         label.form-check-label(for="savings-pot-check") Round to savings pot
