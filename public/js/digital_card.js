@@ -3,6 +3,8 @@ var index = null;
 var accountData = null;
 var firstLoad = true;
 getAccount(userID);
+
+// fetches account data for logged in user and adds digital card
 function getAccount(userID){
     axios.get('/digital_card/getAccount', {
         //the parameters that is sent with the request
@@ -21,6 +23,7 @@ function getAccount(userID){
         })
 }
 
+// makes card using given account data making the first bank card the active one
 function addCard(accountData){
     for(var i = 0; i < accountData.length; i++){
         var dbCardNumber = accountData[i].Card_Number;
@@ -39,7 +42,7 @@ function addCard(accountData){
     }
 }
 
-
+// creates carousel item for digital card using the information given
 function makeCard(dbCardNumber, dbAccountNumber, dbSortCode, dbAccountName, dbDateOpened, dbExpiryDate, dbCvvNumber,active){
     var cardCarouselInner = document.querySelector(".carousel-inner");
     var formattedDbExpiryDate = dbExpiryDate.substr(5,2)  + "/" + dbExpiryDate.substr(2,2);
@@ -76,6 +79,7 @@ function makeCard(dbCardNumber, dbAccountNumber, dbSortCode, dbAccountName, dbDa
 </div>`;
 }
 
+// next button that shows the next card or cycles back to the first card if on last card
 document.querySelector(".carousel-control-next").addEventListener("click",function(e){
     if(index < accountData.length-1 && index  >= 0){
         index++;
@@ -84,6 +88,7 @@ document.querySelector(".carousel-control-next").addEventListener("click",functi
     }
     movePage();
 })
+// previous button that shows the previous card or cycles back to the last card if on first card
 document.querySelector(".carousel-control-prev").addEventListener("click",function(e){
     if(index  <= accountData.length-1 && index   >0){
         index--;
@@ -93,6 +98,7 @@ document.querySelector(".carousel-control-prev").addEventListener("click",functi
     movePage();
 })
 
+// moves the carousel to the current card index
 function movePage(){
     document.querySelector(".carousel").style.backgroundColor = accountData[index].Card_Color;
     document.querySelector(".table-body").innerHTML = "";

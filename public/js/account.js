@@ -14,7 +14,7 @@ function getSession(){
  }
 
 
-// fetches accounts for logged in user
+// fetches account data for logged in user
  function getAccounts(userID){
      axios.get('/account/getAccounts', {
         //the parameters that is sent with the request
@@ -28,7 +28,7 @@ function getSession(){
     })
 }
 
-// makes buttons for each fetched account
+// makes buttons for given account data
 function addAccounts(accountData){
     for(var i = 0; i < accountData.length; i++){
         console.log(accountData);
@@ -70,7 +70,7 @@ async  function addAccountRow(accountDetails, currentBalance,availableBalance, a
 
 // listens for button clicks
 document.addEventListener("click",function(e){
-    // if add account button return, otherwise update the bank account index
+    // if add account button, return, otherwise update the bank account index
     if(e.target.id === "btn-add-account") {
         return;
     }else if(e.target.classList.contains("btn")){
