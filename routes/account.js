@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require('../dbconnection');
 var CryptoJS = require("crypto-js");
 var key = 'sfsdfsdf44242sdfds34224dfsfsf34324gdfgdfgd3sdfsdfsdf23sfsdfsdfsdfsffg23@sdf@@!£"$%^&*&fg££$%££@@%$$%£$%"$%fd';
+const fs = require('fs');
 
 function encryptData(data){
     console.log(data + "working here");
@@ -56,6 +57,9 @@ router.get('/', redirectToLogin, function(req, res, next) {
 });
 
 router.get('/logout', function(req, res, next) {
+    var id = req.session.customerID.toString();
+    var filePath = __dirname + '\\generatedStatements\\statement_'+id+".pdf";
+    fs.unlinkSync(filePath);
     req.session.destroy(function(err){
         if(err){
             console.log(err);

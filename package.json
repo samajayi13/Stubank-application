@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@tensorflow/tfjs": "^2.8.5",
     "bcrypt": "^5.0.0",
     "cookie-parser": "~1.4.4",
     "crypto-js": "^4.0.0",
@@ -19,6 +20,7 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
     "pdfkit": "^0.11.0",
+    "pdfmake": "^0.1.70",
     "pug": "^3.0.0",
     "ssh2": "^0.8.9"
   }
