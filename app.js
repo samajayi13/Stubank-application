@@ -20,6 +20,7 @@ var contactRouter = require('./routes/contact_us');
 var cardRouter = require('./routes/digital_card');
 var usersSettings = require('./routes/users_settings');
 var trainRouter = require('./routes/train');
+var savingsPotRouter = require('./routes/savingspot');
 
 var app = express();
 
@@ -73,6 +74,7 @@ app.use('/e-documents', eDocumentsRouter);
 app.use('/users_settings', usersSettings);
 app.use('/faq', faqRouter);
 app.use('/train', trainRouter);
+app.use('/savingspot', savingsPotRouter);
 
 // tranfers locals to pug from js
 app.use((req, res, next) => {
