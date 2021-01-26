@@ -10,8 +10,4 @@ function run() {
         })
 }
 
-// function displayPrediction(){
-//     document.querySelector("#micro-out-div").innerText = model.predict(tf.tensor2d([20], [1, 1])).dataSync();
-// }
-
 run();
