@@ -4,6 +4,8 @@ var userID = null;
 var email = null;
 var randomNumber = null;
 getSession();
+
+// fetches session data for login user and gets their accounts
 function getSession(){
     axios.get('/session/getSession', {
     }).then(function(response) {
@@ -14,6 +16,7 @@ function getSession(){
 
 }
 
+// validates form input
 formBtn.addEventListener("click",function(e){
     e.preventDefault();
     // insert form validation here
@@ -21,6 +24,8 @@ formBtn.addEventListener("click",function(e){
     var amount = document.querySelector("#sendAmount").value;
     var accountName = document.querySelector("#sendingAccount").value;
     var accountNumber = document.querySelector("#receivingAccount").value;
+
+    // validates if user has enough money in their accounts for transfer
     if(amount && formIndex === 1){
         if(document.querySelector("#savings-pot-check").checked){
             alert((Math.ceil(amount) - amount).toFixed(2).toString() + " will be sent to your savings pot");
@@ -39,6 +44,7 @@ formBtn.addEventListener("click",function(e){
             }
         });
     }
+    // validates if target account number exists and sends verification code to email if it does
     if(accountName && formIndex === 2){
         axios.get('/payment/checkBalanceForAccount', {
             params : {
@@ -70,6 +76,7 @@ formBtn.addEventListener("click",function(e){
         });
     }
 
+    // validates if verification code is correct and makes transfer if it does
     if(formIndex === 3 && document.querySelector("#passCode").value){
         if(document.querySelector("#passCode").value !== randomNumber.toString()){
             alert("Invalid passcode");
