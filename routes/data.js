@@ -1,4 +1,4 @@
-const tf = require('@tensorflow/tfjs-node');
+const tf = require('@tensorflow/tfjs');
 
 async function createDataset(csvPath) {
   const dataset = tf.data.csv(csvPath, {hasHeader: true, columnConfigs: {'Category': {isLabel: true}}});
