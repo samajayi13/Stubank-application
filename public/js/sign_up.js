@@ -5,6 +5,7 @@ var formIndex = 1;
 var verificationCode = (Math.floor(Math.random() * 100000) + 10000).toString();
 var emailSent = false
 
+// checks form validation and moves form forward if valid
 formBtn.addEventListener("click",function(e){
     let  formValidated = true;
 
@@ -23,6 +24,7 @@ formBtn.addEventListener("click",function(e){
     }
 })
 
+// button to move form backwards
 btnPrevious.addEventListener("click",function(e){
     moveForm("backwards");
 })
@@ -34,6 +36,7 @@ function loop(formIndex){
     }
 }
 
+// moves form forward and sends welcome email when complete
 function moveForm(direction,e){
     if(direction === "forward" && formIndex <=4 ){
         progressNumber += 25;
@@ -47,12 +50,11 @@ function moveForm(direction,e){
     if(formIndex <= 4 && formIndex >1){
         btnPrevious.style.display = "block";
     }else if(formIndex === 5){
-        alert("working");
         sendEmail(email,"Welcome to Stubank","Hi "+document.querySelector("#first-name").value+",\n" +
             "\n" +
             "Welcome to Stubank. We’re thrilled to see you here!\n" +
             "\n" +
-            "We’re confident that our banking services will help you make the most out of your hard earn money! .\n" +
+            "We’re confident that our banking services will help you make the most out of your hard earned money! .\n" +
             "\n" +
             " Please login to to ensure you get the very best out of our service at http://localhost:3000/account.\n" +
             "\n" +
@@ -68,7 +70,7 @@ function moveForm(direction,e){
 
 }
 
-
+// validates phone number and email, returns true if valid, and sends verification code to email
 function form1Validation(){
      email = document.querySelector("#email").value;
     clearErrorMessages(document.querySelector(".main-form_1"));
@@ -86,6 +88,7 @@ function form1Validation(){
     return true;
 }
 
+// validates password, returns true if valid
 function form2Validation(){
     clearErrorMessages(document.querySelector(".main-form_2"));
     var password = document.querySelector("#password").value;
@@ -100,6 +103,7 @@ function form2Validation(){
     return true;
 }
 
+// validates university, returns true if valid
 function form3Validation(){
     clearErrorMessages(document.querySelector(".main-form_3"));
     if((!checkIfInputsEmpty(".main-form_3")) || (!validateTextField(["#univeristy"])))
@@ -107,6 +111,7 @@ function form3Validation(){
     return true;
 }
 
+// validates verification code, returns true if valid
 function form4Validation(){
     clearErrorMessages(document.querySelector(".main-form_4"));
     if((!checkIfInputsEmpty(".main-form_4")) || (!validateTextField(["#univeristy"]))){
@@ -122,6 +127,7 @@ function form4Validation(){
     return true;
 }
 
+// if input is empty returns false
 function checkIfInputsEmpty(formName) {
     let valid = true;
     let formElm = document.querySelector(`${formName}`);
@@ -140,6 +146,7 @@ function checkIfInputsEmpty(formName) {
     return valid;
 }
 
+// validates phone number, returns true if valid
 function checkIfPhoneNumberValid(number) {
     let regex = /((07)|((\+|00)447)){1}[0-9]{9}\b/,
         result = regex.test(number);
@@ -148,6 +155,7 @@ function checkIfPhoneNumberValid(number) {
     return result;
 }
 
+// validates email, returns true if valid
 function checkEmailValid(email){
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let valid = re.test(String(email).toLowerCase());
@@ -156,6 +164,7 @@ function checkEmailValid(email){
     return valid;
 }
 
+// validates if input is text, returns true if valid
 function validateTextField(elements){
     let valid = true;
 
@@ -186,6 +195,7 @@ function clearErrorMessages(formElm){
     }
 }
 
+// displays progress bar for sign up form
 if(window.location.href.toString().includes("valid")){
     loop(55);
     $(".progress-bar").text(`100%`);
@@ -195,6 +205,7 @@ if(window.location.href.toString().includes("valid")){
     document.querySelector("form h1").innerText = "Sign up complete!";
 }
 
+// sends an email from the bank email address to given address with given subject and content
 function sendEmail(toEmail,subject,body) {
     Email.send({
         Host: "smtp.gmail.com",
