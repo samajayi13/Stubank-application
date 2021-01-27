@@ -58,9 +58,9 @@ async  function addEDocsRow(accountDetails, action){
 
 document.addEventListener("click",function(e){
     if(e.target.classList.contains("btn")){
-        var bankAccountID = e.target.id.substr(6);
+        var bankAccountIndex = e.target.id.substr(6);
         axios.post('/session/updateBankAccountIndex', {
-            bankAccountID
+            bankAccountIndex
         }).then(function(response) {
             window.location.href = "http://localhost:3000/single_e_doc";
         })

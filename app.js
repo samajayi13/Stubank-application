@@ -78,7 +78,7 @@ app.use('/faq', faqRouter);
 app.use('/train', trainRouter);
 app.use('/savingspot', savingsPotRouter);
 app.use('/myWallet', myWalletRouter);
-app.use('/single_e_doc', eDocRouter);
+app.use('/singleEDoc', eDocRouter);
 
 // tranfers locals to pug from js
 app.use((req, res, next) => {
