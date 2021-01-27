@@ -44,7 +44,7 @@ function addAccounts(accountData){
     }
 }
 
-// adds a row to the page with the created buttons
+// adds a row to the page with the given buttons
 async  function addAccountRow(accountDetails, currentBalance,availableBalance, action){
     // we will insert data into the table here
     var tbody = document.querySelector(".table-body");
