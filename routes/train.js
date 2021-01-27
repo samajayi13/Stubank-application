@@ -33,12 +33,14 @@ router.get('/run', async function(req, res, next) {
     const xs = tf.tensor2d([-1, 0, 1, 2, 3, 4], [6, 1]);
     const ys = tf.tensor2d([-3, -1, 1, 3, 5, 7], [6, 1]);
 
-    var text = model.predict(tf.tensor2d([20], [1, 1])).dataSync();
+    var prediction = model.predict(tf.tensor2d([20], [1, 1])).toInt().dataSync();
 
-//     var categories = ['Charity', 'Eating Out', 'Entertainment', 'General', 'Gift', 'Groceries', 'Family/Friends',
-//     'Personal Care', 'Shopping', 'Transport']
+    var categories = ['Charity', 'Eating Out', 'Entertainment', 'General', 'Gift', 'Groceries', 'Family/Friends',
+    'Personal Care', 'Shopping', 'Transport']
 
-//     var text = categories[prediction];
+    var text = categories[prediction[0]];
+
+    console.log(text);
 
     res.send({text : text });
 });
