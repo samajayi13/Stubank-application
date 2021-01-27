@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../dbconnection');
 const PDFDocument = require('pdfkit');
-var fs = require('fs');
+var fs = require('file-system');
 
 
 // if not logged in, doesn't display e-documents page
@@ -34,28 +34,8 @@ router.get('/getEDocs', function(req, res, next) {
         res.send({edocsData : results });
     });
 });
-
-function getAvailableAmount(doc, id) {
-    var sql2 = `
-                SELECT SUM(Current_Balance) AS sum
-                FROM Bank_Accounts 
-                WHERE Customer_ID = ${id};
-        `;
-
-    db.query(sql2,function(error,results,fields) {
-        if (error) throw error;
-        var sum = results[0].sum.toFixed(2).toString() + "£";
-        // footer
-        doc.moveDown(2)
-            .fontSize(10)
-            .text("Current account balance: ", { align: "right", width: 100 })
-            .text(sum, { align: "right", width: 100 })
-    });
-};
-
 router.get('/getStatementInfo', function(req, res, next) {
     var bankAccountID = req.query.bankAccountID;
-    var customerID = req.session.customerID;
     console.log("REQUESTED ID: " + bankAccountID)
     var sql =  `
                 SELECT Amount_Transferred,Transfer_From_Bank_Account_ID,Transfer_To_Bank_Account_ID,Date_Of_Transfer,
@@ -92,110 +72,58 @@ router.get('/getStatementInfo', function(req, res, next) {
 
 `;
 
-    db.query(sql,function(error,results,fields){
-        if (error) throw error;
+    // db.query(sql,function(error,results,fields){
+    //     if (error) throw error;
+    //     res.send({results : results });
+    // });
 
-        var customerName = req.session.firstName.toString() + " " + req.session.lastName.toString();
-        var customerNumber = req.session.customerID.toString();
+    // create a document and pipe to a blob
+    var doc = new PDFDocument();
 
-        var university = req.session.universityName.toString();
-        console.log(university);
-        var path = "routes/generatedStatements/statement_"+req.session.customerID.toString()+".pdf"
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
 
-        today = dd + '/' + mm + '/' + yyyy;
+// draw some text
+    doc.fontSize(25).text('Here is some vector graphics...', 100, 80);
 
-        // creates a document and pipe to path
-        var doc = new PDFDocument();
-        doc.pipe(fs.createWriteStream(path));
+// some vector graphics
+    doc
+        .save()
+        .moveTo(100, 150)
+        .lineTo(100, 250)
+        .lineTo(200, 250)
+        .fill('#FF3300');
 
-        // header
-        doc
-            .image("public/images/logo.png", 50, 45, { width: 50 })
-            .fillColor("#444444")
-            .fontSize(30)
-            .font('Helvetica-Bold')
-            .text("SALVA Ltd.", 110, 57)
-            .fontSize(14)
-            .text("123 USB Road", 200, 65, { align: "right" })
-            .text("Newcastle upon Tyne, NE1 23A", 200, 80, { align: "right" })
-            .moveDown(2);
+    doc.circle(280, 200, 50).fill('#6600FF');
 
-        doc.moveTo(20,120)
-            .lineTo(600,120)
-            .stroke()
-            .moveDown();
+// an SVG path
+    doc
+        .scale(0.6)
+        .translate(470, 130)
+        .path('M 250,75 L 323,301 131,161 369,161 177,301 z')
+        .fill('red', 'even-odd')
+        .restore();
 
-        // statement details
-        doc
-            .fontSize(16)
-            .text("BANK STATEMENT", {align: "center"},140,0)
-            .text("(All transfers to "+today+")", {align: "center"},160,0)
-            .moveDown()
-            .text("Customer Name: "+customerName, 50, 200)
-            .text("Customer Number: "+customerNumber, 50, 215)
-            .text("University: "+university, 50, 230)
-            .moveDown();
+// and some justified text wrapped into columns
+    doc
+        .text('And here is some wrapped text...', 100, 300)
+        .font('Times-Roman', 13)
+        .moveDown()
+        .text(lorem, {
+            width: 412,
+            align: 'justify',
+            indent: 30,
+            columns: 2,
+            height: 300,
+            ellipsis: true
+        });
 
-        // line
-        doc.moveTo(20,280)
-            .lineTo(600,280)
-            .stroke()
-            .moveDown();
+    doc.end();
+    res.send(doc.toString('base64'));
+    console.log(res);
 
-        // table
-        let i,
-            invoiceTableTop = 330;
-
-        function tableHeader(doc) {
-            doc
-                .fontSize(10)
-                .text("In or Out", 50, 330)
-                .text("Date of Transfer", 150, 330)
-                .text("Recipient", 280, 330)
-                .text("Sum", 370, 330, { align: "right"});
-        }
-
-        // line
-        tableHeader(doc);
-
-        for (i = 0; i < results.length; i++) {
-            const row = results[i];
-            var inOrOut = row.in_or_out;
-            var month = row.Date_Of_Transfer.getMonth()+1;
-            var date = row.Date_Of_Transfer.getDate()+"/"+month.toString()+"/"+row.Date_Of_Transfer.getFullYear();
-            var recipient = row.full_name;
-            var amount = row.Amount_Transferred.toFixed(2).toString() + "£";
-            var y = invoiceTableTop + (i + 1) * 30;
-
-            if (inOrOut === "IN") {
-                doc
-                    .fillColor('green')
-                    .fontSize(10)
-                    .text(inOrOut, 50, y)
-                    .fillColor('black')
-                    .text(date, 150, y)
-                    .text(recipient, 280, y)
-                    .text(amount, 370, y, { align: "right"});
-            } else {
-                doc
-                    .fillColor('red')
-                    .fontSize(10)
-                    .text(inOrOut, 50, y)
-                    .fillColor('black')
-                    .text(date, 150, y)
-                    .text(recipient, 280, y)
-                    .text(amount, 370, y, { align: "right"});
-            }
-        };
-
-        getAvailableAmount(doc, customerID);
-
-        doc.end();
-    });
+    // fs.readFile(doc, function (err,data){
+    //     res.contentType("application/pdf");
+    //     res.send(data);
+    // });
 });
 
 module.exports = router;
