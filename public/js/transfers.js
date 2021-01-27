@@ -1,5 +1,7 @@
 var bankAccountID = null;
 getSession();
+
+// fetches session data for logged in user
 function getSession(){
     axios.get('/session/getSession', {
     }).then(function(response) {
@@ -11,6 +13,7 @@ function getSession(){
 }
 
 
+// fetches transfers data for logged in user
 function getTransfers(bankAccountID){
     axios.get('/transfers/getTransfers', {
         //the parameters that is sent with the request
@@ -24,6 +27,7 @@ function getTransfers(bankAccountID){
     });
 }
 
+// creates parameters for given transfer data
 function addTransfers(transferData){
     for(var i = 0; i < transferData.length; i++){
         var amountTransferred = transferData[i].Amount_Transferred;
@@ -34,6 +38,7 @@ function addTransfers(transferData){
     }
 }
 
+// adds a row to the page with the given parameters
 async  function addTransferRow(amountTransferred,dateOfTransfer, transferFromID,transferToID){
     // we will insert data into table here
     var transferType = transferToID === bankAccountID ? "in" : "out";
@@ -71,6 +76,7 @@ async  function addTransferRow(amountTransferred,dateOfTransfer, transferFromID,
 
 }
 
+// gets the first name for the current user
 async function getUserFirstName(transferUserID){
     var result = await  axios.get('/transfers/getUserFirstName', {
         params: {
@@ -82,6 +88,7 @@ async function getUserFirstName(transferUserID){
     return result;
 }
 
+// gets the profile avatar for the current user
 function getAvatar(){
     axios.get('/account/getAvatar', {
         //the parameters that is sent with the request

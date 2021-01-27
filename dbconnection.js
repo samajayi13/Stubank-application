@@ -2,7 +2,7 @@
 
 const mysql = require('mysql');
 // First you need to create a connection to the database
-// Be sure to replace 'user' and 'password' with the correct values
+// Be sure to replace 'user' and 'password' with the correct valuesn
 const con = mysql.createConnection({
     host: 'sql2.freesqldatabase.com',
     user: 'sql2386191',
