@@ -6,10 +6,10 @@ head
     // Bootstrap CSS
     link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
     link(rel='stylesheet' href='/stylesheets/contact_us.css')
-    link(rel='stylesheet' href='/stylesheets/navbar.css')
+    link(rel='stylesheet' href='/stylesheets/logged_in_navbar.css')
     script(src='https://kit.fontawesome.com/2354c028ce.js' crossorigin='anonymous')
     title Contact Us
-include navbar
+include logged_in_navbar
 main.mt-5
     #main-side-left.main-side
         .main-side_text.container
@@ -33,18 +33,18 @@ main.mt-5
         form
             .form-items.row
                 .form-title.border TELL US YOUR NAME *
-                input#exampleFormControlInput1.form-control.row-inputs.col(type='text' placeholder='First Name')
-                input#exampleFormControlInput1.form-control.row-inputs.col(type='text' placeholder='Last Name')
+                input#first-name.form-control.row-inputs.col(type='text' placeholder='First Name')
+                input#last-name.form-control.row-inputs.col(type='text' placeholder='Last Name')
             .form-items.row
                 .form-title.border ENTER YOUR EMAIL *
-                input#exampleFormControlInput1.form-control.col(type='email' placeholder='Eg. example@email.com')
+                input#email.form-control.col(type='email' placeholder='Eg. example@email.com')
             .form-items.row
                 .form-title.border ENTER YOUR PHONE NUMBER *
-                input#exampleFormControlInput1.form-control.col(type='text' placeholder='Eg. 07412345678')
+                input#phone-number.form-control.col(type='text' placeholder='Eg. 07412345678')
             .form-items.row
                 .form-title.border MESSAGE *
-                textarea#exampleFormControlTextarea1.form-control.col(rows='3' style='resize:none')
-            button.btn.btn-lg.btn-submit.mt-5(type='submit')  Send Message
+                textarea#message.form-control.col(rows='3' style='resize:none')
+            button.btn.btn-lg.btn-submit.mt-5(type='button')  Send Message
 //
   <footer class="footer mt-2 border-top">
   <div class="footer-text container">
@@ -56,4 +56,5 @@ main.mt-5
 script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js' integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' crossorigin='anonymous')
 script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
 script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' crossorigin='anonymous')
-script.
+script(src= "https://smtpjs.com/v3/smtp.js")
+script(src='js/contact_us.js')
