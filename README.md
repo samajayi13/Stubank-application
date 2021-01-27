@@ -51,6 +51,9 @@ We have used Express.js, Node.js and a MySQL database to implement the applicati
 
 You will need a real email address in order to create an account as 2 factor authentication is used.
 
+Screenshots of the registration process are shown below:
+![](public/images/register1.png) ![](public/images/register2.png) ![](public/images/register3.png)
+
 ### Development of the System
 
 - The Salva banking web platform includes a user account which allows the student to see their expenditures, transfers, and different accounts which they hold with the bank.
