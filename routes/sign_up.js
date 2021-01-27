@@ -58,6 +58,10 @@ router.post('/create', function(req, res, next) {
     SET @Customer_ID = (select ID from Customers  order by ID desc LIMIT 1);
     Insert into Bank_Accounts(account_name, date_opened, account_type_id, customer_id, current_balance, sort_code, account_number, card_number, cvv_number, expiry_date)
     values('Savings Pot',now(),4,@Customer_ID,0.00,'01-09-02','${savingsPotAccountNumber}',${savingsPotCardNumber},'${savingsPotSecurityNumber}',date_add(now(), interval 6 year));
+    
+    Insert into Bank_Accounts(account_name, date_opened, account_type_id, customer_id, current_balance, sort_code, account_number, card_number, cvv_number, expiry_date)
+    values('Student Account',now(),1,@Customer_ID,100.00,'01-09-02','${getRandomNumberInString(111111111,999999999)}',${getRandomNumberInString(11111111111111,99999999999999)},'${getRandomNumberInString(111,99)}',date_add(now(), interval 6 year));
+
     INSERT INTO saving_pot_goals( Customer_ID)
     VALUES(@Customer_ID);
     `;
