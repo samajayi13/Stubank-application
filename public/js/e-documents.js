@@ -62,7 +62,7 @@ document.addEventListener("click",function(e){
         axios.post('/session/updateBankAccountIndex', {
             bankAccountIndex
         }).then(function(response) {
-            window.location.href = "http://localhost:3000/single_e_doc";
+            window.location.href = "http://localhost:3000/singleEDoc";
         })
     }
 });

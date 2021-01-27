@@ -19,7 +19,7 @@ router.get('/', redirectToLogin, function(req, res, next) {
 
 router.get('/getUsersTransfers', function(req, res, next) {
     var bankAccountID = req.query.bankAccountIndex;
-    var sql =  `SELECT Amount_Transferred,Transfer_From_Bank_Account_ID,Transfer_To_Bank_Account_ID,Date_Of_Transfer,Account_Number,Account_Number,Sort_Code,Current_Balance,
+    var sql =  `SELECT Amount_Transferred,Transfer_From_Bank_Account_ID,Transfer_To_Bank_Account_ID,Date_Of_Transfer,Account_Number,Account_Number,Sort_Code,
        CASE WHEN Transfers.Transfer_From_Bank_Account_ID = ${bankAccountID}
             THEN (SELECT CONCAT(First_Name ,' ', Last_Name) AS Full_Name
                     FROM Customers
@@ -37,6 +37,18 @@ router.get('/getUsersTransfers', function(req, res, next) {
             ELSE ''
         END as full_name,
        CASE WHEN Transfers.Transfer_From_Bank_Account_ID = ${bankAccountID}
+            THEN (SELECT Current_Balance
+                    FROM Bank_Accounts
+                    WHERE Bank_Accounts.ID = Transfers.Transfer_From_Bank_Account_ID
+                    )
+            WHEN Transfers.Transfer_To_Bank_Account_ID = ${bankAccountID}
+                 THEN (SELECT Current_Balance
+                    FROM Bank_Accounts
+                    WHERE Bank_Accounts.ID = Transfers.Transfer_To_Bank_Account_ID
+                    )
+            ELSE ''
+        END as Current_Balance,
+       CASE WHEN Transfers.Transfer_From_Bank_Account_ID = ${bankAccountID}
             THEN 'OUT'
             WHEN Transfers.Transfer_To_Bank_Account_ID = ${bankAccountID}
                  THEN 'IN'
@@ -46,10 +58,10 @@ router.get('/getUsersTransfers', function(req, res, next) {
         JOIN Transfer_Information
             ON Transfer_Information.Transfer_Information_ID = Transfers.Transfer_Information_ID
         JOIN Bank_Accounts
-            ON  Bank_Accounts.ID = Transfers.Transfer_From_Bank_Account_ID OR  Transfers.Transfer_To_Bank_Account_ID
+            ON  Bank_Accounts.ID = Transfers.Transfer_From_Bank_Account_ID OR Bank_Accounts.ID = Transfers.Transfer_To_Bank_Account_ID
 
         WHERE (Transfers.Transfer_From_Bank_Account_ID = ${bankAccountID} OR Transfers.Transfer_To_Bank_Account_ID = ${bankAccountID} ) AND ( YEAR(Date_Of_Transfer) =  YEAR(NOW()) AND MONTH(Date_Of_Transfer) =  MONTH(NOW()))
-        GROUP BY Transfers.ID,Date_Of_Transfer
+        GROUP BY  Transfers.ID,Date_Of_Transfer
         ORDER BY Date_Of_Transfer ASC;`;
 
     db.query(sql,function(error,results,fields){
