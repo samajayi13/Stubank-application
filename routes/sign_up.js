@@ -51,16 +51,19 @@ router.post('/create', function(req, res, next) {
     var password = userDetails["password"];
     var university = userDetails["university"];
     var studentID = userDetails["student-ID"];
-    var savingsPotAccountNumber = getRandomNumberInString(111111111,999999999);
-    var savingsPotCardNumber = getRandomNumberInString(11111111111111,99999999999999);
-    var savingsPotSecurityNumber = getRandomNumberInString(111,99);
+    var randAccountNumber = getRandomNumberInString(11111111,9999999);
+    var randomAccountNumber = getRandomNumberInString(11111111,9999999);
+    var randCardNumber = getRandomNumberInString(1111111111111111,999999999999999);
+    var randomCardNumber = getRandomNumberInString(1111111111111111,999999999999999);
+    var randSecurityNumber = getRandomNumberInString(111,99);
+    var randomSecurityNumber = getRandomNumberInString(111,99);
     var sql = `INSERT INTO Customers (First_Name ,Last_Name ,Phone_Number ,Email ,Registration_Date ,Username, Password ,Customer_Account_Type_ID ,University_Name,Student_ID) VALUES('${firstName}','${lastName}','${phoneNumber}','${email}',NOW(),'${username}','${password}',1,'${university}','${studentID}');
     SET @Customer_ID = (select ID from Customers  order by ID desc LIMIT 1);
     Insert into Bank_Accounts(account_name, date_opened, account_type_id, customer_id, current_balance, sort_code, account_number, card_number, cvv_number, expiry_date)
-    values('Savings Pot',now(),4,@Customer_ID,0.00,'01-09-02','${savingsPotAccountNumber}',${savingsPotCardNumber},'${savingsPotSecurityNumber}',date_add(now(), interval 6 year));
-    
+    values('Savings Pot',now(),4,@Customer_ID,0.00,'01-09-02','${randAccountNumber}',${randCardNumber},'${randSecurityNumber}',date_add(now(), interval 6 year));
+
     Insert into Bank_Accounts(account_name, date_opened, account_type_id, customer_id, current_balance, sort_code, account_number, card_number, cvv_number, expiry_date)
-    values('Student Account',now(),1,@Customer_ID,100.00,'01-09-02','${getRandomNumberInString(111111111,999999999)}',${getRandomNumberInString(11111111111111,99999999999999)},'${getRandomNumberInString(111,99)}',date_add(now(), interval 6 year));
+    values('Student Account',now(),1,@Customer_ID,100.00,'01-09-02','${randomAccountNumber}',${randomCardNumber},'${randomSecurityNumber}',date_add(now(), interval 3 year));
 
     INSERT INTO saving_pot_goals( Customer_ID)
     VALUES(@Customer_ID);
