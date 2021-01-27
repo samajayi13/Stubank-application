@@ -29,11 +29,11 @@ main.main.header-with-image.row
                     .input-group.mb-3
                         .input-group-prepend
                             span.input-group-text &pound;
-                        input.form-control#sendAmount(type='text' placeholder='£1,000' name="amount-to-send")
+                        input.form-control#sendAmount(type='number' placeholder='£1,000' name="amount-to-send")
                     .form-group
                         label(for='transferPurpose') Transfer purpose
-                        p Prediction:
-                        p#micro-out-div Predicting...
+                        span.d-block.mb-3 Prediction:
+                            span#micro-out-div Predicting...
                         select#transferPurpose.form-control(name="transfer-purpose")
                             option General
                             option Family/Friends
