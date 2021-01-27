@@ -4,6 +4,8 @@ var userID = null;
 var email = null;
 var randomNumber = null;
 getSession();
+
+// fetches session data for login user and gets their accounts
 function getSession(){
     axios.get('/session/getSession', {
     }).then(function(response) {
@@ -14,6 +16,7 @@ function getSession(){
 
 }
 
+// validates form input
 formBtn.addEventListener("click",function(e){
     e.preventDefault();
     // insert form validation here
@@ -21,6 +24,8 @@ formBtn.addEventListener("click",function(e){
     var amount = document.querySelector("#sendAmount").value;
     var accountName = document.querySelector("#sendingAccount").value;
     var accountNumber = document.querySelector("#receivingAccount").value;
+
+    // validates if user has enough money in their accounts for transfer
     if(amount && formIndex === 1){
         if(document.querySelector("#savings-pot-check").checked){
             alert((Math.ceil(amount) - amount).toFixed(2).toString() + " will be sent to your savings pot");
@@ -39,6 +44,7 @@ formBtn.addEventListener("click",function(e){
             }
         });
     }
+    // validates if target account number exists and sends verification code to email if it does
     if(accountName && formIndex === 2){
         axios.get('/payment/checkBalanceForAccount', {
             params : {
@@ -70,15 +76,15 @@ formBtn.addEventListener("click",function(e){
         });
     }
 
+    // validates if verification code is correct and makes transfer if it does
     if(formIndex === 3 && document.querySelector("#passCode").value){
         if(document.querySelector("#passCode").value !== randomNumber.toString()){
             alert("Invalid passcode");
         }else{
-            alert("working!");
             // moveForm("forward");
             axios.post('/payment/createPayment', {
                     amountSent: document.querySelector('#sendAmount').value,
-                    transferDescription: document.querySelector("#transferPurpose").value,
+                    transferDescription: document.querySelector("#transferPurpose").value.replace(/[0-9]/g, '').trimStart().trimEnd(),
                     bankAccountName : document.querySelector("#sendingAccount").value,
                     userID : userID,
                     accountSendingToNumber : document.querySelector("#receivingAccount").value,
@@ -88,6 +94,9 @@ formBtn.addEventListener("click",function(e){
                 document.querySelector(".success-message").style.display = "block";
                 document.querySelector(".transfer-form h3").style.display = "none";
                 document.querySelector(".btn-continue").style.display = "none";
+                sendEmail(email,"Payment confirmation",`
+                    Payment made on ${new Date().toLocaleString()} of ${document.querySelector('#sendAmount').value} sent to ${document.querySelector("#receivingAccount").value} with description of "${document.querySelector("#transferPurpose").value.replace(/[0-9]/g, '').trimStart().trimEnd()}"
+                `,"receipt has been sent to you email :" + email);
             })
         }
     }
@@ -112,6 +121,7 @@ function moveForm(direction){
 
 // document.querySelector("#sendingAccount").innerHTML = getUserAccounts();
 
+// gets bank account for current user and adds them to drop down list so they can be selected
 function getUserAccounts(){
     let userAccounts = null;
     axios.get('/payment/getUserAccounts', {
@@ -128,12 +138,14 @@ function getUserAccounts(){
     });
 }
 
+// sends a verification email with a code that you need to enter to make the payment
 function send2FAEmail(){
     randomNumber = Math.floor(Math.random() * (999999 - 111111) + 111111);
     sendEmail(email,"Verification Code",`Your code is ${randomNumber.toString()}`);
 }
 
-function sendEmail(toEmail,subject,body) {
+// sends an email from the bank email address to given address with given subject and content
+function sendEmail(toEmail,subject,body,alertMessage = "mail sent successfully") {
     Email.send({
         Host: "smtp.gmail.com",
         Username: "stubank2021@gmail.com",
@@ -144,6 +156,6 @@ function sendEmail(toEmail,subject,body) {
         Body: body,
     })
         .then(function (message) {
-            alert("mail sent successfully")
+            alert(alertMessage);
         });
 }

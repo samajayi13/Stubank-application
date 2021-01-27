@@ -1,0 +1,109 @@
+doctype html
+head
+    // Required meta tags
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    // Bootstrap CSS
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
+    script(src='https://kit.fontawesome.com/2354c028ce.js' crossorigin='anonymous')
+    link(rel='stylesheet' href='/stylesheets/singleEDoc.css')
+    title Hello, world!
+
+main.shadow-lg
+    .row.row-1
+        .col-8
+            .logo.mt-3.mb-4
+                img.img-logo(src='/images/logo.png' alt='')
+            h4.mb-4 StuBank Account Statement
+            p.user-name.mt-2 Samuel Ajayi
+            p.subtext.mt-3
+                | The name shown are based on our current records as of the date this document was created. This statement does not reflect any changes in account holders and account holder names that may have occured prior to this date
+        .col-4
+            .right-side
+                h6.date-statement.mb-4 For July 2021:
+                h6 Account Number
+                span.account-number  12345678
+                h6 Sort code
+                span.sort-code 01-02-09
+    .row.row-2
+        .col-7
+            h5.bolder.account-summary-text Account summary
+            div
+                span
+                    span.opening-balance-date Opening balance on Jul 1 2021
+                    span.opening-balance &pound;40.50
+            div
+                span
+                    | Withdrawls
+                    span.extra-sign -
+                    span.withdraw-figure.float-right &pound;48.50
+            div
+                span
+                    | Depoisits
+                    span.extra-sign.ml-2 +
+                    span.depoisits-figure.float-right &pound;00.50
+            hr(style='width:180px; margin-left:200px; background-color: black; margin-bottom: 5px; margin-top:0px')
+            div
+                span.closing-balance
+                    span.closing-balance-date Closing balance on 31 Jul 2021
+                    span.equals(style='margin-left: 30px') =
+                    span.closing-balance-figure.float-right &pound;00.50
+        .col-5
+            h5.bolder Contact information
+            .contact-info-elm
+                i.fas.fa-phone-alt.float-left
+                .contact-info-elem-text.float-left
+                    h6 1 800 465 CIBC
+                    p
+                        | Contact us phone for questions on this update, change of personal information, and general inquries,24 hours a day, 7 days a week
+    section.transaction-details
+        h5 Transaction details
+        table.table
+            thead
+                tr
+                    th(scope='col') Date
+                    th(scope='col') Description
+                    th(scope='col') Withdrawls
+                    th(scope='col') Deposits
+                    th(scope='col') Balance
+            tbody
+                tr.table-opening-balance-row
+                    th(scope='row') Jul 1
+                    td Opening balance
+                    td
+                    td
+                    td.table-opening-balance &pound;46.12
+                tr
+                    th(scope='row') 2
+                    td Mark
+                    td Otto
+                    td @mdo
+                    td @mdo
+                tr
+                    th(scope='row') 3
+                    td Jacob
+                    td Thornton
+                    td @fat
+                    td @fat
+                tr
+                    th(scope='row') 4
+                    td Larry
+                    td the Bird
+                    td @twitter
+                    td @twitter
+                tr.table-closing-balance-row
+                    th(scope='row')
+                    td Closing Balance
+                    td
+                    td
+                    td -$1.18
+// Optional JavaScript
+// jQuery first, then Popper.js, then Bootstrap JS
+script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js' integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/chart.js@2.8.0')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js')
+script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
+script(src='js/singleEDoc.js')

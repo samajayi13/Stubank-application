@@ -45,49 +45,56 @@ You can then open http://localhost:3000/ to access the app.
 
 ## Implementation
 
-We will be using Express.js, Node.js and a MySQL database to implement the application.
+We have used Express.js, Node.js and a MySQL database to implement the application. For the design of the website we used Bootstrap and the Pug template engine.
+
+## Usage
+
+You will need a real email address in order to create an account as 2 factor authentication is used.
+
+Screenshots of the registration process are shown below:
+![](public/images/register1.png) ![](public/images/register2.png) ![](public/images/register3.png)
 
 ### Development of the System
 
-- The web platform will include a user account which will allow the student to see their expenditures, transfers, and different accounts they hold with the bank.
-- It will allow transfers between these accounts to be both internal and external, with alerts being sent to the users whenever a transaction is made, and will include digital cards for all user accounts
-- Ensuring maximum security using encryption across networks and two factor authentication
-- The use of machine learning to tag purchases into different groups e.g (food shopping, bills)
-- Focusing on the needs of students, as opposed to business accounts:
+- The Salva banking web platform includes a user account which allows the student to see their expenditures, transfers, and different accounts which they hold with the bank.
+- It allows transfers between these accounts to be both internal and external, with alerts being sent to the users whenever a transaction is made, and includes digital cards for all user accounts
+- It ensures maximum security using encryption across networks and two factor authentication
+- Machine learning is used to tag purchases into different groups e.g (food, shopping, bills)
+- Focuses on the needs of students, as opposed to business accounts:
     - Multiple accounts including current and savings
     - Many small transactions between these
     - A focus on budgeting
     - A system similar to Monzo/Starling is good for both budgeting and small quick transactions
 
-Throughout development we will remember the target audience of the system. Features added, design/wording choices will need to be relevant and appeal to young adults.
+Throughout development we always remembered the target audience of the system. Features added, design/wording choices were made sure to be relevant and appeal to young adults.
 
 ### Technical Solution
 
-We will implement a MySQL database which can add students when they join and delete them when they decide to terminate their account. There will also be other tables which will keep track of transfers/outgoings between accounts and the owner details of each account.
+We implemented a MySQL database which can add students when they join and delete them when they decide to terminate their account. There are also other tables which keep track of transfers/outgoings between accounts and the owner details of each account.
 Key factors:
-- The system will have to comply with GDPR, therefore the storage within the database will need to be encrypted
-- For the two factor authentication, this could be an automated code generation that could be emailed to users. Counters will need to be used to generate the codes, and then check that the ones that are entered match
-- The encryption used needs to have a high enough bits that the number of encryption combinations are vast enough. Banks are usually 256 bit. RSA encryption will be used as asymmetric encryption is 
-- Machine learning can be used in our development so that predictions can be made about what group purchases fall into. Patterns can be identified through the names of shops/companies transferred to/from and the amount of money being transferred. These patterns can be used to group purchases into categories for budgeting and could also be used for collaborations with companies for free joining gifts to gain more users. There are libraries for machine learning that can be used to help us with these ideas which will be looked into further once the project is chosen.
-- Node.js will be used to program the server and HTML/CSS/JavaScript/Ajax will be used for programming the browser
+- The system has to comply with GDPR, therefore the storage within the database is encrypted
+- For the two factor authentication, An automated code generation is used which is emailed to users.
+- The encryption used needed to have high enough bits so that the number of encryption combinations are vast enough. We have used 256 bit which is the standard for banks. RSA encryption is used as asymmetric encryption is more secure
+- Machine learning is used in our development so that predictions can be made about what group purchases fall into. Patterns can be identified through the names of shops/companies transferred to/from and the amount of money being transferred. These patterns are be used to group purchases into categories for budgeting and could also be used for collaborations with companies for free joining gifts to gain more users. There are libraries for machine learning that we have looked at that can be used to help us with these ideas.
+- Node.js and Express.js are used to program the backend and HTML/CSS/JavaScript/Bootstrap/Pug are used for programming the frontend
 
 ### Banking functionality:
 - Accounts - current account and saving account
 - Page to display account expenditures, transfers, and different accounts they hold with the bank.
 - Digital cards 
 - Transfers - alerts sent when made
-- Encryption and 2FA (automated code generation that could be emailed to users)
+- Encryption and 2FA (automated code generation is emailed to users)
     - Hashed passwords 
-    - Email 4 digit number for authentication when you are trying to log in
-    - Encrypting all of the users information
-    - Generate security code each time user wants to send money 
+    - Email 4 digit number for authentication when you are making a payment
+    - Encrypting all of the users important information
 - Student account - no interest on your overdraft.
 - Personal account - interest on overdraft 
-- Student account they will automatically get £100 
-- When the person graduates they are notified they will be switching to personal
+- Student account automatically gets £100
+- When the person graduates they are notified they will be switching to a personal account
 - Machine learning on expenditures 
     - Save people you have sent money to in the past
-    - Trends on expenditures 
+    - Trends on expenditures
+        - Predict payment categories
         - Ask for pin if it does not match trend e.g. spending too much at one go
-    - Keeping track of overall spending from all accounts to make sure the bank has enough money and does not go bust 
+    - Keep track of overall spending from all accounts to make sure the bank has enough money and does not go bust
 

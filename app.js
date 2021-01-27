@@ -21,6 +21,8 @@ var cardRouter = require('./routes/digital_card');
 var usersSettings = require('./routes/users_settings');
 var trainRouter = require('./routes/train');
 var savingsPotRouter = require('./routes/savingspot');
+var myWalletRouter  = require('./routes/myWallet');
+var eDocRouter  = require('./routes/singleEDoc');
 
 var app = express();
 
@@ -45,7 +47,7 @@ app.use(session({
   store: sessionStore,
   resave: false,
   saveUninitialized: false,
-  cookie: { path: '/', httpOnly: true, secure: false, maxAge: null }
+  cookie: { path: '/', httpOnly: true, secure: false, maxAge: 3600000 }
 }));
 
 var connection = mysql.createConnection(options);
@@ -75,6 +77,8 @@ app.use('/users_settings', usersSettings);
 app.use('/faq', faqRouter);
 app.use('/train', trainRouter);
 app.use('/savingspot', savingsPotRouter);
+app.use('/myWallet', myWalletRouter);
+app.use('/singleEDoc', eDocRouter);
 
 // tranfers locals to pug from js
 app.use((req, res, next) => {

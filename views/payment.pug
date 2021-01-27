@@ -8,6 +8,7 @@ head
     link(rel='stylesheet' href='/stylesheets/payment.css')
     link(rel='stylesheet' href='/stylesheets/logged_in_navbar.css')
     script(src='https://kit.fontawesome.com/2354c028ce.js' crossorigin='anonymous')
+    title Payment
 
 include logged_in_navbar
 main.main.header-with-image.row
@@ -22,7 +23,6 @@ main.main.header-with-image.row
     .main-transfer-form.col
         .transfer-form.rounded.shadow-lg
             h3 Send Money
-            h5#micro-out-div Predicting...
             form#form_1.mt-4(action='/payment/createPayment' method="post")
                 .form_1
                     label(for='sendAmount') Send Amount
@@ -32,20 +32,22 @@ main.main.header-with-image.row
                         input.form-control#sendAmount(type='text' placeholder='£1,000' name="amount-to-send")
                     .form-group
                         label(for='transferPurpose') Transfer purpose
+                        p Prediction:
+                        p#micro-out-div Predicting...
                         select#transferPurpose.form-control(name="transfer-purpose")
-                            option General
-                            option Family/Friends
-                            option Groceries
-                            option Shopping
-                            option Bills
-                            option Eating Out
-                            option Entertainment
-                            option Finances
-                            option Transport
-                            option Gift
-                            option Holidays
-                            option Personal care
-                            option Charity
+                            option 0 General
+                            option 1 Family/Friends
+                            option 2 Groceries
+                            option 3 Shopping
+                            option 4 Bills
+                            option 5 Eating Out
+                            option 6 Entertainment
+                            option 7 Finances
+                            option 8 Transport
+                            option 9 Gift
+                            option 10 Holidays
+                            option 11 Personal care
+                            option 12 Charity
                     .form-check
                         input.form-check-input#savings-pot-check(type="checkbox" value="")
                         label.form-check-label(for="savings-pot-check") Round to savings pot

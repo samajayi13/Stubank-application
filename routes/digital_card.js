@@ -2,7 +2,16 @@ var express = require('express');
 var router = express.Router();
 let db = require('../dbconnection');
 
-router.get('/', function(req, res, next) {
+// if not logged in, doesn't display transfers page
+const redirectToLogin = (req, res, next) => {
+    if (!req.session.username) {
+        res.redirect('/login');
+    } else {
+        next();
+    }
+}
+
+router.get('/', redirectToLogin, function(req, res, next) {
     res.render('transfers', { title: 'Transfer' });
 });
 

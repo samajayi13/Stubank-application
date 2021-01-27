@@ -1,3 +1,4 @@
+// forget password button that sends an email
 document.querySelector("#forgot-password-btn").addEventListener("click",function(){
     axios.get('/login/checkIfEmailValid', {
         //the parameters that is sent with the request
@@ -11,10 +12,12 @@ document.querySelector("#forgot-password-btn").addEventListener("click",function
                     "Your account password",
                     "Your password is: ' " + response.data.password  + " ' if you have any problems please contact the bank");
             }else{
-                alert("no email assoicated with this account");
+                alert("no email associated with this account");
             }
         });
 })
+
+// sends an email from the bank email address to given address with given subject and content
 function sendEmail(toEmail,subject,body) {
     Email.send({
         Host: "smtp.gmail.com",

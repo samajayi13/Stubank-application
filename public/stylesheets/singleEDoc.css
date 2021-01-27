@@ -1,0 +1,87 @@
+main{
+    width:700px;
+    margin: 0 auto;
+    background-color:white;
+    position: relative;
+    padding-left:3vw;
+    padding-top:5px
+}
+h4{
+    font-weight: 700;
+}
+.img-logo{
+    width: 100px;
+}
+.subtext{
+    width:310px;
+    font-size:12px;
+    font-weight:700;
+}
+.right-side{
+    margin-top:18vh;
+}
+.right-side h6{
+    font-weight: 700;
+    font-size: 13px;
+}
+.account-number{
+    margin-bottom: 20px;
+    display: inline-block
+}
+main .row-1{
+    margin-bottom: 50px;
+}
+main .row-2{
+    padding-left;3vw;
+}
+.bolder{
+    font-weight: 700;
+    border-bottom: 3px black solid;
+}
+.opening-balance{
+    float:right;
+}
+.col-7 div span{
+    font-size: 12px;
+}
+.extra-sign{
+    display: inline-block;
+    padding-left: 150px;
+    font-weight: bold;
+}
+.closing-balance{
+    font-weight: 700;
+}
+.contact-info-elm{
+    margin-left:20px;
+}
+.contact-info-elm i{
+    margin-right:10px
+}
+.contact-info-elm .contact-info-elem-text h6{
+    font-weight:700;
+    font-size: 14px;
+}
+.contact-info-elm .contact-info-elem-text p{
+    width: 200px;
+    font-size:14px;
+}
+.transaction-details{
+    margin-top:40px;
+}
+.transaction-details h5{
+    font-size: 16px;
+    font-weight: 700;
+}
+th,td{
+    padding:0px !important;
+    margin: 0px !important;
+    font-size:14px;
+}
+.table-opening-balance-row{
+    font-weight: 700;
+}
+.table-closing-balance-row{
+    font-weight: 700;
+    font-size: 8px !important;
+}
