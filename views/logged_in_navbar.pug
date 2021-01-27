@@ -1,7 +1,7 @@
 .nav-row
     .row(style="background-color: lightgrey;")
         .col.d-flex.justify-content-center(style='background:#2D7DE9;')
-            a(href="")
+            a(href="http://localhost:3000/account")
                 i.fas.fa-home
         .col.d-flex.justify-content-center.border-right.border-bottom
             b: a(href="account") Accounts
@@ -16,7 +16,7 @@
         .col.d-flex.justify-content-center.border-right.border-bottom
             b: a(href="contact_us") Contact Us
         .col.d-flex.justify-content-center.border-right.border-bottom
-            b: a(href="/account/logout" onclick= "return ask()") Logout
+            b: a(href="http://localhost:3000/" onclick= "return ask()") Logout
 script.
     function ask() {
         var ask = confirm("Are you sure you want to log out?");

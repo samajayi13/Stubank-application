@@ -84,7 +84,7 @@ formBtn.addEventListener("click",function(e){
             // moveForm("forward");
             axios.post('/payment/createPayment', {
                     amountSent: document.querySelector('#sendAmount').value,
-                    transferDescription: document.querySelector("#transferPurpose").value,
+                    transferDescription: document.querySelector("#transferPurpose").value.replace(/[0-9]/g, '').trimStart().trimEnd(),
                     bankAccountName : document.querySelector("#sendingAccount").value,
                     userID : userID,
                     accountSendingToNumber : document.querySelector("#receivingAccount").value,
@@ -94,6 +94,9 @@ formBtn.addEventListener("click",function(e){
                 document.querySelector(".success-message").style.display = "block";
                 document.querySelector(".transfer-form h3").style.display = "none";
                 document.querySelector(".btn-continue").style.display = "none";
+                sendEmail(email,"Payment confirmation",`
+                    Payment made on ${new Date().toLocaleString()} of ${document.querySelector('#sendAmount').value} sent to ${document.querySelector("#receivingAccount").value} with description of "${document.querySelector("#transferPurpose").value.replace(/[0-9]/g, '').trimStart().trimEnd()}"
+                `,"receipt has been sent to you email :" + email);
             })
         }
     }
@@ -142,7 +145,7 @@ function send2FAEmail(){
 }
 
 // sends an email from the bank email address to given address with given subject and content
-function sendEmail(toEmail,subject,body) {
+function sendEmail(toEmail,subject,body,alertMessage = "mail sent successfully") {
     Email.send({
         Host: "smtp.gmail.com",
         Username: "stubank2021@gmail.com",
@@ -153,6 +156,6 @@ function sendEmail(toEmail,subject,body) {
         Body: body,
     })
         .then(function (message) {
-            alert("mail sent successfully")
+            alert(alertMessage);
         });
 }
