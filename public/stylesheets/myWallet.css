@@ -1,0 +1,16 @@
+.border,.border-left,.border-right,.border-top,.border-bottom{
+    border-color: black !important;
+}
+body{
+    overflow-x: none;
+    background-color:#f4f4f4;
+}
+section{
+    width: 49vw;
+    height: 50vh;
+    float:left;
+}
+.main-h1{
+    margin-top:15vh;
+    font-weight: 500;
+}
