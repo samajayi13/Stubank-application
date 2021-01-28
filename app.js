@@ -20,9 +20,9 @@ var contactRouter = require('./routes/contact_us');
 var cardRouter = require('./routes/digital_card');
 var usersSettings = require('./routes/users_settings');
 var trainRouter = require('./routes/train');
-var savingsPotRouter = require('./routes/savingspot');
-var myWalletRouter  = require('./routes/myWallet');
-var eDocRouter  = require('./routes/singleEDoc');
+var savingsPotRouter = require('./routes/savings_pot');
+var myWalletRouter  = require('./routes/my_wallet');
+var eDocRouter  = require('./routes/single_e-doc');
 
 var app = express();
 
