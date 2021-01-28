@@ -14,7 +14,7 @@ const redirectToLogin = (req, res, next) => {
 
 /* GET eDocPage page. */
 router.get('/', redirectToLogin, function(req, res, next) {
-    res.render('singleEDoc', { title: 'Payment' });
+    res.render('single_e-doc', { title: 'Payment' });
 });
 
 

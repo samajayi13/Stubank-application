@@ -5,7 +5,7 @@ var encryptObj = require('../encrpytion');
 
 /* GET savings pot page. */
 router.get('/', function(req, res, next) {
-    res.render('savingspot', { title: 'Salva' });
+    res.render('savings_pot', { title: 'Salva' });
 });
 
 //checks current amount in savings pot and decrypts results

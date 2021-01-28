@@ -136,7 +136,7 @@ function getSession() {
 }
 
 function getTotalSpentToday(){
-    axios.get('/myWallet/getTotalSpentToday', {
+    axios.get('/my_wallet/getTotalSpentToday', {
         params : {
             userID : userID
         }
@@ -149,7 +149,7 @@ function getTotalSpentToday(){
 }
 function getSpendingPerDay(){
     console.log(userID);
-    axios.get('/myWallet/getSpendingPerDay', {
+    axios.get('/my_wallet/getSpendingPerDay', {
         params : {
             userID : userID
         }
@@ -173,7 +173,7 @@ function getSpendingPerDay(){
 }
 function getSpendingPerCategory(){
     console.log(userID);
-    axios.get('/myWallet/getSpendingPerCategory', {
+    axios.get('/my_wallet/getSpendingPerCategory', {
         params : {
             userID : userID
         }
@@ -209,7 +209,7 @@ function getSpendingPerCategory(){
     });
 }
 function getIncomePerAccount(){
-    axios.get('/myWallet/getIncomePerAccount', {
+    axios.get('/my_wallet/getIncomePerAccount', {
         params : {
             userID : userID
         }

@@ -137,7 +137,7 @@ function getSession(){
 var currentBalance = null;
 
 function getCurrentAmountInPot(){
-    axios.get('/savingspot/getCurrentAmountInPot', {
+    axios.get('/savings_pot/getCurrentAmountInPot', {
         params :{
             userID : userID
         }
@@ -148,7 +148,7 @@ function getCurrentAmountInPot(){
 }
 
 function getSavingsGoalsValues(){
-    axios.get('/savingspot/getSavingsGoalsValues', {
+    axios.get('/savings_pot/getSavingsGoalsValues', {
         params :{
             userID : userID
         }
@@ -171,17 +171,17 @@ document.querySelector(".btn-update-goals").addEventListener("click",function(e)
             usersGoals[`${x}`] = document.querySelector(`#${x}`).value;
         }
     });
-    axios.post('/savingspot/updateSavingsGoalsValues', {
+    axios.post('/savings_pot/updateSavingsGoalsValues', {
             userID : userID,
             goals : usersGoals
     }).then(function(response) {
         alert("Saving goals updated");
-        window.location.href = "http://localhost:3000/savingspot";
+        window.location.href = "http://localhost:3000/savings_pot";
     })
 })
 var savingsMade = null;
 function getActualSavingsMade(){
-    axios.get('/savingspot/getActualSavings', {
+    axios.get('/savings_pot/getActualSavings', {
        params :{
            userID : userID
        }
@@ -236,7 +236,7 @@ function getTotalSavingsGoal(){
 }
 
 function getPieChartData(){
-    axios.get('/savingspot/getSavingCategory', {
+    axios.get('/savings_pot/getSavingCategory', {
         params :{
             userID : userID
         }

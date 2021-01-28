@@ -14,7 +14,7 @@ function getSession(){
 var tableBalance = null;
 function getUsersTransfers(){
     console.log(userData.bankAccountIndex);
-    axios.get('/singleEDoc/getUsersTransfers', {
+    axios.get('/single_e-doc/getUsersTransfers', {
         params : {
             bankAccountIndex : userData.bankAccountIndex
         }

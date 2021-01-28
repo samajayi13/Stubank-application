@@ -12,9 +12,9 @@ const redirectToLogin = (req, res, next) => {
     }
 }
 
-/* GET myWallet page. */
+/* GET My Wallet page. */
 router.get('/', redirectToLogin, function(req, res, next) {
-    res.render('myWallet', { title: 'Payment' });
+    res.render('my_wallet', { title: 'Payment' });
 });
 
 // gets how much money the user spent today and decrypts the results
