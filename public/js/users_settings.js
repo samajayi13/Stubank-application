@@ -167,6 +167,7 @@ document.querySelector("#btn-save-changes").addEventListener("click",function(){
     }
 
     if(valid){
+        updateChanges();
         axios.post('/users_settings/updateChanges', {
             ...userData,
         }).then(function() {
@@ -176,6 +177,16 @@ document.querySelector("#btn-save-changes").addEventListener("click",function(){
 
 
 })
+
+function updateChanges(){
+    userData.username =document.querySelector("#username").value ;
+    userData.firstName= document.querySelector("#first-name").value;
+    userData.lastName = document.querySelector("#last-name").value ;
+    userData.phoneNumber= document.querySelector("#phone-number").value;
+    userData.email = document.querySelector("#email").value;
+    userData.uniName = document.querySelector("#uni-name").value;
+    userData.studentID = document.querySelector("#studetn-ID").value;
+}
 document.addEventListener("click",function(e){
     if(e.target.classList.contains("theme-button")){
         userData.cards[index].cardColor = e.target.style.backgroundColor;

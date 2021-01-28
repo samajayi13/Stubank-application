@@ -143,9 +143,6 @@ function getCurrentAmountInPot(){
         }
     }).then(function(response) {
         currentBalance = response.data.result[0].Current_Balance;
-        currentBalance = currentBalance.toString().indexOf(".") === currentBalance.toString().length-2
-                        ? currentBalance + "0"
-                        : currentBalance;
         document.querySelector("#current-balance").innerText = currentBalance;
     })
 }
@@ -215,8 +212,10 @@ function makeBarGraph(){
     });
 }
 function getActualSavingNumber(month ){
-    if((month-1) <= savingsMade.length-1 ){
-        return savingsMade[month-1].SUM;
+    month = month -1;
+    var objLen =Object.keys(savingsMade).length-1;
+    if(month <= objLen){
+        return savingsMade[month].SUM;
     }else{
         return 0;
     }
@@ -242,8 +241,9 @@ function getPieChartData(){
             userID : userID
         }
     }).then(function(response) {
+        console.log(response);
         let dataArr = response.data.result[1];
-        var dataObj = dataArr.reduce(function(a,x){
+        var dataObj = Object.values(dataArr).reduce(function(a,x){
             a[`${x.Transfer_Description}`] = x.total;
             return a;
         },{});

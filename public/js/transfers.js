@@ -1,10 +1,12 @@
 var bankAccountID = null;
 getSession();
-
+console.log("here");
 // fetches session data for logged in user
 function getSession(){
     axios.get('/session/getSession', {
     }).then(function(response) {
+        console.log("here 1");;
+
         bankAccountID =  parseInt(response.data.result.bankAccountIndex);
         getTransfers(bankAccountID);
         getAvatar();
@@ -15,6 +17,7 @@ function getSession(){
 
 // fetches transfers data for logged in user
 function getTransfers(bankAccountID){
+    console.log("here2");
     axios.get('/transfers/getTransfers', {
         //the parameters that is sent with the request
         params: {

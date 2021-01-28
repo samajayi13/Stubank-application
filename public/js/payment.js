@@ -3,6 +3,8 @@ var formIndex = 1;
 var userID = null;
 var email = null;
 var randomNumber = null;
+var otherPersonID = null;
+var sendingFromID = null;
 getSession();
 
 // fetches session data for login user and gets their accounts
@@ -53,6 +55,7 @@ formBtn.addEventListener("click",function(e){
                 accountName : accountName
             }
         }).then(function(response) {
+            sendingFromID = response.data.bankAccountID;
             var valid = response.data.valid;
             if(valid){
                 if(accountNumber && formIndex === 2){
@@ -65,6 +68,7 @@ formBtn.addEventListener("click",function(e){
                         if(accountNameValid){
                             moveForm("forward");
                             send2FAEmail();
+                            otherPersonID = response.data.bankAccountID;
                         }else{
                             alert(`The account number  ${accountNumber} does not exist`);
                         }
@@ -88,7 +92,9 @@ formBtn.addEventListener("click",function(e){
                     bankAccountName : document.querySelector("#sendingAccount").value,
                     userID : userID,
                     accountSendingToNumber : document.querySelector("#receivingAccount").value,
-                    sendingToPot : document.querySelector("#savings-pot-check").checked
+                    sendingToPot : document.querySelector("#savings-pot-check").checked,
+                    sendingFromID : sendingFromID,
+                    otherPersonID : otherPersonID
             }).then(function(){
                 document.querySelector(".form_3").style.display = "none";
                 document.querySelector(".success-message").style.display = "block";
@@ -119,7 +125,6 @@ function moveForm(direction){
     }
 }
 
-// document.querySelector("#sendingAccount").innerHTML = getUserAccounts();
 
 // gets bank account for current user and adds them to drop down list so they can be selected
 function getUserAccounts(){

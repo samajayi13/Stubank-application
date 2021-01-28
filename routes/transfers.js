@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../dbconnection');
+var encryptObj = require('../encrpytion');
 
 // if not logged in, doesn't display transfers page
 const redirectToLogin = (req, res, next) => {
@@ -16,6 +17,7 @@ router.get('/', redirectToLogin, function(req, res, next) {
     res.render('transfers', { title: 'Transfer',session:req.session });
 });
 
+// gets users transfers and decrypt results
 router.get('/getTransfers', function(req, res, next) {
     var bankAccountID = req.query.bankAccountID;
 
@@ -33,11 +35,14 @@ router.get('/getTransfers', function(req, res, next) {
 
     db.query(sql,function(error,results,fields){
         if (error) throw error;
+        results = encryptObj.decryptResults(results);
         res.send({transferData : results });
     });
 
 });
 
+
+//gets the user firstname and decrypts result
 router.get('/getUserFirstName', function(req, res, next) {
     var bankAccountID = req.query.bankAccountID;
     var sql =  `
@@ -49,6 +54,7 @@ router.get('/getUserFirstName', function(req, res, next) {
 
     db.query(sql,function(error,results,fields){
         if (error) throw error;
+        results = encryptObj.decryptResults(results);
         res.send({transferData : results });
     });
 

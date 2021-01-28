@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 let db = require('../dbconnection');
+var encryptObj = require('../encrpytion');
 
 // if not logged in, doesn't display payment page
 const redirectToLogin = (req, res, next) => {
@@ -11,18 +12,12 @@ const redirectToLogin = (req, res, next) => {
     }
 }
 
-/* GET payment page. */
+/* GET myWallet page. */
 router.get('/', redirectToLogin, function(req, res, next) {
     res.render('myWallet', { title: 'Payment' });
 });
 
-router.post('/createPayment', function(req, res, next) {
-    db.query(sql,function(error,results,fields){
-        if (error) throw error;
-        res.send({result : true });
-    });
-});
-
+// gets how much money the user spent today and decrypts the results
 router.get('/getTotalSpentToday', function(req, res, next) {
     var userID = req.query.userID;
     console.log(userID);
@@ -41,10 +36,13 @@ router.get('/getTotalSpentToday', function(req, res, next) {
 
     db.query(sql,function(error,results,fields){
         if (error) throw error;
+        results = encryptObj.decryptResults(results);
         console.log(results);
         res.send({results : results });
     });
 });
+
+//gets spending per day and decrypts the results
 router.get('/getSpendingPerDay', function(req, res, next) {
     var userID = req.query.userID;
     console.log(userID);
@@ -63,13 +61,15 @@ router.get('/getSpendingPerDay', function(req, res, next) {
 
     db.query(sql,function(error,results,fields){
         if (error) throw error;
+        results = encryptObj.decryptResults(results);
         console.log(results);
         res.send({results : results });
     });
 });
+
+//gets spending per category and decrypts the results
 router.get('/getSpendingPerCategory', function(req, res, next) {
     var userID = req.query.userID;
-    console.log(userID);
     var sql =  `
                 SELECT SUM(Amount_Transferred) as Sum,Transfer_Description as Category
                 FROM Transfer_Information
@@ -85,13 +85,15 @@ router.get('/getSpendingPerCategory', function(req, res, next) {
               `;
     db.query(sql,function(error,results,fields){
         if (error) throw error;
+        results = encryptObj.decryptResults(results);
         console.log(results);
         res.send({results : results });
     });
 });
+
+//gets income per account and decrypts the results
 router.get('/getIncomePerAccount', function(req, res, next) {
     var userID = req.query.userID;
-    console.log(userID);
     var sql =  `
                 SELECT SUM(Amount_Transferred) as Sum,Bank_Accounts.Account_Name as Account_Name
                 FROM Transfer_Information
@@ -105,7 +107,8 @@ router.get('/getIncomePerAccount', function(req, res, next) {
                 GROUP BY Customers.ID,Account_Name;
               `;
     db.query(sql,function(error,results,fields){
-        if (error) throw error;
+        if (error) throw error; results = encryptObj.decryptResults(results); 
+        results = encryptObj.decryptResults(results);
         console.log(results);
         res.send({results : results });
     });

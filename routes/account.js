@@ -1,29 +1,27 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../dbconnection');
-var CryptoJS = require("crypto-js");
-var key = 'sfsdfsdf44242sdfds34224dfsfsf34324gdfgdfgd3sdfsdfsdf23sfsdfsdfsdfsffg23@sdf@@!£"$%^&*&fg££$%££@@%$$%£$%"$%fd';
+var encryptObj = require('../encrpytion');
 const fs = require('fs');
 
-function encryptData(data){
-    console.log(data + "working here");
-    var ciphertext = CryptoJS.AES.encrypt(data, key);
-    console.log(data + "working here 2");
-    return ciphertext.toString()
-}
-
-function decryptData(ciphertext){
-    var bytes = CryptoJS.AES.decrypt(ciphertext, key);
-    var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-    return plaintext;
-}
-
+/**
+ * gets random number
+ * @param min is minimum number in range(inclusive)
+ * @param max is maximum number in range(inclusive)
+ * @returns {number}
+ */
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
+/**
+ * checks rows in db to ensure no one has the same account number
+ * @param array is the rows in the database
+ * @param number is the random account number that has been produced
+ * @returns {boolean}
+ */
 function checkForIdenticalAccount(array, number) {
     for (let i = 0; i < array.length; i++) {
         if (array[i].Account_Number==number) {
@@ -33,6 +31,12 @@ function checkForIdenticalAccount(array, number) {
     return false;
 }
 
+/**
+ * checks rows in db to ensure no one has the same card number
+ * @param array is the rows in the database
+ * @param number is the random account number that has been produced
+ * @returns {boolean}
+ */
 function checkForIdenticalCard(array, number) {
     for (let i = 0; i < array.length; i++) {
         if (array[i].Card_Number==number) {
@@ -56,6 +60,7 @@ router.get('/', redirectToLogin, function(req, res, next) {
     res.render('account', { session: req.session, title: 'Account' });
 });
 
+//logs user out on log out and destroys the session
 router.get('/logout', function(req, res, next) {
     var id = req.session.customerID.toString();
     var filePath = __dirname + '\\generatedStatements\\statement_'+id+".pdf";
@@ -72,10 +77,10 @@ router.get('/logout', function(req, res, next) {
     });
 });
 
+//gets all the accounts the user owns from the database and decrypts results
 router.get('/getAccounts', function(req, res, next) {
     // var ID = req.session.customerID;
     var ID = req.query.ID;
-    console.log("REQUESTED ID: " + ID)
     var sql =  `
                 SELECT *,(Overdraft_Limit + Current_Balance) as availableBalance
                 FROM Bank_Accounts
@@ -85,12 +90,14 @@ router.get('/getAccounts', function(req, res, next) {
 
     db.query(sql,function(error,results,fields){
         if (error) throw error;
+        results = encryptObj.decryptResults(results);
         res.send({accountData : results });
     });
 });
+
+//gets the user avatar from the database and decrypts results
 router.get('/getAvatar', function(req, res, next) {
     var ID = req.query.ID;
-    console.log("REQUESTED ID: " + ID)
     var sql =  `
                 SELECT Avatar_Person
                 FROM Customers
@@ -98,26 +105,26 @@ router.get('/getAvatar', function(req, res, next) {
 
     db.query(sql,function(error,results,fields){
         if (error) throw error;
+        results = encryptObj.decryptResults(results);
         res.send({accountData : results });
     });
 });
 
+//creates a Student Bank Account for th when they request a new bank account
+//gets random numbers for the account number,card number and ccvnumber. Encrpyts data and stores it in database
 router.post('/createAccount', function (req,res,next) {
     // gets html input
     const accountDetails = req.body;
 
     // stores all the user input data
-    // TODO: encrypt this!
     var accountName = accountDetails["name"];
-    var dateOpened;
-    var accountTypeID = 2; // savings account type
-    var customerID = req.session.customerID;
-    var currentBalance = 0.00;
-    var sortCode = "01-09-02";
-    var accountNumber = getRandomInt(1000000000,9999999999); // random number that isnt in DB
-    var cardNumber = getRandomInt(10000000000000,99999999999999); // random number that isnt in DB
-    var cvvNumber = getRandomInt(100,999); // random number
-    var expiryDate;
+    var accountTypeID = 2// savings account type
+    var customerID =  req.session.customerID;
+    var currentBalance =  0.00;
+    var sortCode =  "01-09-02";
+    var accountNumber =  getRandomInt(1000000000,9999999999).toString(); // random number that isnt in DB
+    var cardNumber =  encryptObj.encryptData(getRandomInt(10000000000000,99999999999999).toString());// random number that isnt in DB
+    var cvvNumber =  encryptObj.encryptData(getRandomInt(100,999).toString()); // random number
 
     switch (accountDetails["colors"]) {
         case "blue":
@@ -134,6 +141,7 @@ router.post('/createAccount', function (req,res,next) {
             break;
     }
 
+    cardColor = cardColor;
     // checks if account number or card number is already in database
     var sql =  `
                 SELECT Account_Number, Card_Number
@@ -141,40 +149,24 @@ router.post('/createAccount', function (req,res,next) {
 
     db.query(sql,function(error,rows,fields){
         if (error) throw error;
-        console.log(rows.length);
-        console.log(rows);
+        encryptObj.decryptResults(rows);
 
         var takenAcc = checkForIdenticalAccount(rows, accountNumber);
         var takenCard = checkForIdenticalCard(rows, cardNumber);
 
         if (takenAcc==true) {
-            accountNumber=getRandomInt(1000000000,9999999999);
+            accountNumber= getRandomInt(1000000000,9999999999).toString();
         }
 
         if (takenCard==true) {
-            cardNumber=getRandomInt(10000000000000,99999999999999);
+            cardNumber= encryptObj.encryptData(getRandomInt(10000000000000,99999999999999).toString());
         }
     });
 
-    console.log("REQUESTED ID: " + customerID)
 
-    // gets the user's accounts so we can get the same variables like account date of opening, date of expiry and sort code
-    var sql2 =  `
-                SELECT *
-                FROM Bank_Accounts
-                WHERE Customer_ID = ${customerID}`;
-
-    db.query(sql2,function(error,rows,fields){
-        if (error) throw error;
-        console.log(rows.length);
-        console.log(rows);
-        dateOpened = rows[0].Date_Opened;
-        sortCode = toString(rows[0].Sort_Code);
-        expiryDate = rows[0].Expiry_Date;
-    });
 
     // creates new roll in table
-    var sql3 = `INSERT INTO Bank_Accounts (Account_Name, Date_Opened, Account_Type_ID, Customer_ID, Current_Balance, Sort_Code, Account_Number, Card_Number, Cvv_Number, Expiry_Date, Card_Color) VALUES('${accountName}',now(),'${accountTypeID}','${customerID}','${currentBalance}','${sortCode}','${accountNumber}','${cardNumber}','${cvvNumber}',date_add(now(),interval  5 year),'${cardColor}')`;
+    var sql3 = `INSERT INTO Bank_Accounts (Account_Name, Date_Opened, Account_Type_ID, Customer_ID, Current_Balance, Sort_Code, Account_Number, Card_Number, Cvv_Number, Expiry_Date, Card_Color) VALUES('${accountName}',now(),${accountTypeID},${customerID},'${currentBalance}','${sortCode}','${accountNumber}','${cardNumber}','${cvvNumber}',date_add(now(),interval  5 year),'${cardColor}')`;
     db.query(sql3);
 
     res.redirect('/account');

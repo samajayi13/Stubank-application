@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 let db = require('../dbconnection');
+var encryptObj = require('../encrpytion');
 
 // if not logged in, doesn't display payment page
 const redirectToLogin = (req, res, next) => {
@@ -17,6 +18,7 @@ router.get('/', redirectToLogin, function(req, res, next) {
 });
 
 
+//gets users transfers and decrpyts it
 router.get('/getUsersTransfers', function(req, res, next) {
     var bankAccountID = req.query.bankAccountIndex;
     var sql =  `SELECT Amount_Transferred,Transfer_From_Bank_Account_ID,Transfer_To_Bank_Account_ID,Date_Of_Transfer,Account_Number,Account_Number,Sort_Code,
@@ -66,6 +68,7 @@ router.get('/getUsersTransfers', function(req, res, next) {
 
     db.query(sql,function(error,results,fields){
         if (error) throw error;
+        results = encryptObj.decryptResults(results);
         res.send({transfers : results });
     });
 });

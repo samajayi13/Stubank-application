@@ -1,14 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../dbconnection');
+var encryptObj = require('../encrpytion');
 
-/* GET home page. */
+/* GET savings pot page. */
 router.get('/', function(req, res, next) {
     res.render('savingspot', { title: 'Salva' });
 });
 
+//checks current amount in savings pot and decrypts results
 router.get('/getCurrentAmountInPot', function(req, res, next) {
-    console.log(req.query.userID);
     var sql =  `SELECT Current_Balance
                 FROM Bank_Accounts
                 WHERE Account_Name = 'Savings Pot' AND Customer_ID = ${req.query.userID}
@@ -16,10 +17,12 @@ router.get('/getCurrentAmountInPot', function(req, res, next) {
 
     db.query(sql,function(error,results,fields){
         if (error) throw error;
+        results = encryptObj.decryptResults(results);
         res.send({result:results});
     });
 });
 
+//gets savings goals values from database and decrpyts data
 router.get('/getSavingsGoalsValues', function(req, res, next) {
     var sql =  `SELECT *
                 FROM saving_pot_goals
@@ -27,10 +30,13 @@ router.get('/getSavingsGoalsValues', function(req, res, next) {
 
     db.query(sql,function(error,results,fields){
         if (error) throw error;
+        results = encryptObj.decryptResults(results);
         res.send({result:results});
     });
 });
 
+
+//updates savings goals values based on input fields passed through the api
 router.post('/updateSavingsGoalsValues', function(req, res, next) {
     let goals  = req.body.goals;
     var i = 0;
@@ -54,6 +60,8 @@ router.post('/updateSavingsGoalsValues', function(req, res, next) {
         res.send({result:true});
     });
 });
+
+//gets money sent to the users savings pot in the the current year
 router.get('/getActualSavings', function(req, res, next) {
     var sql =  `
 SET @SavingsPotID = (SELECT Bank_Accounts.ID
@@ -73,11 +81,13 @@ HAVING  EXTRACT(YEAR FROM Date_Of_Transfer) = YEAR(curdate())
 `;
     db.query(sql,function(error,results,fields){
         if (error) throw error;
-        console.log(results);
+        results = encryptObj.decryptResults(results);
         res.send({result:results});
     });
 });
 
+
+//gets income to savings pot based on savings;
 router.get('/getSavingCategory', function(req, res, next) {
     var sql =  `
 SET @SavingsPotID = (SELECT Bank_Accounts.ID
@@ -96,7 +106,7 @@ GROUP BY  Transfer_Information.Transfer_Description
 `;
     db.query(sql,function(error,results,fields){
         if (error) throw error;
-        console.log(results);
+        results = encryptObj.decryptResults(results);
         res.send({result:results});
     });
 });

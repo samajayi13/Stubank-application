@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var encryptObj = require('../encrpytion');
 
 // if not logged in, doesn't display contact us page
 const redirectToLogin = (req, res, next) => {
