@@ -3,8 +3,18 @@ var router = express.Router();
 var db = require('../dbconnection');
 var encryptObj = require('../encrpytion');
 
+
+// if not logged in, doesn't display savings pot page
+const redirectToLogin = (req, res, next) => {
+    if (!req.session.username) {
+        res.redirect('/login')
+    } else {
+        next()
+    }
+}
+
 /* GET savings pot page. */
-router.get('/', function(req, res, next) {
+router.get('/', redirectToLogin,function(req, res, next) {
     res.render('savings_pot', { title: 'Salva' });
 });
 
