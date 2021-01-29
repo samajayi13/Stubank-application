@@ -12,6 +12,7 @@ function getSession(){
 
 }
 var tableBalance = null;
+//gets user's transfers
 function getUsersTransfers(){
     console.log(userData.bankAccountIndex);
     axios.get('/single_e-doc/getUsersTransfers', {
@@ -34,11 +35,21 @@ function getUsersTransfers(){
         }
     });
 }
+
+/**
+ * addes use's full name to document
+ * @param userData is the object containing the user information
+ */
 function updateFullName(userData){
     let fullName = userData.firstName + " " + userData.lastName;
     document.querySelector(".user-name").innerText = fullName;
 }
 var openingBalance = 0;
+
+/**
+ * gets the sum about of money that went in and out of the user account
+ * @param transfers
+ */
 function getInAndOutBalance(transfers){
     var results = transfers.reduce(function(accum,x){
         if(x.in_or_out === "IN"){
@@ -57,6 +68,8 @@ function getInAndOutBalance(transfers){
     document.querySelector(".closing-balance-figure").innerText = "£" + transfers[0].Current_Balance;
     document.querySelector(".table-opening-balance").innerText = "£" + openingBalance.toFixed(2);
 }
+
+//updates date values on document
 function updateDate(){
     document.querySelector(".date-statement").innerText = "For " + todayDate;
     document.querySelector(".closing-balance-date").innerText = "Closing balance on " + todayDate;
@@ -66,6 +79,10 @@ function updateDate(){
 }
 
 
+/**
+ * addes  transfer to table
+ * @param transfer is the transaction made
+ */
 function addTransactionRow(transfer){
     // we will insert data into table here
     var tbody = document.querySelector("tbody");
@@ -97,6 +114,10 @@ function addTransactionRow(transfer){
     tbody.appendChild(tr);
 }
 
+/**
+ * addes closing transfer to table
+ * @param transfer is the transaction made
+ */
 function addClosingRow(transfer){
     // we will insert data into table here
     var tbody = document.querySelector("tbody");

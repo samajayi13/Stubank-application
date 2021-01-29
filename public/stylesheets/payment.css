@@ -240,6 +240,13 @@
     }
 }
 
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+
+    .transfer-form{
+        margin-left: -35vw;
+        width:50vw
+    }
+}
 @media only screen and (min-width: 801px) {
     .main-heading_text{
         width:80vw;

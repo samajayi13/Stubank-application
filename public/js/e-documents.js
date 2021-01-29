@@ -2,6 +2,8 @@ var userID = null;
 
 getSession();
 
+
+//gets session attributes
 function getSession(){
     axios.get('/session/getSession', {
     }).then(function(response) {
@@ -11,6 +13,8 @@ function getSession(){
 
 }
 
+
+//gets all bankaccounts owned by the user
 function getAccountsEDocs(userID){
     axios.get('/e-documents/getEDocs', {
         //the parameters that is sent with the request
@@ -24,6 +28,8 @@ function getAccountsEDocs(userID){
         })
 }
 
+
+//gets account to the table on e document page
 function addAccountsEDocs(edocsData){
     for(var i = 0; i < edocsData.length; i++){
         var currentBTNID = "button"+ edocsData[i].ID.toString();
@@ -38,6 +44,7 @@ function addAccountsEDocs(edocsData){
     }
 }
 
+//gets account row to the table on e document page
 async  function addEDocsRow(accountDetails, action){
     // we will insert data into table here
     var tbody = document.querySelector(".table-body");
@@ -55,7 +62,7 @@ async  function addEDocsRow(accountDetails, action){
     tbody.appendChild(tr);
 }
 
-
+//when the account button is clicked shows them their bank statement
 document.addEventListener("click",function(e){
     if(e.target.classList.contains("btn")){
         var bankAccountIndex = e.target.id.substr(6);

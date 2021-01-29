@@ -10,20 +10,15 @@ function getSession(){
         var data = response.data.result;
         userData = {
             userID : data.customerID,
-            email : data.email,
-            firstName : data.firstName,
-            lastName : data.lastName,
-            phoneNumber : data.phoneNumber,
-            studentID : data.studentID,
-            uniName : data.universityName,
-            username : data.username,
             cards : []
-        }
+        };
         getRemainingUserData();
         $('#btn-save-changes').prop('disabled', false);
     })
 
 }
+
+//gets the user data from the database
 function getRemainingUserData(){
     axios.get('/users_settings/getUserDetails', {
         params : {
@@ -32,6 +27,14 @@ function getRemainingUserData(){
     }).then(function(response) {
         console.log(response);
         var data = response.data.userData;
+        userData.userID = data[0].Customer_ID;
+        userData.email = data[0].Email;
+        userData.firstName = data[0].First_Name;
+        userData.lastName = data[0].Last_Name;
+        userData.phoneNumber = data[0].Phone_Number;
+        userData.studentID = data[0].Student_ID;
+        userData.uniName = data[0].University_Name;
+        userData.username = data[0].Username;
         userData.accountTypeDesc = data[0].Account_Types_Description;
         userData.dateSigedUp = data[0].Registration_Date;
         userData.password = data[0].Password;
@@ -50,6 +53,7 @@ function getRemainingUserData(){
     })
 }
 
+//updates html fields with properties
 function makeFormHTML(){
     document.querySelector("#user-ID").value  = userData.userID;
     document.querySelector("#username").value = userData.username;
@@ -71,6 +75,7 @@ function makeFormHTML(){
     makeAvatarModal();
 }
 
+//shows user all the avatars they can pick from
 function makeAvatarModal() {
     var avatarPictures = document.querySelector(".pictures");
     var avatarMenPhotos = [1,2,3,4,5,6,7,8,9,18,19,20,21,22,23,24,25,26,35,36,37,38,39,40,41,42];
@@ -103,6 +108,7 @@ function makeAvatarModal() {
 
 }
 
+//shows relevant bank card when the account name is picked
 document.querySelector("#bank-accounts").addEventListener("click",function(){
     var currentValue = this.value;
     index = 0 ;
@@ -128,6 +134,7 @@ document.querySelector("#bank-accounts").addEventListener("click",function(){
     }
 })
 
+//moves to the next bank card when clicked
 document.querySelector(".carousel-control-next").addEventListener("click",function(e){
     if(index < userData.cards.length-1 && index  >= 0){
         index++;
@@ -137,6 +144,7 @@ document.querySelector(".carousel-control-next").addEventListener("click",functi
     document.querySelector(".carousel").style.backgroundColor = userData.cards[index].cardColor;
     document.querySelector("#bank-accounts").value = userData.cards[index].accountName;
 })
+//moves to the previous bank card when clicked
 document.querySelector(".carousel-control-prev").addEventListener("click",function(e){
     if(index  <= userData.cards.length-1 && index   >0){
         index--;
@@ -147,6 +155,7 @@ document.querySelector(".carousel-control-prev").addEventListener("click",functi
     document.querySelector("#bank-accounts").value = userData.cards[index].accountName;
 })
 
+//saves user changes when button clicked
 document.querySelector("#btn-save-changes").addEventListener("click",function(){
     var password = document.querySelector("#current-password").value;
     var newPassword = document.querySelector("#new-password").value;
@@ -178,6 +187,8 @@ document.querySelector("#btn-save-changes").addEventListener("click",function(){
 
 })
 
+
+//updates the user settings
 function updateChanges(){
     userData.username =document.querySelector("#username").value ;
     userData.firstName= document.querySelector("#first-name").value;
@@ -187,6 +198,9 @@ function updateChanges(){
     userData.uniName = document.querySelector("#uni-name").value;
     userData.studentID = document.querySelector("#studetn-ID").value;
 }
+
+//when theme color is click it updates the user bank account theme color
+// when avatar is clicked it updates the user's avatar
 document.addEventListener("click",function(e){
     if(e.target.classList.contains("theme-button")){
         userData.cards[index].cardColor = e.target.style.backgroundColor;
@@ -196,6 +210,16 @@ document.addEventListener("click",function(e){
         userData.avatarPerson = e.target.src;
     }
 })
+
+/**
+ * makes the user's digital card
+ * @param accountNumber is their account number on the card
+ * @param sortCode  is their sort code  on the card
+ * @param accountName  is their account name on the card
+ * @param cardNumber  is their card number on the card
+ * @param expiryDate  is their expiry date on the card
+ * @param cardColor  is their card color on the card
+ */
 function makeCard({accountNumber,sortCode, accountName, cardNumber, expiryDate,cardColor}){
     var cardCarouselInner = document.querySelector(".carousel-inner");
     cardCarouselInner.innerHTML += `

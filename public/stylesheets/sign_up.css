@@ -1,3 +1,4 @@
+
 main{
     background:url(/images/main-sign-up1.jpg);
     background-size: cover;
@@ -161,3 +162,35 @@ footer{}
 .footer-menu .row .footer-icons{
     margin-left:20vw;
 }
+
+@media only screen and (max-width: 600px) {
+    body{
+        width:110vw;
+    }
+    .individual-item_text h2{
+        font-size:16px;
+    }
+    .main-form form .row .btn{
+        width:100px;
+    }
+    .main-bottom_elm .individual-item .individual-item_text p {
+        display: none;
+    }
+
+    .main-bottom_elm .individual-item i {
+        font-size:30px;
+    }
+    main{
+        width:120vw !important;
+    }
+    .main-bottom .container h1{
+        font-size:30px;
+    }
+    .main-img{
+        width:30vw;
+    }
+    .main-form form .main-form_field .fas{
+        display:none;
+    }
+}
+

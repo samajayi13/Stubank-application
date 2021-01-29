@@ -217,7 +217,25 @@ html body [data-ca3_iconfont="ETmodules"]::before {
 
 /*media queires */
 
+@media only screen and (max-width: 600px) {
+    .main-heading_title{
+        font-size:30px;
+    }
+    .main-heading_text{
+        font-size:20px;
+    }
+
+    .main-heading_text{
+        width:80vw;
+    }
+
+    .main-img {
+        width:150px
+    }
+}
+
 @media only screen and (max-width: 800px) {
+
     .main-heading_text{
         width:80vw;
     }

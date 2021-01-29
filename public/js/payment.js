@@ -109,7 +109,12 @@ formBtn.addEventListener("click",function(e){
 
 
 })
-//MOVES THE FORM FORWARD AND SHOWS A NEW STEP IN THE FORM
+
+/**
+ * MOVES THE FORM FORWARD AND SHOWS A NEW STEP IN THE FORM
+ * @param direction is the move direction
+ */
+
 function moveForm(direction){
     formIndex++;
     function setDisplayProperty(formIndex){

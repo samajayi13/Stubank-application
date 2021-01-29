@@ -51,8 +51,7 @@ router.post('/updateChanges', function(req, res, next) {
     var password = encryptObj.encryptData(req.body.password);
     var avatar = req.body.avatarPerson;
 
-
-    var sql =  `UPDATE Customers  SET First_Name = '${firstName}',  Last_Name = '${lastName}', Phone_Number = '${phoneNumber}', Email = '${email}', Password ='${password}' , University_Name = '${uniName}', Student_ID = '${studentID}', Avatar_Person = '${avatar}' WHERE Customers.ID = ${userID}; `;
+    var sql =  `UPDATE Customers  SET First_Name = '${firstName}',  Last_Name = '${lastName}', Phone_Number = '${phoneNumber}', Email = '${email}', Password ='${password}' , University_Name = '${uniName}', Student_ID = '${studentID}', Avatar_Person = '${avatar}' WHERE Customers.ID = ${userID};  `;
     cards.forEach(function(x){
         sql += ` Update Bank_Accounts SET Card_Color = '${x.cardColor}' WHERE Bank_Accounts.Customer_ID = ${userID} AND Account_Name = '${x.accountName}';`;
     });

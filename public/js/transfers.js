@@ -5,8 +5,6 @@ console.log("here");
 function getSession(){
     axios.get('/session/getSession', {
     }).then(function(response) {
-        console.log("here 1");;
-
         bankAccountID =  parseInt(response.data.result.bankAccountIndex);
         getTransfers(bankAccountID);
         getAvatar();
@@ -15,9 +13,11 @@ function getSession(){
 }
 
 
-// fetches transfers data for logged in user
+/**
+ * fetches transfers data for logged in user
+ * @param bankAccountID is the id of the bank account to view transfers
+ */
 function getTransfers(bankAccountID){
-    console.log("here2");
     axios.get('/transfers/getTransfers', {
         //the parameters that is sent with the request
         params: {
@@ -30,7 +30,10 @@ function getTransfers(bankAccountID){
     });
 }
 
-// creates parameters for given transfer data
+/**
+ * creates parameters for given transfer data
+ * @param transferData is the transfer information of the bank account the user is currently viewing
+ */
 function addTransfers(transferData){
     for(var i = 0; i < transferData.length; i++){
         var amountTransferred = transferData[i].Amount_Transferred;
@@ -41,7 +44,14 @@ function addTransfers(transferData){
     }
 }
 
-// adds a row to the page with the given parameters
+/**
+ * adds a row to the page with the given parameters
+ * @param amountTransferred is the amount transferred
+ * @param dateOfTransfer is the date of transfer
+ * @param transferFromID is the bank account ID the money is being transferred from
+ * @param transferToID is the bank account ID the money is being sent from
+ * @returns {Promise<void>}
+ */
 async  function addTransferRow(amountTransferred,dateOfTransfer, transferFromID,transferToID){
     // we will insert data into table here
     var transferType = transferToID === bankAccountID ? "in" : "out";

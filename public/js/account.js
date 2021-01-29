@@ -14,7 +14,10 @@ function getSession(){
  }
 
 
-// fetches account data for logged in user
+/**
+ * fetches account data for logged in user
+ * @param userID is the ID of the customer currently logged in
+ */
  function getAccounts(userID){
      axios.get('/account/getAccounts', {
         //the parameters that is sent with the request
@@ -28,7 +31,10 @@ function getSession(){
     })
 }
 
-// makes buttons for given account data
+/**
+ * makes buttons for given account data
+ * @param accountData is the rows return from the bank acounts table
+ */
 function addAccounts(accountData){
     for(var i = 0; i < accountData.length; i++){
         console.log(accountData);
@@ -44,7 +50,15 @@ function addAccounts(accountData){
     }
 }
 
-// adds a row to the page with the given buttons
+/**
+ * adds a row to the page with the given buttons
+ * @param accountDetails is the bank account rows returned from the database
+ * @param currentBalance is the currentBalance of the bank account
+ * @param availableBalance is the available balance of the bank account
+ * @param is the button with the id pointed to the bankaccount's ID
+ * @returns {Promise<void>}
+ */
+
 async  function addAccountRow(accountDetails, currentBalance,availableBalance, action){
     // we will insert data into the table here
     var tbody = document.querySelector(".table-body");

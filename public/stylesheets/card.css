@@ -70,3 +70,23 @@
     margin-top:25px;
     margin-left:50px;
 }
+
+
+
+@media only screen and (max-width: 1100px) {
+    .titles .titles-group .titles-group_text{
+        font-size:12px;
+    }
+    .carousel{
+        margin-top:10vh;
+        top: 0vh;
+    }
+}
+@media only screen and (max-width: 600px) {
+
+    .carousel{
+       width:95vw;
+        height: 400px;
+    }
+}
+

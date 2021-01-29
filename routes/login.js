@@ -29,10 +29,7 @@ router.post('/signin',  function(req, res, next) {
     var sql = "SELECT *,Bank_Accounts.ID as Bank_ID,Customers.ID  as Customer_ID FROM Customers RIGHT JOIN Bank_Accounts ON Customers.ID = Bank_Accounts.Customer_ID";
 
     db.query(sql,function(error,results,fields){
-        console.log("here");
         var valid = false;
-        console.log("username: ",username);
-        console.log("password: " +password);
         results.forEach(function(x){
             if((encryptObj.decryptData(x.Username) === username) && (encryptObj.decryptData(x.Password) === password)){
                 // adds user information to session

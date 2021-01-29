@@ -5,6 +5,7 @@ var formIndex = 1;
 var verificationCode = (Math.floor(Math.random() * 100000) + 10000).toString();
 var emailSent = false
 
+
 // checks form validation and moves form forward if valid
 formBtn.addEventListener("click",function(e){
     let  formValidated = true;
@@ -36,7 +37,11 @@ function loop(formIndex){
     }
 }
 
-// moves form forward and sends welcome email when complete
+/**
+ * moves form forward and sends welcome email when complete
+ * @param direction is the movement the form will undergo
+ * @param e is the event
+ */
 function moveForm(direction,e){
     if(direction === "forward" && formIndex <=4 ){
         progressNumber += 25;
@@ -99,8 +104,46 @@ function form2Validation(){
     if(password !== confirmPassword){
         updateErrorMessage(document.querySelector(".error-message-confirm-password"),"Password do not match")
         return false
+    }else{
+        if(scoreForPassword(password)<=59){
+            updateErrorMessage(document.querySelector(".error-message-confirm-password"),"Password is too week")
+            return false;
+        }
     }
     return true;
+}
+
+
+/**
+ * checks if password is strong or week
+ * @param password is the password entered by the user
+ * @returns {number} is the score assigned to the user based on if the password is strong or week
+ */
+function scoreForPassword(password) {
+    var valid = 0;
+    if (!password)
+        return valid;
+    
+    var letters = new Object();
+    for (var i=0; i<password.length; i++) {
+        letters[password[i]] = (letters[password[i]] || 0) + 1;
+        valid += 5.0 / letters[password[i]];
+    }
+
+    var typesV = {
+        digits: /\d/.test(password),
+        lower: /[a-z]/.test(password),
+        upper: /[A-Z]/.test(password),
+        nonWords: /\W/.test(password),
+    }
+
+    var countV = 0;
+    for (var check in typesV) {
+        countV += (typesV[check] == true) ? 1 : 0;
+    }
+    valid += (countV - 1) * 10;
+
+    return parseInt(valid);
 }
 
 // validates university, returns true if valid
@@ -127,7 +170,11 @@ function form4Validation(){
     return true;
 }
 
-// if input is empty returns false
+/**
+ * checks if inputs are empty
+ * @param formName is the name of the form
+ * @returns {boolean}
+ */
 function checkIfInputsEmpty(formName) {
     let valid = true;
     let formElm = document.querySelector(`${formName}`);
@@ -146,7 +193,11 @@ function checkIfInputsEmpty(formName) {
     return valid;
 }
 
-// validates phone number, returns true if valid
+/**
+ * validates phone number, returns true if valid
+ * @param number is the number to be check
+ * @returns {boolean}
+ */
 function checkIfPhoneNumberValid(number) {
     let regex = /((07)|((\+|00)447)){1}[0-9]{9}\b/,
         result = regex.test(number);
@@ -155,7 +206,11 @@ function checkIfPhoneNumberValid(number) {
     return result;
 }
 
-// validates email, returns true if valid
+/**
+ * validates email, returns true if valid
+ * @param email is the email to be validated
+ * @returns {boolean}
+ */
 function checkEmailValid(email){
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let valid = re.test(String(email).toLowerCase());
@@ -164,7 +219,11 @@ function checkEmailValid(email){
     return valid;
 }
 
-// validates if input is text, returns true if valid
+/**
+ * validates if input is text, returns true if valid
+ * @param elements is the textfields to be validated
+ * @returns {boolean}
+ */
 function validateTextField(elements){
     let valid = true;
 
@@ -183,10 +242,12 @@ function validateTextField(elements){
 
 }
 
+//display error message to user
 function updateErrorMessage(formElement,message){
     formElement.innerText = message;
 }
 
+//remove error message from webpage
 function clearErrorMessages(formElm){
     let childNodes = formElm.children;
 
@@ -205,7 +266,12 @@ if(window.location.href.toString().includes("valid")){
     document.querySelector("form h1").innerText = "Sign up complete!";
 }
 
-// sends an email from the bank email address to given address with given subject and content
+/**
+ * sends an email from the bank email address to given address with given subject and content
+ * @param toEmail is the email that data is being sent to
+ * @param subject is the subject of the email
+ * @param body is the body of the email
+ */
 function sendEmail(toEmail,subject,body) {
     Email.send({
         Host: "smtp.gmail.com",
