@@ -7,13 +7,35 @@ var emailSent = false
 
 
 // checks form validation and moves form forward if valid
-formBtn.addEventListener("click",function(e){
+formBtn.addEventListener("click",async function(e){
     let  formValidated = true;
 
     if(formIndex === 1){
-        formValidated = form1Validation();
+         await axios.get('/sign_up/checkIfEmailValid', {
+            params: {
+                email : document.querySelector("#email").value
+            }
+        }).then(function(response) {
+            if(response.data.valid === false){
+                formValidated = false;
+                updateErrorMessage(document.querySelector(".error-message-email"),"Email is already taken");
+            }else{
+                formValidated = form1Validation();
+            }
+        });
     }else if(formIndex === 2){
-        formValidated = form2Validation();
+        await axios.get('/sign_up/checkIfUsernameValid', {
+            params: {
+                username : document.querySelector("#username").value
+            }
+        }).then(function(response) {
+            if(response.data.valid === false){
+                formValidated = false;
+                updateErrorMessage(document.querySelector(".error-message-username"),"Username is already taken");
+            }else{
+                formValidated = form2Validation();
+            }
+        });
     }else if (formIndex ===3 ){
         formValidated = form3Validation();
     }else if (formIndex ===4 ){
@@ -76,7 +98,7 @@ function moveForm(direction,e){
 }
 
 // validates phone number and email, returns true if valid, and sends verification code to email
-function form1Validation(){
+ function form1Validation(){
      email = document.querySelector("#email").value;
     clearErrorMessages(document.querySelector(".main-form_1"));
     if(!checkIfInputsEmpty(".main-form_1"))
@@ -102,11 +124,11 @@ function form2Validation(){
     if(!checkIfInputsEmpty(".main-form_2"))
         return false;
     if(password !== confirmPassword){
-        updateErrorMessage(document.querySelector(".error-message-confirm-password"),"Password do not match")
+        updateErrorMessage(document.querySelector(".error-message-confirm-password"),"Password do not match");
         return false
     }else{
         if(scoreForPassword(password)<=59){
-            updateErrorMessage(document.querySelector(".error-message-confirm-password"),"Password is too week")
+            updateErrorMessage(document.querySelector(".error-message-confirm-password"),"Password is too week");
             return false;
         }
     }
@@ -161,7 +183,6 @@ function form4Validation(){
         return false;
     }else{
         var userInput = document.querySelector("#verification-code").value;
-        console.log(verificationCode);
         if(verificationCode !== userInput) {
             updateErrorMessage(document.querySelector(".error-message-verification-code"), "invalid verification code");
             return false;

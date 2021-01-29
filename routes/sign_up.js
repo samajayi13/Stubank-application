@@ -52,4 +52,42 @@ router.post('/create', function(req, res, next) {
 function getRandomNumberInString(min,max){
     return (Math.floor(Math.random()  * min) + max).toString();
 }
+
+
+//checks if email is present in the database
+router.get('/checkIfEmailValid', function(req, res, next) {
+    var email  = req.query.email;
+    var sql =  `SELECT * FROM Customers`;
+    var emailIndex  = -1;
+    db.query(sql,function(error,results,fields){
+        if (error) throw error;
+        results = encryptObj.decryptResults(results);
+        results.forEach(function(x,i){
+            if(x.Email === email){
+                emailIndex = i ;
+            }
+        });
+        var valid = emailIndex === -1? true : false;
+        res.send({valid : valid});
+    });
+});
+
+//checks if email is present in the database
+router.get('/checkIfUsernameValid', function(req, res, next) {
+    var username  = req.query.username;
+    var sql =  `SELECT * FROM Customers`;
+    var index  = -1;
+    db.query(sql,function(error,results,fields){
+        if (error) throw error;
+        results = encryptObj.decryptResults(results);
+        results.forEach(function(x,i){
+            if(x.Username === username){
+                index = i ;
+            }
+        });
+        var valid = index === -1? true : false;
+        res.send({valid : valid});
+    });
+});
+
 module.exports = router;
