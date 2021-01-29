@@ -22,6 +22,7 @@ router.get('/', redirectToAccount, function(req, res, next) {
 // Checks if the username and password entered by the user is present in the database
 // if there is a present row it add user details to a session and opens the user account page
 router.post('/signin',  function(req, res, next) {
+
     // stores all the user input data
     const userDetails = req.body;
     var username = userDetails["username"];
@@ -44,14 +45,24 @@ router.post('/signin',  function(req, res, next) {
                 req.session.universityName = encryptObj.decryptData(x.University_Name);
                 req.session.studentID = encryptObj.decryptData(x.Student_ID);
                 req.session.bankAccountIndex = encryptObj.decryptData(x.Bank_ID);
-                console.log(req.session);
-                valid = true;
+                if(req.session.loginAttempt){
+                    if( req.session.loginAttempt < 10){
+                        valid = true;
+                    }
+                }else{
+                    valid = true;
+                }
             }
         });
         if(valid){
             res.redirect('/account');
 
         }else{
+            if(!req.session.loginAttempt ){
+                req.session.loginAttempt = 1;
+            }else{
+                req.session.loginAttempt += 1;
+            }
             res.redirect('/login');
         }
     });

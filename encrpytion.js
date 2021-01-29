@@ -7,7 +7,6 @@ const mysql = require("mysql");
 var encryptObj =  {
     encryptData : function(data){
         if(typeof data === "string"){
-            console.log(JSON.stringify({ data}));
             var ciphertext = CryptoJS.AES.encrypt( data, key,CryptoJS.mode.ECB);
             ciphertext = ciphertext.toString();
             var ciphertext = ciphertext.replace(/\+/g,'p1L2u3S').replace(/\//g,'s1L2a3S4h').replace(/=/g,'e1Q2u3A4l').replace(/'/g,'k1B1j2S4k');
@@ -24,7 +23,6 @@ var encryptObj =  {
             ciphertext = ciphertext.replace(/p1L2u3S/g, '+' ).replace(/s1L2a3S4h/g, '/').replace(/e1Q2u3A4l/g, '=').replace(/k1B1j2S4k/g,'\'');
             var bytes = CryptoJS.AES.decrypt(ciphertext, key);
             var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-            console.log(plaintext);
             if(plaintext.trim() === ""){
                 return ciphertext;
             }
